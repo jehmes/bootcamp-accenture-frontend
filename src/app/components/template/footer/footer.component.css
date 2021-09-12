@@ -1,0 +1,6 @@
+.footer-container {
+    position: fixed;
+    height: 60px;
+    background-color: #000;
+    bottom: 0;
+}
