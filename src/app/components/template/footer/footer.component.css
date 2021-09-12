@@ -1,8 +1,12 @@
 .footer-container {
-    position: fixed;
+    /* position: fixed; */
     height: 80px;
     background-color: #000;
-    bottom: 0;
+    /* bottom: 0; */
+    /* margin-top: -15px; */
+    grid-row-start: 2;
+    grid-row-end: 3;
+    
 }
 
 .content-center{

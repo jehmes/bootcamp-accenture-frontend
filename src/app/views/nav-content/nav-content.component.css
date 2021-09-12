@@ -1,0 +1,16 @@
+/* *{
+    width: 100%;
+    position: relative;
+    top: 91px;
+    width: 100%;
+} */
+
+/* section {
+    margin-top: 80px;
+} */
+main {
+    padding-top: 88px;
+    min-height: 100%;
+    /* display: grid; */
+    grid-template-rows: 1fr auto;
+}

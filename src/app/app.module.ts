@@ -1,6 +1,7 @@
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,13 +12,19 @@ import { MatSliderModule } from '@angular/material/slider';
 import { FooterComponent } from './components/template/footer/footer.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
+import { HomeComponent } from './views/home/home.component';
+import { NavContentComponent } from './views/nav-content/nav-content.component';
+import { AboutComponent } from './views/about/about.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    HomeComponent,
+    NavContentComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,8 +33,8 @@ import {MatButtonModule} from '@angular/material/button';
     FormsModule,
     MatSliderModule,
     MatToolbarModule,
-    MatButtonModule
-    
+    MatButtonModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
