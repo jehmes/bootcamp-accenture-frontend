@@ -1,6 +1,45 @@
 .footer-container {
     position: fixed;
-    height: 60px;
+    height: 80px;
     background-color: #000;
     bottom: 0;
+}
+
+.content-center{
+    margin-right: 200px; 
+    display: flex;
+    padding: 20px 0 20px 0;
+    width: 100%;
+    justify-content: center;
+}
+.fa-heart{
+    color: rgb(78, 143, 58);
+}
+
+.content-center a {
+    color: #fff;
+    font-size: 1.0rem;
+    margin-left: 20px;
+    border-radius: 50%;
+    padding: 10px 14px;
+    background-color: rgb(32, 32, 32);
+}
+
+.content-center a:hover {
+    color: rgb(32, 32, 32);
+    transition: 0.5s;
+    background-color: rgb(78, 143, 58);
+}
+
+.text {
+    line-height: 15px;
+    color: rgb(158, 153, 153);
+    font-size: 0.7rem;
+}
+.informations  {
+    line-height: 15px;
+    color: rgb(158, 153, 153);
+    font-size: 0.7rem;
+    text-align: right;
+    margin-right: 25px;
 }

@@ -1,7 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap');
+@import '~bootstrap/dist/css/bootstrap.min.css';
 
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Cambria, "Helvetica Neue", sans-serif; }
 a {text-decoration: none;}
+*{
+    margin: 0;
+    padding: 0;
+}
