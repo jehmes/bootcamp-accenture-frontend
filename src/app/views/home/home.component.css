@@ -1,9 +1,87 @@
-div {
-    /* margin-top: 20px; */
-    background-color: rgb(206, 248, 238);
-    /* height: 1500px; */
+
+.content-img {
+    background-image: url("../../../assets/img/home-img.jpg");
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 80%;
+    background-attachment: fixed;
+    max-width: 100%;
+	
+}
+.div1 {
+    width: 100%;
+    height: 250px;
+}
+.div2 {
+    margin-left: 200px;
+    height: 100px;
+}
+.div2 span {
+    font-family: 'Patua One', cursive;
+    line-height: 45px;
+    color: #fff;
+}
+.div2 span:nth-child(1) {
+    font-size: 3.5rem;
+}
+.div2 span:nth-child(3) {
+    font-size: 1.3em;
+}
+.button-div{
+    margin-top: 50px;
+    margin-left: 200px;
+    
+}
+.button {
+    border-radius: 25px;
+    border: solid 2px #fff;
+    width: 150px;
+    height: 60px;
+    background-color: transparent;
+}
+ .button {
+    font-size: 1.3rem;
+    color: #fff;
 }
 
-p{
-    margin: 0;
+.button:hover {
+    background-color: #fff;
+    transition: 0.6s;
+    border: solid 2px #fff;
+    color: #000;
 }
+
+.div3 {
+    width: 100%;
+    height: 350px;
+}
+
+.how-works {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    height: 450px;
+}
+
+.texts {
+    margin-top: 100px;
+    max-width: 700px;
+    /* text-align: left; */
+}
+
+.texts:nth-child(1) {
+    text-align: center;
+}
+.texts span:nth-child(1){
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 1.8rem;
+}
+
+.texts span:nth-child(4){
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 1.2rem;
+    line-height: 35px;
+}
+
