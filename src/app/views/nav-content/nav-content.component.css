@@ -9,7 +9,7 @@
     margin-top: 80px;
 } */
 main {
-    padding-top: 88px;
+    padding-top: 120px;
     min-height: 100%;
     /* display: grid; */
     grid-template-rows: 1fr auto;

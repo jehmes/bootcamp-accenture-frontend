@@ -2,6 +2,7 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { AgmCoreModule } from '@agm/core';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -34,7 +35,10 @@ import { AboutComponent } from './views/about/about.component';
     MatSliderModule,
     MatToolbarModule,
     MatButtonModule,
-    RouterModule
+    RouterModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyB6407PTMNXIPbOuJUcW6jjsoaC69NTx5M'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -16,6 +16,7 @@
     width: 100%;
     justify-content: center;
 }
+
 .fa-heart{
     color: rgb(78, 143, 58);
 }
@@ -40,6 +41,7 @@
     color: rgb(158, 153, 153);
     font-size: 0.7rem;
 }
+
 .informations  {
     line-height: 15px;
     color: rgb(158, 153, 153);

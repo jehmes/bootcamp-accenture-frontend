@@ -74,6 +74,7 @@
 .texts:nth-child(1) {
     text-align: center;
 }
+
 .texts span:nth-child(1){
     font-family: Roboto, "Helvetica Neue", sans-serif;
     font-size: 1.8rem;
@@ -85,3 +86,39 @@
     line-height: 35px;
 }
 
+agm-map {
+    height: 400px;
+}
+
+.map {
+    max-width: 30%;
+    margin-left: 680px;
+    margin-bottom: 50px;
+}
+
+.contacts1 span, .contacts2 span{
+    font-size: 0.9rem;
+    line-height: 20px;
+    color: grey;
+}
+
+.all-contacts i:nth-child(1){
+    margin-right: 10px;
+    color: rgb(78, 143, 58);
+}
+
+.all-contacts i:nth-child(3){
+    margin-left: 20px;
+    color: rgb(78, 143, 58);
+}
+
+.contacts2 {
+    margin-left: 10px;
+}
+
+.all-contacts {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 50px;
+}

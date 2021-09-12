@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  latitude =  -8.05428;
+  longitude = -34.8813;
+  zoom = 14
 
   constructor() { }
 
@@ -14,9 +17,9 @@ export class HomeComponent implements OnInit {
 
   goToTexts() {
     if (document.body.scrollTop === 0) {
-      document.body.scrollTop = 500;
-      document.documentElement.scrollTop = 500;
+      document.body.scrollTop = 840;
+      document.documentElement.scrollTop = 840;
     }
-  
-  }
+    
+   }
 }

@@ -4,31 +4,37 @@
     justify-content: center;
     width: 100%;
     position: fixed;
-    height: 90px;
+    height: 120px;
     /* background-color: rgb(181, 231, 227); */
     background-color: #fff;
 }
+
 .span-logo {
     display: flex;
     align-items: center;
     margin-right: 80px;
     font-family: Garamond;
 }
+
 .span-logo a{
     color: rgb(78, 143, 58);
 }
+
 .logo-img {
-    height: 80px;
+    height: 120px;
 }
+
 .menu-itens > a{
     font-size: 1rem;
     color: #000;
     padding: 0 20px 0 20px; 
 }
+
 .menu-itens > a:hover{
     color: rgb(78, 143, 58);
     transition: 0.5s;
 }
+
 .button-join {
     border-radius: 20px;
     background-color: #000;
@@ -36,6 +42,7 @@
     padding: 5px 5px
 
 }
+
 .button-join:hover  {
     background-color: rgb(78, 143, 58);
     transition: 0.5s; 
@@ -45,4 +52,8 @@
     font-size: 1.2rem;
     color: #fff;
     padding: 10px 30px
+}
+
+.staff{
+    margin-left: 20px;
 }
