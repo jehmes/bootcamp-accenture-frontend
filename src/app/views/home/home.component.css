@@ -10,6 +10,7 @@
     max-width: 100%;
 	
 }
+
 .div1 {
     width: 100%;
     height: 250px;
@@ -89,10 +90,14 @@
 agm-map {
     height: 400px;
 }
+.content-map {
+    margin: 0 auto;
+}
 
 .map {
+    margin: 0 auto;
     max-width: 30%;
-    margin-left: 680px;
+    /* margin-left: 680px; */
     margin-bottom: 50px;
 }
 

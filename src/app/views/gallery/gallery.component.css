@@ -1,6 +1,6 @@
 
 .row {
-    padding-top: 30px;
+    padding-top: 60px;
     justify-content: center;
 }
 *{
@@ -110,4 +110,34 @@
 	text-align: center;
 	font-size: 1.2em;
 	font-weight: 500;
+}
+
+.videos-card {
+	margin: 100px 0 100px 0;	
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.card {
+	max-width: 400px;
+	/* background-color: rgb(244, 250, 242); */
+	border: solid 1px rgb(200, 202, 200);
+  }
+
+.heigh {
+	max-height: 500px;
+}
+  
+.card-header-image {
+	background-image: url('../../../assets/img/tree.jpg');
+	background-size: cover;
+}
+
+.texts-video {
+	margin-top: 30px;
+}
+
+.texts-video p {
+	font-size: 1.rem;
+	font-weight: bold;
 }

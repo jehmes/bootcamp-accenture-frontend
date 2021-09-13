@@ -1,5 +1,5 @@
 .body {
-    background-color: rgb(223, 247, 232);
+    /* background-color: rgb(223, 247, 232); */
 }
 
 .text-title {
@@ -32,6 +32,7 @@
     font-size: 1.2rem;
     line-height: 35px;
 }
+
 .numbers {
     margin-top: 120px;
     display: flex;
@@ -49,6 +50,7 @@
     font-size: 8rem;
   
 }
+
 .max-widght {
     max-width: 250px;
     margin-top: 20px;

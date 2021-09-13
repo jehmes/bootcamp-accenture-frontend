@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { YouTubePlayerModule } from "@angular/youtube-player";
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +20,7 @@ import { NavContentComponent } from './views/nav-content/nav-content.component';
 import { AboutComponent } from './views/about/about.component';
 import { GalleryComponent } from './views/gallery/gallery.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -45,7 +47,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     }),
     NgbModule,
     NgbPaginationModule,
-    NgbAlertModule
+    NgbAlertModule,
+    YouTubePlayerModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

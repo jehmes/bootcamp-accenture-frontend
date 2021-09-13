@@ -3,19 +3,52 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Cambria, "Helvetica Neue", sans-serif; }
-a {text-decoration: none;}
+html, body { 
+    height: 100%; 
+
+}
+body { 
+    margin: 0; 
+    font-family: Cambria, "Helvetica Neue", sans-serif; 
+}
+
+a {
+    text-decoration: none;
+}
+
 *{
     margin: 0;
     padding: 0;
 }
+
 html, body {
     height: 100%;
     margin: 0;
     max-width: 100%; 
     /* overflow-x: hidden; */
-  }
-  a {
-      text-decoration: none;
-  }
+}
+ 
+@-webkit-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; } 
+}
+@-moz-keyframes fadeIn {
+    0% { opacity: 0;}
+    100% { opacity: 1; }
+}
+@-o-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.fadeIn {
+    -webkit-animation: fadeIn 1s ease-in-out;
+    -moz-animation: fadeIn 1s ease-in-out;
+    -o-animation: fadeIn 1s ease-in-out;
+    animation: fadeIn 1s ease-in-out;
+}
+
