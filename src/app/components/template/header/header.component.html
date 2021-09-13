@@ -15,13 +15,13 @@
 
     <div class="menu-itens">
         
-        <a routerLink="">Home</a>
+        <a routerLink="" (click)="goToInicial()">Home</a>
     
-        <a routerLink="/about">About us</a>
+        <a routerLink="/about" (click)="goToInicial()">About us</a>
         
-        <a href="">Gallery</a>
+        <a routerLink="/gallery" (click)="goToInicial()">Gallery</a>
         
-        <a href="">Our impact</a>
+        <a routerLink="/impact" (click)="goToInicial()">Our impact</a>
     </div>
 
     <button mat-raised-button class="button-join">

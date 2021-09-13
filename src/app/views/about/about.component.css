@@ -1,8 +1,62 @@
-div {
-    background-color: brown;
-    /* height: 1500px; */
+.body {
+    background-color: rgb(223, 247, 232);
 }
 
-p{
-    margin: 0;
+.text-title {
+    padding-top: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.text-title h2 {
+    font-family: 'Patua One', cursive;
+    color: rgb(78, 143, 58);
+    font-size: 2rem;
+}
+
+.text-about-content{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.text-about {
+    max-width: 700px;
+    text-align: center;
+}
+
+.text-about span {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 1.2rem;
+    line-height: 35px;
+}
+.numbers {
+    margin-top: 120px;
+    display: flex;
+    width: 100%;
+    height: 330px;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+.numbers div i {
+    color: rgb(78, 143, 58);
+}
+
+.numbers div i{
+    font-size: 8rem;
+  
+}
+.max-widght {
+    max-width: 250px;
+    margin-top: 20px;
+}
+
+.max-widght span {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 1.2rem;
+    color: rgb(38, 70, 28);;
+   
 }

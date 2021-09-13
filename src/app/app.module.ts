@@ -16,6 +16,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { HomeComponent } from './views/home/home.component';
 import { NavContentComponent } from './views/nav-content/nav-content.component';
 import { AboutComponent } from './views/about/about.component';
+import { GalleryComponent } from './views/gallery/gallery.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { AboutComponent } from './views/about/about.component';
     HomeComponent,
     NavContentComponent,
     AboutComponent,
+    GalleryComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,7 @@ import { AboutComponent } from './views/about/about.component';
     MatButtonModule,
     RouterModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyB6407PTMNXIPbOuJUcW6jjsoaC69NTx5M'
+      apiKey: ''
     })
   ],
   providers: [],
