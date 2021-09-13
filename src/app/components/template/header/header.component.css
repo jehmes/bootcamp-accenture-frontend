@@ -8,7 +8,12 @@
     /* background-color: rgb(181, 231, 227); */
     background-color: #fff;
 }
-
+*{
+    z-index: 3;
+}
+a {
+    text-decoration: none;
+}
 .span-logo {
     display: flex;
     align-items: center;

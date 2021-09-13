@@ -16,10 +16,10 @@ export class HomeComponent implements OnInit {
   }
 
   goToTexts() {
-    if (document.body.scrollTop === 0) {
+   
       document.body.scrollTop = 840;
       document.documentElement.scrollTop = 840;
-    }
+    
     
    }
 }

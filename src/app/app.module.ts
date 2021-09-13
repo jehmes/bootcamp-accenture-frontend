@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
+import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +18,7 @@ import { HomeComponent } from './views/home/home.component';
 import { NavContentComponent } from './views/nav-content/nav-content.component';
 import { AboutComponent } from './views/about/about.component';
 import { GalleryComponent } from './views/gallery/gallery.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -40,7 +42,10 @@ import { GalleryComponent } from './views/gallery/gallery.component';
     RouterModule,
     AgmCoreModule.forRoot({
       apiKey: ''
-    })
+    }),
+    NgbModule,
+    NgbPaginationModule,
+    NgbAlertModule
   ],
   providers: [],
   bootstrap: [AppComponent]
