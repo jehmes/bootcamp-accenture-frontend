@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -10,16 +10,18 @@ export class HomeComponent implements OnInit {
   longitude = -34.8813;
   zoom = 14
 
-  constructor() { }
+  constructor(private _el: ElementRef) {
+    
+   }
 
   ngOnInit(): void {
+    
   }
 
   goToTexts() {
-   
       document.body.scrollTop = 840;
       document.documentElement.scrollTop = 840;
-    
-    
+     
    }
-}
+   
+  }

@@ -119,10 +119,12 @@
 }
 
 .card {
+	border-radius: 25px;
 	max-width: 400px;
 	/* background-color: rgb(244, 250, 242); */
 	border: solid 1px rgb(200, 202, 200);
   }
+  
 
 .heigh {
 	max-height: 500px;

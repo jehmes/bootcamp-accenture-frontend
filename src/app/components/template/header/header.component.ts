@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  
 
   constructor() { 
   
@@ -14,18 +14,18 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   
+  
   }
   
+  // menuItems = document.querySelectorAll('.menu-itens a');
+
   goToInicial() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   }
-  
+
+
   }
-    
-    
-  
 
   
 

@@ -21,6 +21,7 @@ import { AboutComponent } from './views/about/about.component';
 import { GalleryComponent } from './views/gallery/gallery.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatCardModule} from '@angular/material/card';
+import { CadastroComponent } from './views/cadastro/cadastro.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import {MatCardModule} from '@angular/material/card';
     NavContentComponent,
     AboutComponent,
     GalleryComponent,
+    CadastroComponent,
   ],
   imports: [
     BrowserModule,
