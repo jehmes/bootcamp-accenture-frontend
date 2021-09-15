@@ -1,1 +1,63 @@
-<p>cadastro works!</p>
+<div class="body fadeIn">
+    <mat-card class="mat-card">
+        <mat-card-title>Cadastrar</mat-card-title>     
+            <form >
+                <mat-form-field class="example-form-field" >
+                    <input matInput type="text" placeholder="Nome completo" [(ngModel)]="user.nome" name="nome" required>
+                </mat-form-field>
+        
+                <mat-form-field class="example-form-field">
+                    <input matInput type="text" placeholder="CPF (apenas numeros)" [(ngModel)]="user.cpf" name="=cpf" required>
+                </mat-form-field>
+        
+                <mat-form-field class="example-form-field">
+                    <input matInput type="password" placeholder="Senha" [(ngModel)]="user.senha" name="senha" required>
+                </mat-form-field>
+        
+                <mat-form-field>
+                <mat-label>Depósito</mat-label>
+                <mat-select [(ngModel)]="user.deposito.id" name="deposito" required>
+                    <mat-option>Selecione</mat-option>
+                    <mat-option *ngFor="let deposito of depositos" [value]="deposito.value" >
+                    {{deposito.viewValue}}
+                    </mat-option>
+                </mat-select>
+                </mat-form-field>
+
+
+                <div class="endereco">
+                    <mat-form-field class="example-form-field" name="cep">
+                        <input  matInput type="text" placeholder="CEP"  [(ngModel)]="user.endereco.cep" (keyup)="consultarCEP($event)" name="cep" required>
+                    </mat-form-field>
+    
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="text" placeholder="Logradouro" [(ngModel)]="user.endereco.logradouro" name="logradouro" required>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="text" placeholder="Bairro" [(ngModel)]="user.endereco.bairro" name="bairro" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="text" placeholder="Cidade" [(ngModel)]="user.endereco.cidade" name="cidade" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="text" placeholder="Estado" [(ngModel)]="user.endereco.estado" name="estado" required>
+                    </mat-form-field>
+                </div>
+               
+                <mat-form-field class="example-form-field">
+                    <input matInput type="text" placeholder="Contato"  [(ngModel)]="user.contato" name="contato" required>
+                </mat-form-field>
+
+                <div class="buttons">               
+                    <button mat-raised-button color="primary" type="submit" (click)=createUser()>Cadastrar</button>
+                    <button mat-raised-button (click)="limparForm()">Limpar</button>
+                </div>
+    
+            </form>      
+        
+    </mat-card>
+   
+</div>

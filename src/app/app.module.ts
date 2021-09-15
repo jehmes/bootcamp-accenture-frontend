@@ -1,10 +1,11 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { YouTubePlayerModule } from "@angular/youtube-player";
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +23,13 @@ import { GalleryComponent } from './views/gallery/gallery.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatCardModule} from '@angular/material/card';
 import { CadastroComponent } from './views/cadastro/cadastro.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
+
+
 
 
 @NgModule({
@@ -51,7 +59,15 @@ import { CadastroComponent } from './views/cadastro/cadastro.component';
     NgbPaginationModule,
     NgbAlertModule,
     YouTubePlayerModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    MatChipsModule,
+    MatIconModule,
+    HttpClientModule,
+    
+
   ],
   providers: [],
   bootstrap: [AppComponent]
