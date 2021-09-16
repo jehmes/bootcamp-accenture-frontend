@@ -15,7 +15,7 @@
     margin: 52px 0 0 20px;
   }
 
-  mat-card-title {
+  .mat-card-title {
       margin-bottom: 25px;
   }
 
@@ -38,4 +38,13 @@
   .endereco mat-form-field:nth-child(2){
       margin-left: 10px;
   }
+
+  .invalidEmail {
+      margin-bottom: 15px;
+      margin-top: -15px;
+  }
+ 
+.invalidEmail span {
+    color: rgb(255, 10, 10);
+}
  

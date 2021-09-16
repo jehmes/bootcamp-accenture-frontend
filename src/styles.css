@@ -52,3 +52,21 @@ html, body {
     animation: fadeIn 1s ease-in-out;
 }
 
+.success {
+  color: #fff;
+  background-color: green;
+}
+
+.success .mat-simple-snackbar-action  {
+  color: #fff;
+}
+
+.error {
+    color: #fff;
+    background-color: rgb(148, 12, 12);
+}
+
+.error .mat-simple-snackbar-action  {
+    color: #fff;
+}
+

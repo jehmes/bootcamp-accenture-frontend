@@ -13,4 +13,5 @@ export interface User {
         id: number      
     }
     contato: string
+    email: string
 }

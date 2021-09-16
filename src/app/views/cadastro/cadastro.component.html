@@ -1,5 +1,5 @@
 <div class="body fadeIn">
-    <mat-card class="mat-card">
+    <!-- <mat-card class="mat-card">
         <mat-card-title>Cadastrar</mat-card-title>     
             <form >
                 <mat-form-field class="example-form-field" >
@@ -58,6 +58,73 @@
     
             </form>      
         
-    </mat-card>
+    </mat-card> -->
    
+
+    <mat-card class="mat-card">
+        <mat-card-title>Cadastrar</mat-card-title>     
+            <form [formGroup]="userForm" (ngSubmit)="createUser()">
+                <mat-form-field class="example-form-field" >
+                    <input matInput type="text" placeholder="Nome completo" formControlName="nome" required>
+                </mat-form-field>
+        
+                <mat-form-field class="example-form-field">
+                    <input matInput type="text" placeholder="CPF (apenas numeros)"  formControlName="cpf" required>
+                </mat-form-field>
+        
+                <mat-form-field class="example-form-field">
+                    <input matInput type="password" placeholder="Senha" formControlName="senha" required>
+                </mat-form-field>
+        
+                <mat-form-field>
+                <mat-label>Depósito</mat-label>
+                <mat-select  formControlName="id_deposito" required>
+                    <mat-option>Selecione</mat-option>
+                    <mat-option *ngFor="let deposito of depositos" [value]="deposito.value" >
+                    {{deposito.viewValue}}
+                    </mat-option>
+                </mat-select>
+                </mat-form-field>
+
+
+                <div class="endereco">
+                    <mat-form-field class="example-form-field" >
+                        <input  matInput type="text" placeholder="CEP"  (keyup)="consultarCEP($event)" formControlName="cep" required>
+                    </mat-form-field>
+    
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="text" placeholder="Logradouro"  formControlName="logradouro" required>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="text" placeholder="Bairro"  formControlName="bairro" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="text" placeholder="Cidade"  formControlName="cidade" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="text" placeholder="Estado"  formControlName="estado" required>
+                    </mat-form-field>
+                </div>
+               
+                <mat-form-field class="example-form-field">
+                    <input matInput type="text" placeholder="Contato" formControlName="contato" required>
+                </mat-form-field>
+                <mat-form-field class="example-form-field">
+                    <input  matInput type="email" placeholder="Email" formControlName="email" (blur)="emailFormat()" required>
+                </mat-form-field>
+                <div class="invalidEmail">
+                    <span *ngIf="!emailValidator">email inválido</span>
+                </div>
+
+                <div class="buttons">               
+                    <button mat-raised-button color="primary" type="submit">Cadastrar</button>
+                    <button mat-raised-button (click)="limparForm()">Limpar</button>
+                </div>
+    
+            </form>      
+        
+    </mat-card>
 </div>
