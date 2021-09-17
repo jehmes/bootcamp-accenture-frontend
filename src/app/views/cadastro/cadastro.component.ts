@@ -1,7 +1,8 @@
-import { User } from './../../User.model';
+import { Validacoes } from './../../validations/Validators';
 import { ServiceService } from './../../service.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { cpf } from 'cpf-cnpj-validator'; 
 
 
 interface Food {
@@ -15,26 +16,10 @@ interface Food {
   styleUrls: ['./cadastro.component.css']
 })
 export class CadastroComponent implements OnInit {
-  
-  emailValidator = true;
 
-  user: User = {
-    nome: '',
-    cpf: '',
-    senha: '',
-    endereco: {
-      cep: '',
-      logradouro: '',
-      bairro: '',
-      cidade: '',
-      estado: ''
-    },
-    deposito: {
-      id: 0
-    },
-    contato: '',
-    email: ''
-  }
+  cpfValidator = false;
+
+  emailValidator = true;
 
   userForm!: FormGroup;
 
@@ -47,22 +32,30 @@ export class CadastroComponent implements OnInit {
   constructor(private service: ServiceService, private formBuilder: FormBuilder) {}  
 
   ngOnInit(): void {
+    
+
     this.userForm = this.formBuilder.group({
-    nome: [null, Validators.required],
-    cpf: [null, Validators.required],
-    senha: [null, Validators.required],
-    cep: [null, Validators.required],
-    logradouro: [null, Validators.required],
-    bairro: [null, Validators.required],
-    cidade: [null, Validators.required],
-    estado: [null, Validators.required],
-    id_deposito: [null, Validators.required],
-    contato: [null, Validators.required],
-    email: [null, [Validators.required, Validators.email]]
-    })
+      nome: [null, Validators.required],
+      cpf: ['',[Validators.required, validarCpf]],
+      senha: [null, Validators.required],
+      endereco: this.formBuilder.group({
+        cep: [null, Validators.required],
+        logradouro: [null, Validators.required],
+        bairro: [null, Validators.required],  
+        cidade: [null, Validators.required],
+        estado: [null, Validators.required],
+      }),
+      deposito: this.formBuilder.group({
+        id: [null, Validators.required]
+      }),
+      contato: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]]
+      })
+
   }
   
 
+  //Consulta o CEP numa API
  consultarCEP(cep: any) {
    if (cep.target.value.length == 8) {
     const value = cep.target.value
@@ -73,35 +66,31 @@ export class CadastroComponent implements OnInit {
    } 
  }
 
+
+ //Popula os campos endereço vindo da API
  popularEndereco(dados: any) {
-   this.userForm.get('logradouro')?.setValue(dados.logradouro)
-   this.userForm.get('bairro')?.setValue(dados.bairro)
-   this.userForm.get('cidade')?.setValue(dados.localidade)
-   this.userForm.get('estado')?.setValue(dados.uf)
+   this.userForm.get('endereco')?.get('logradouro')?.setValue(dados.logradouro)
+   this.userForm.get('endereco')?.get('bairro')?.setValue(dados.bairro)
+   this.userForm.get('endereco')?.get('cidade')?.setValue(dados.localidade)
+   this.userForm.get('endereco')?.get('estado')?.setValue(dados.uf)
  }
 
- popularForm() {
-    this.user.endereco.cep = this.userForm.get('cep')?.value
-    this.user.endereco.logradouro = this.userForm.get('logradouro')?.value
-    this.user.endereco.bairro = this.userForm.get('bairro')?.value
-    this.user.endereco.cidade = this.userForm.get('cidade')?.value
-    this.user.endereco.estado = this.userForm.get('estado')?.value
-    this.user.nome = this.userForm.get('nome')?.value
-    this.user.cpf = this.userForm.get('cpf')?.value
-    this.user.senha = this.userForm.get('senha')?.value
-    this.user.deposito.id = parseInt(this.userForm.get('id_deposito')?.value)
-    this.user.contato = this.userForm.get('contato')?.value
-    this.user.email = this.userForm.get('email')?.value
- }
+
 
  createUser() {
-    if (!this.userForm.valid) {
-      this.service.showMessage("Campos inválidos!", 'error')
-      return
-    }
-    this.popularForm()
-    this.service.createUser(this.user).subscribe(()=>{
-      console.log("Usuario criado ",this.user)
+
+  //  if (!this.userForm.valid) {
+  //      this.service.showMessage("Campos inválidos!", 'error')
+  //      return
+  //    }
+   
+    //Altera de string pra int
+    this.userForm.value.deposito.id = +this.userForm.value.deposito.id 
+    
+    let payload = this.userForm.value
+
+    this.service.createUser(payload).subscribe(()=>{
+      console.log("Usuario criado ",payload)
       this.limparForm()
       this.service.showMessage("Cadastro realizado com sucesso!", 'success')
     }, 
@@ -112,18 +101,47 @@ export class CadastroComponent implements OnInit {
     )
  }
 
+
  limparForm() {
   this.userForm.reset()
  }
 
- emailFormat(){
-  if (this.userForm.get('email')?.status == "INVALID") {
-    console.log('falso')
-    this.emailValidator = false
-  } else {
-    this.emailValidator = true
-  }
- }
 
+ //input apenas numeros
+ keyPressNumbers(event: any) {
+  var charCode = (event.which) ? event.which : event.keyCode;
+  // Only Numbers 0-9
+  if ((charCode < 48 || charCode > 57)) {
+    event.preventDefault();
+    return false;
+  } else {
+    return true;
+  }
+}
+
+//input apenas letras
+  keyPressLetters(event: any) {
+    var charCode = (event.which) ? event.which : event.keyCode;
+    console.log(charCode)
+    // Only Numbers 0-9
+    if ((charCode < 97 || charCode > 122)) {
+      event.preventDefault();
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+    
+}
+
+
+function validarCpf(control: AbstractControl): {[key: string]: any} | null {
+  const cpfValue: string = control.value
   
+  if (cpf.isValid(cpfValue)) {
+    return null;
+  } else {
+    return { 'validarCPF2': true}
+  }
 }

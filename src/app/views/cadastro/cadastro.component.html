@@ -65,20 +65,23 @@
         <mat-card-title>Cadastrar</mat-card-title>     
             <form [formGroup]="userForm" (ngSubmit)="createUser()">
                 <mat-form-field class="example-form-field" >
-                    <input matInput type="text" placeholder="Nome completo" formControlName="nome" required>
+                    <input matInput type="text" placeholder="Nome completo" minlength="4" maxlength="26" formControlName="nome" (keypress)="keyPressLetters($event)" required>
                 </mat-form-field>
         
                 <mat-form-field class="example-form-field">
-                    <input matInput type="text" placeholder="CPF (apenas numeros)"  formControlName="cpf" required>
+                    <input matInput type="text" placeholder="CPF (apenas numeros)" minlength="11" maxlength="11" formControlName="cpf" maxlength="11" (keypress)="keyPressNumbers($event)" required>
                 </mat-form-field>
-        
+                <div class="invalidEmail" *ngIf="userForm.controls.cpf.touched && userForm.controls.cpf.invalid">
+                    <span >CPF inválido</span>
+                </div>
+
                 <mat-form-field class="example-form-field">
-                    <input matInput type="password" placeholder="Senha" formControlName="senha" required>
+                    <input matInput type="password" placeholder="Senha" minlength="6" maxlength="11"  formControlName="senha" required>
                 </mat-form-field>
         
-                <mat-form-field>
+                <mat-form-field formGroupName="deposito">
                 <mat-label>Depósito</mat-label>
-                <mat-select  formControlName="id_deposito" required>
+                <mat-select formControlName="id" required>
                     <mat-option>Selecione</mat-option>
                     <mat-option *ngFor="let deposito of depositos" [value]="deposito.value" >
                     {{deposito.viewValue}}
@@ -87,36 +90,36 @@
                 </mat-form-field>
 
 
-                <div class="endereco">
+                <div class="endereco" formGroupName="endereco">
                     <mat-form-field class="example-form-field" >
-                        <input  matInput type="text" placeholder="CEP"  (keyup)="consultarCEP($event)" formControlName="cep" required>
+                        <input  matInput type="text" placeholder="CEP" minlength="8" maxlength="8" (keyup)="consultarCEP($event)" formControlName="cep" (keypress)="keyPressNumbers($event)" required>
                     </mat-form-field>
     
                     <mat-form-field class="example-form-field">
-                        <input matInput type="text" placeholder="Logradouro"  formControlName="logradouro" required>
+                        <input matInput type="text" placeholder="Logradouro" minlength="5" maxlength="26"  formControlName="logradouro" (keypress)="keyPressLetters($event)" required>
                     </mat-form-field>
                     
                     <mat-form-field class="example-form-field">
-                        <input matInput type="text" placeholder="Bairro"  formControlName="bairro" required>
+                        <input matInput type="text" placeholder="Bairro" minlength="5" maxlength="26"  formControlName="bairro" (keypress)="keyPressLetters($event)" required>
                     </mat-form-field>
 
                     <mat-form-field class="example-form-field">
-                        <input matInput type="text" placeholder="Cidade"  formControlName="cidade" required>
+                        <input matInput type="text" placeholder="Cidade" minlength="5" maxlength="26" formControlName="cidade" (keypress)="keyPressLetters($event)" required>
                     </mat-form-field>
 
                     <mat-form-field class="example-form-field">
-                        <input matInput type="text" placeholder="Estado"  formControlName="estado" required>
+                        <input matInput type="text" placeholder="Estado"  formControlName="estado" (keypress)="keyPressLetters($event)" required>
                     </mat-form-field>
                 </div>
                
                 <mat-form-field class="example-form-field">
-                    <input matInput type="text" placeholder="Contato" formControlName="contato" required>
+                    <input matInput type="text" placeholder="Contato" formControlName="contato" (keypress)="keyPressNumbers($event)" required>
                 </mat-form-field>
                 <mat-form-field class="example-form-field">
-                    <input  matInput type="email" placeholder="Email" formControlName="email" (blur)="emailFormat()" required>
+                    <input  matInput type="email" placeholder="Email" formControlName="email" required>
                 </mat-form-field>
-                <div class="invalidEmail">
-                    <span *ngIf="!emailValidator">email inválido</span>
+                <div class="invalidEmail" *ngIf="userForm.controls.email.touched && userForm.controls.email.invalid">
+                    <span >email inválido</span>
                 </div>
 
                 <div class="buttons">               

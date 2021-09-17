@@ -10,7 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ServiceService {
 
-  urlUser = "http://localhost:3001/cadastro"
+  urlUser = "http://localhost:8080/student"
   url = "https://viacep.com.br/ws/"
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
