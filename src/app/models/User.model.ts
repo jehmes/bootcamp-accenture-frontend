@@ -10,7 +10,12 @@ export interface User {
         estado: string
     }
     deposito: {
-        id: number      
+           nome: string,
+           cep: string,
+           logradouro: string,
+           bairro: string,
+           estado: string,
+           cidade: string  
     }
     contato: string
     email: string

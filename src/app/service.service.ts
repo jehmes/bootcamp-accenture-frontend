@@ -1,4 +1,5 @@
-import { User } from './User.model';
+import { User } from './models/User.model';
+import { Login } from './models/Login.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -10,8 +11,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ServiceService {
 
-  urlUser = "http://localhost:8080/student"
-  url = "https://viacep.com.br/ws/"
+  urlUser = "http://localhost:8080/user-create"
+  urlLogin = "http://localhost:8080/login"
+  urlDeposito = "http://localhost:8080/deposito"
+
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
   
@@ -22,6 +25,14 @@ export class ServiceService {
 
   createUser(user: User): Observable<User> {
     return this.http.post<User>(this.urlUser, user)
+  }
+
+  loginValidate(login: Login): Observable<Login> {
+    return this.http.post<Login>(this.urlLogin, login)
+  }
+
+  getAllDepositos(): Observable<any> {
+    return this.http.get<any>(this.urlDeposito)
   }
 
   showMessage(msg: string, status: string) {

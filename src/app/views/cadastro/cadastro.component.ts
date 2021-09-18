@@ -5,10 +5,7 @@ import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators, AbstractC
 import { cpf } from 'cpf-cnpj-validator'; 
 
 
-interface Food {
-  value: string;
-  viewValue: string;
-}
+
 
 @Component({
   selector: 'app-cadastro',
@@ -16,25 +13,34 @@ interface Food {
   styleUrls: ['./cadastro.component.css']
 })
 export class CadastroComponent implements OnInit {
+  depositoModel:any 
+
+  allDepositos: any = []
 
   cpfValidator = false;
 
   emailValidator = true;
 
-  userForm!: FormGroup;
+  loginFom!: FormGroup;
 
-  depositos: Food[] = [
-    {value: '1', viewValue: 'Deposito Fulano, Rua 25, Recife - PE'},
-    {value: '2', viewValue: 'Deposito Sicrano, Rua 27, Jaboatão - PE'},
-    {value: '3', viewValue: 'Deposito Beltrano, Rua 2 de Julho, Olinda - PE'}
-  ];
+  cadastroForm!: FormGroup;
+
+  // depositos: Food[] = [
+  //   {value: '1', viewValue: 'Deposito Fulano, Rua 25, Recife - PE'},
+  //   {value: '2', viewValue: 'Deposito Sicrano, Rua 27, Jaboatão - PE'},
+  //   {value: '3', viewValue: 'Deposito Beltrano, Rua 2 de Julho, Olinda - PE'}
+  // ];
 
   constructor(private service: ServiceService, private formBuilder: FormBuilder) {}  
 
   ngOnInit(): void {
     
+    this.loginFom = this.formBuilder.group({
+      cpf: [null,[Validators.required, validarCpf]],
+      senha: [null, Validators.required]
+      })
 
-    this.userForm = this.formBuilder.group({
+    this.cadastroForm = this.formBuilder.group({
       nome: [null, Validators.required],
       cpf: ['',[Validators.required, validarCpf]],
       senha: [null, Validators.required],
@@ -46,66 +52,102 @@ export class CadastroComponent implements OnInit {
         estado: [null, Validators.required],
       }),
       deposito: this.formBuilder.group({
-        id: [null, Validators.required]
+        nome: [null, Validators.required],
+        endereco: this.formBuilder.group({
+          cep: [null, Validators.required],
+          logradouro: [null, Validators.required],
+          bairro: [null, Validators.required],  
+          cidade: [null, Validators.required],
+          estado: [null, Validators.required],
+        })
       }),
       contato: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]]
       })
 
+      
+      this.service.getAllDepositos().subscribe((data) => {
+        this.allDepositos = data
+        console.log(this.allDepositos)
+      })
+
+    
   }
   
-
-  //Consulta o CEP numa API
- consultarCEP(cep: any) {
-   if (cep.target.value.length == 8) {
-    const value = cep.target.value
-
-     this.service.getCEP(value).subscribe((dados) => {
-       this.popularEndereco(dados)
-     })
-   } 
- }
-
-
- //Popula os campos endereço vindo da API
- popularEndereco(dados: any) {
-   this.userForm.get('endereco')?.get('logradouro')?.setValue(dados.logradouro)
-   this.userForm.get('endereco')?.get('bairro')?.setValue(dados.bairro)
-   this.userForm.get('endereco')?.get('cidade')?.setValue(dados.localidade)
-   this.userForm.get('endereco')?.get('estado')?.setValue(dados.uf)
- }
-
-
+  setDepositoValues() {
+    let d = this.depositoModel
+    this.cadastroForm.get('deposito')?.get('id')?.setValue(d.id)
+    this.cadastroForm.get('deposito')?.get('nome')?.setValue(d.nome)
+    // this.cadastroForm.get('deposito')?.get('endereco')?.get('id')?.setValue(d.endereco.id)
+    this.cadastroForm.get('deposito')?.get('endereco')?.get('cep')?.setValue(d.endereco.cep)
+    this.cadastroForm.get('deposito')?.get('endereco')?.get('logradouro')?.setValue(d.endereco.logradouro)
+    this.cadastroForm.get('deposito')?.get('endereco')?.get('bairro')?.setValue(d.endereco.bairro)
+    this.cadastroForm.get('deposito')?.get('endereco')?.get('cidade')?.setValue(d.endereco.cidade)
+    this.cadastroForm.get('deposito')?.get('endereco')?.get('estado')?.setValue(d.endereco.estado)
+    console.log('formGroup ', this.cadastroForm.get('deposito')?.value)
+   }
 
  createUser() {
 
-  //  if (!this.userForm.valid) {
+  //  if (!this.cadastroForm.valid) {
   //      this.service.showMessage("Campos inválidos!", 'error')
   //      return
   //    }
    
     //Altera de string pra int
-    this.userForm.value.deposito.id = +this.userForm.value.deposito.id 
+    // this.cadastroForm.value.deposito.id = +this.cadastroForm.value.deposito.id 
     
-    let payload = this.userForm.value
-
+    let payload = this.cadastroForm.value
+    console.log(payload)
+  
     this.service.createUser(payload).subscribe(()=>{
       console.log("Usuario criado ",payload)
-      this.limparForm()
+      // this.limparForm()
       this.service.showMessage("Cadastro realizado com sucesso!", 'success')
     }, 
     err => {
       this.service.showMessage("Não foi possível realizar o cadastro!", 'error')
       console.log(err)
-    }
-    )
+    })
  }
 
 
- limparForm() {
-  this.userForm.reset()
+ loginValidate (){
+    //  if (!this.loginFom.valid) {
+    //    this.service.showMessage("Campos inválidos!", 'error')
+    //    return
+    //  }
+     let payload = this.loginFom.value
+
+     this.service.loginValidate(payload).subscribe(() => {
+      this.service.showMessage("Cadastro realizado com sucesso!", 'success')
+     },
+     err => {
+      this.service.showMessage("Não foi possível realizar o cadastro!", 'error')
+      console.log(err)
+     })
+
  }
 
+
+  //Consulta o CEP numa API
+  consultarCEP(cep: any) {
+    if (cep.target.value.length == 8) {
+     const value = cep.target.value
+ 
+      this.service.getCEP(value).subscribe((dados) => {
+        this.popularEndereco(dados)
+      })
+    } 
+  }
+
+   //Popula os campos endereço vindo da API
+ popularEndereco(dados: any) {
+  this.cadastroForm.get('endereco')?.get('logradouro')?.setValue(dados.logradouro)
+  this.cadastroForm.get('endereco')?.get('bairro')?.setValue(dados.bairro)
+  this.cadastroForm.get('endereco')?.get('cidade')?.setValue(dados.localidade)
+  this.cadastroForm.get('endereco')?.get('estado')?.setValue(dados.uf)
+}
 
  //input apenas numeros
  keyPressNumbers(event: any) {
@@ -132,10 +174,17 @@ export class CadastroComponent implements OnInit {
     }
   }
 
+  limparForm() {
+    this.cadastroForm.reset()
+    // this.cadastroForm.get("deposito")?.setValue("")
+   }
+
+   
+ 
     
 }
 
-
+//Valida CPF
 function validarCpf(control: AbstractControl): {[key: string]: any} | null {
   const cpfValue: string = control.value
   
@@ -145,3 +194,4 @@ function validarCpf(control: AbstractControl): {[key: string]: any} | null {
     return { 'validarCPF2': true}
   }
 }
+

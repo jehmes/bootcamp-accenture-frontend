@@ -18,7 +18,7 @@ a {
     display: flex;
     align-items: center;
     margin-right: 80px;
-    font-family: Garamond;
+    font-family: 'Poppins', sans-serif;
 }
 
 .span-logo a{
@@ -35,6 +35,10 @@ a {
     padding: 0 20px 0 20px; 
 }
 
+.menu-itens a {
+    font-family: 'Poppins', sans-serif; 
+}
+
 .menu-itens > a:hover{
     color: rgb(78, 143, 58);
     transition: 0.5s;
@@ -48,7 +52,20 @@ a {
 
 }
 
-.button-join:hover  {
+.cadastrar-login {
+    font-size: 12px;
+    line-height: 15px;
+    margin-left: 55px;
+}
+
+.cadastrar-login a, span, i {
+    color: rgb(78, 143, 58);
+}
+
+.cadastrar-login a:hover {
+    text-decoration: underline;
+}
+/* .button-join:hover  {
     background-color: rgb(78, 143, 58);
     transition: 0.5s; 
 }
@@ -61,4 +78,4 @@ a {
 
 .login{
     margin-left: 20px;
-}
+} */

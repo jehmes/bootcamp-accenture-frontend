@@ -24,13 +24,13 @@
         <a routerLink="/impact" (click)="goToInicial()">Our impact</a>
     </div>
 
-    <button routerLink="/cadastro" (click)="goToInicial()" mat-raised-button class="button-join">
-        <a class="join-us">Join us</a>
-    </button>
-
-    <button mat-raised-button class="login">
-        Login
-    </button>
+    <div class="cadastrar-login">
+        <i class="fas fa-user"></i>
+        <span>
+           Faça <a routerLink="/cadastro"> <strong> Login </strong ></a> <br>
+          ou crie seu  <a routerLink="/cadastro"> <strong> Cadastro </strong> </a>
+        </span>
+    </div>
 </mat-toolbar>
 
 

@@ -29,7 +29,9 @@ import { MatInputModule } from '@angular/material/input';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { UserComponent } from './views/user/user.component';
 
+  
 
 
 
@@ -43,6 +45,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     AboutComponent,
     GalleryComponent,
     CadastroComponent,
+    UserComponent,
+    
   ],
   imports: [
     BrowserModule,

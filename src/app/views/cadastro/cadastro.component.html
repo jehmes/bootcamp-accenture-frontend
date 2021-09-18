@@ -1,69 +1,41 @@
 <div class="body fadeIn">
-    <!-- <mat-card class="mat-card">
-        <mat-card-title>Cadastrar</mat-card-title>     
-            <form >
-                <mat-form-field class="example-form-field" >
-                    <input matInput type="text" placeholder="Nome completo" [(ngModel)]="user.nome" name="nome" required>
-                </mat-form-field>
-        
-                <mat-form-field class="example-form-field">
-                    <input matInput type="text" placeholder="CPF (apenas numeros)" [(ngModel)]="user.cpf" name="=cpf" required>
-                </mat-form-field>
-        
-                <mat-form-field class="example-form-field">
-                    <input matInput type="password" placeholder="Senha" [(ngModel)]="user.senha" name="senha" required>
-                </mat-form-field>
-        
+    
+    <div>
+        <div class="identText">
+            <i class="fas fa-user verticalAlig"></i>
+            <h2>IDENTIFICAÇÃO</h2>
+        </div>
+
+        <mat-card class="formLogin">
+            <mat-card-title>JA TENHO CADASTRO</mat-card-title>
+            <mat-card-content>
+                <form [formGroup]="loginFom" >
+                
                 <mat-form-field>
-                <mat-label>Depósito</mat-label>
-                <mat-select [(ngModel)]="user.deposito.id" name="deposito" required>
-                    <mat-option>Selecione</mat-option>
-                    <mat-option *ngFor="let deposito of depositos" [value]="deposito.value" >
-                    {{deposito.viewValue}}
-                    </mat-option>
-                </mat-select>
+                    <input type="text" matInput placeholder="CPF (apenas números)" minlength="11" maxlength="11"  (keypress)="keyPressNumbers($event)" formControlName="cpf" required>
+                </mat-form-field>       
+                <div class="invalid" *ngIf="loginFom.controls.cpf.touched && loginFom.controls.cpf.invalid">
+                    <span >CPF inválido</span>
+                </div>    
+                
+                <mat-form-field>
+                    <input type="password" matInput placeholder="Senha" minlength="6" maxlength="11" formControlName="senha" required>
                 </mat-form-field>
-
-
-                <div class="endereco">
-                    <mat-form-field class="example-form-field" name="cep">
-                        <input  matInput type="text" placeholder="CEP"  [(ngModel)]="user.endereco.cep" (keyup)="consultarCEP($event)" name="cep" required>
-                    </mat-form-field>
-    
-                    <mat-form-field class="example-form-field">
-                        <input matInput type="text" placeholder="Logradouro" [(ngModel)]="user.endereco.logradouro" name="logradouro" required>
-                    </mat-form-field>
                     
-                    <mat-form-field class="example-form-field">
-                        <input matInput type="text" placeholder="Bairro" [(ngModel)]="user.endereco.bairro" name="bairro" required>
-                    </mat-form-field>
-
-                    <mat-form-field class="example-form-field">
-                        <input matInput type="text" placeholder="Cidade" [(ngModel)]="user.endereco.cidade" name="cidade" required>
-                    </mat-form-field>
-
-                    <mat-form-field class="example-form-field">
-                        <input matInput type="text" placeholder="Estado" [(ngModel)]="user.endereco.estado" name="estado" required>
-                    </mat-form-field>
+                <div class="button buttonLogin">
+                    <button type="submit" class="green" mat-raised-button>Login</button>
                 </div>
-               
-                <mat-form-field class="example-form-field">
-                    <input matInput type="text" placeholder="Contato"  [(ngModel)]="user.contato" name="contato" required>
-                </mat-form-field>
-
-                <div class="buttons">               
-                    <button mat-raised-button color="primary" type="submit" (click)=createUser()>Cadastrar</button>
-                    <button mat-raised-button (click)="limparForm()">Limpar</button>
-                </div>
+                
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
     
-            </form>      
-        
-    </mat-card> -->
    
 
     <mat-card class="mat-card">
-        <mat-card-title>Cadastrar</mat-card-title>     
-            <form [formGroup]="userForm" (ngSubmit)="createUser()">
+        <mat-card-title>QUERO ME CADASTRAR</mat-card-title>     
+            <form [formGroup]="cadastroForm" (ngSubmit)="createUser()">
                 <mat-form-field class="example-form-field" >
                     <input matInput type="text" placeholder="Nome completo" minlength="4" maxlength="26" formControlName="nome" (keypress)="keyPressLetters($event)" required>
                 </mat-form-field>
@@ -71,7 +43,7 @@
                 <mat-form-field class="example-form-field">
                     <input matInput type="text" placeholder="CPF (apenas numeros)" minlength="11" maxlength="11" formControlName="cpf" maxlength="11" (keypress)="keyPressNumbers($event)" required>
                 </mat-form-field>
-                <div class="invalidEmail" *ngIf="userForm.controls.cpf.touched && userForm.controls.cpf.invalid">
+                <div class="invalid" *ngIf="cadastroForm.controls.cpf.touched && cadastroForm.controls.cpf.invalid">
                     <span >CPF inválido</span>
                 </div>
 
@@ -79,12 +51,12 @@
                     <input matInput type="password" placeholder="Senha" minlength="6" maxlength="11"  formControlName="senha" required>
                 </mat-form-field>
         
-                <mat-form-field formGroupName="deposito">
+                <mat-form-field >
                 <mat-label>Depósito</mat-label>
-                <mat-select formControlName="id" required>
-                    <mat-option>Selecione</mat-option>
-                    <mat-option *ngFor="let deposito of depositos" [value]="deposito.value" >
-                    {{deposito.viewValue}}
+                <mat-select  (selectionChange)="setDepositoValues()" [(ngModel)]="depositoModel" [ngModelOptions]="{standalone: true}" required>
+                    <mat-option disabled value="">Selecione</mat-option>
+                    <mat-option *ngFor="let deposito of allDepositos" [value]="deposito" >                       
+                    {{deposito.nome}}
                     </mat-option>
                 </mat-select>
                 </mat-form-field>
@@ -96,7 +68,7 @@
                     </mat-form-field>
     
                     <mat-form-field class="example-form-field">
-                        <input matInput type="text" placeholder="Logradouro" minlength="5" maxlength="26"  formControlName="logradouro" (keypress)="keyPressLetters($event)" required>
+                        <input matInput type="text" placeholder="Logradouro" minlength="5" maxlength="26"  formControlName="logradouro" required>
                     </mat-form-field>
                     
                     <mat-form-field class="example-form-field">
@@ -118,12 +90,12 @@
                 <mat-form-field class="example-form-field">
                     <input  matInput type="email" placeholder="Email" formControlName="email" required>
                 </mat-form-field>
-                <div class="invalidEmail" *ngIf="userForm.controls.email.touched && userForm.controls.email.invalid">
+                <div class="invalidEmail" *ngIf="cadastroForm.controls.email.touched && cadastroForm.controls.email.invalid">
                     <span >email inválido</span>
                 </div>
 
                 <div class="buttons">               
-                    <button mat-raised-button color="primary" type="submit">Cadastrar</button>
+                    <button mat-raised-button class="green" type="submit">Cadastrar</button>
                     <button mat-raised-button (click)="limparForm()">Limpar</button>
                 </div>
     
