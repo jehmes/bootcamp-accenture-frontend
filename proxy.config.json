@@ -1,6 +1,6 @@
 {
     "/api": {
-      "target": ["http://localhost:8080/user-create", "http://localhost:8080/login"],
+      "target": "http://localhost:8080/*",
       "secure": true,
       "changeOrigin": true,
       "pathRewrite": {
@@ -8,3 +8,5 @@
       }
     }
   }
+
+  

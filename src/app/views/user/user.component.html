@@ -1,1 +1,70 @@
-<p>user works!</p>
+<div class="body">
+    <mat-card class="mat-card">
+        <mat-card-title>EDITAR INFORMAÇÕES</mat-card-title>     
+            <form [formGroup]="updateForm" (ngSubmit)="updateUser()">
+                <mat-form-field class="example-form-field" >
+                    <input matInput type="text" placeholder="Nome completo" minlength="4" maxlength="26" formControlName="nome" (keypress)="keyPressLetters($event)" required>
+                </mat-form-field>
+        
+                <mat-form-field class="example-form-field">
+                    <input matInput type="text" placeholder="CPF (apenas numeros)" minlength="11" maxlength="11" formControlName="cpf" maxlength="11" (keypress)="keyPressNumbers($event)" required>
+                </mat-form-field>
+                <div class="invalid" *ngIf="updateForm.controls.cpf.touched && updateForm.controls.cpf.invalid">
+                    <span >CPF inválido</span>
+                </div>
+
+                <mat-form-field class="example-form-field">
+                    <input matInput type="password" placeholder="Senha" minlength="6" maxlength="11"  formControlName="senha" required>
+                </mat-form-field>
+        
+                <mat-form-field >
+                <mat-label>Depósito</mat-label>
+                <mat-select (selectionChange)="setDepositoValues()" [(ngModel)]="depositoModel" [ngModelOptions]="{standalone: true}" required>
+                    <mat-option disabled value="">Selecione</mat-option>
+                    <mat-option *ngFor="let deposito of allDepositos" [value]="deposito" >                       
+                        {{deposito.nome}}
+                    </mat-option>
+                </mat-select>
+                </mat-form-field>
+
+
+                <div class="endereco" formGroupName="endereco">
+                    <mat-form-field class="example-form-field" >
+                        <input  matInput type="text" placeholder="CEP" minlength="8" maxlength="8" (keyup)="consultarCEP($event)" formControlName="cep" (keypress)="keyPressNumbers($event)" required>
+                    </mat-form-field>
+    
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="text" placeholder="Logradouro" minlength="5" maxlength="26"  formControlName="logradouro" required>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="text" placeholder="Bairro" minlength="5" maxlength="26"  formControlName="bairro" (keypress)="keyPressLetters($event)" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="text" placeholder="Cidade" minlength="5" maxlength="26" formControlName="cidade" (keypress)="keyPressLetters($event)" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="text" placeholder="Estado"  formControlName="estado" (keypress)="keyPressLetters($event)" required>
+                    </mat-form-field>
+                </div>
+               
+                <mat-form-field class="example-form-field">
+                    <input matInput type="text" placeholder="Contato" formControlName="contato" (keypress)="keyPressNumbers($event)" required>
+                </mat-form-field>
+                <mat-form-field class="example-form-field">
+                    <input  matInput type="email" placeholder="Email" formControlName="email" required>
+                </mat-form-field>
+                <div class="invalidEmail" *ngIf="updateForm.controls.email.touched && updateForm.controls.email.invalid">
+                    <span >email inválido</span>
+                </div>
+
+                <div class="buttons">               
+                    <button mat-raised-button class="green" type="submit">Editar</button>
+                </div>
+    
+            </form>      
+        
+    </mat-card>
+</div>

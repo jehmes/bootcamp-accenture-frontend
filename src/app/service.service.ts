@@ -14,7 +14,8 @@ export class ServiceService {
   urlUser = "http://localhost:8080/user-create"
   urlLogin = "http://localhost:8080/login"
   urlDeposito = "http://localhost:8080/deposito"
-
+  urlUserId = "http://localhost:8080/user-create/"
+  urlUpdateUser = "http://localhost:8080/user-create/update/"
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
   
@@ -25,6 +26,14 @@ export class ServiceService {
 
   createUser(user: User): Observable<User> {
     return this.http.post<User>(this.urlUser, user)
+  }
+
+  getUserById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.urlUserId}${id}`)
+  }
+
+  updateUser(user: User, id: number): Observable<User> {
+    return this.http.post<User>(`${this.urlUpdateUser}${id}`, user)
   }
 
   loginValidate(login: Login): Observable<Login> {

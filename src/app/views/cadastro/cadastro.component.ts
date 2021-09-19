@@ -1,9 +1,9 @@
-import { Validacoes } from './../../validations/Validators';
+
 import { ServiceService } from './../../service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { cpf } from 'cpf-cnpj-validator'; 
-
+import { Router } from "@angular/router"
 
 
 
@@ -31,12 +31,12 @@ export class CadastroComponent implements OnInit {
   //   {value: '3', viewValue: 'Deposito Beltrano, Rua 2 de Julho, Olinda - PE'}
   // ];
 
-  constructor(private service: ServiceService, private formBuilder: FormBuilder) {}  
+  constructor(private service: ServiceService, private formBuilder: FormBuilder, private route: Router) {}  
 
   ngOnInit(): void {
     
     this.loginFom = this.formBuilder.group({
-      cpf: [null,[Validators.required, validarCpf]],
+      login: [null,[Validators.required, validarCpf]],
       senha: [null, Validators.required]
       })
 
@@ -118,12 +118,17 @@ export class CadastroComponent implements OnInit {
     //    return
     //  }
      let payload = this.loginFom.value
-
-     this.service.loginValidate(payload).subscribe(() => {
-      this.service.showMessage("Cadastro realizado com sucesso!", 'success')
+  // console.log(payload)
+     this.service.loginValidate(payload).subscribe((data) => {
+      this.service.showMessage("Login realizado com sucesso", 'success')
+      // console.log(data.id)
+      let id = (data.id).toString()
+      localStorage.setItem("id", id)
+      this.route.navigate(['/user'])
+        
      },
      err => {
-      this.service.showMessage("Não foi possível realizar o cadastro!", 'error')
+      this.service.showMessage("Login ou senha inválidos", 'error')
       console.log(err)
      })
 
@@ -165,12 +170,11 @@ export class CadastroComponent implements OnInit {
   keyPressLetters(event: any) {
     var charCode = (event.which) ? event.which : event.keyCode;
     console.log(charCode)
-    // Only Numbers 0-9
-    if ((charCode < 97 || charCode > 122)) {
+    if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122) || (charCode == 32)) {
+      return true;
+    } else {
       event.preventDefault();
       return false;
-    } else {
-      return true;
     }
   }
 
