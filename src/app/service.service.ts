@@ -11,16 +11,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ServiceService {
 
-  urlUser = "http://localhost:8080/user-create"
+  urlUser = "http://localhost:8080/user"
   urlLogin = "http://localhost:8080/login"
   urlDeposito = "http://localhost:8080/deposito"
-  urlUserId = "http://localhost:8080/user-create/"
-  urlUpdateUser = "http://localhost:8080/user-create/update/"
+  urlUserId = "http://localhost:8080/user/"
+  urlUpdateUser = "http://localhost:8080/user/update/"
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
   
   getCEP(cep: String) {
-    // console.log("viacep.com.br/ws/51260230/json/")
     return this.http.get(`https://viacep.com.br/ws/${cep}/json`)
     }
 

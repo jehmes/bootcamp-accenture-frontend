@@ -15,13 +15,17 @@
 
     <div class="menu-itens">
         
-        <a routerLink="" (click)="goToInicial()">Home</a>
+        <a routerLink="" (click)="goToInicial()">Início</a>
     
-        <a routerLink="/about" (click)="goToInicial()">About us</a>
+        <a routerLink="/about" (click)="goToInicial()">Sobre nós</a>
         
-        <a routerLink="/gallery" (click)="goToInicial()">Gallery</a>
-        
-        <a routerLink="/impact" (click)="goToInicial()">Our impact</a>
+        <a routerLink="/gallery" (click)="goToInicial()">Galeria</a>
+
+        <span class="scoreTag">
+            <a routerLink="/impact" (click)="goToInicial()">Pontuação<i class="fas fa-star"></i></a>
+            
+        </span>
+
     </div>
 
     <div id="cadastrar-login" *ngIf="showProfile">
@@ -31,6 +35,7 @@
           ou crie seu  <a routerLink="/cadastro" (click)="goToInicial()"> <strong> Cadastro </strong> </a>
         </span>
     </div>
+    
     <div class="profile" *ngIf="!showProfile">
         <span>
             Olá, <strong>{{nameLogin.split(' ')[0]}}</strong>
@@ -40,8 +45,8 @@
           {{pointsLogin}}
         </span><br>
         <span class="perfil-logout">
-            <a routerLink="/user">Perfil</a>|
-            <a href="" (click)="logout()">Sair</a>
+            <a routerLink="/user">Perfil</a>  |
+            &emsp;<a href="" (click)="logout()">Sair</a>
         </span>
     </div>
 </mat-toolbar>

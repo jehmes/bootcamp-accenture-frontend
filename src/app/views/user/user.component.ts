@@ -52,8 +52,11 @@ export class UserComponent implements OnInit {
 
       //Pegar todos depositos da base da dados
       this.service.getAllDepositos().subscribe((data) => {
-        this.allDepositos = data
-        //console.log(this.allDepositos)
+        // this.allDepositos = data
+        let depositos = data
+        //Apenas mostrar os depositos adicionados manualmente no banco
+        this.allDepositos = depositos.slice(0, 3)
+        
       })
       
       //Pegar o id do usuario logado
@@ -73,7 +76,7 @@ export class UserComponent implements OnInit {
 
     //Seleciona o deposito no select
     this.setDepositoSelect(dados)
-
+    // console.log(dados)
       //Popula dados pessoais do usuario
       this.updateForm.get('nome').setValue(dados.nome)
       this.updateForm.get('cpf').setValue(dados.cpf)
@@ -87,11 +90,13 @@ export class UserComponent implements OnInit {
       setTimeout(() => {
         let depositoSelec: any  
         this.depositoModel= this.allDepositos.filter((deposito) => {
-          if (dados.deposito.id === deposito.id)
+          // console.log(deposito)
+          // console.log(dados)
+          if (dados.deposito.nome === deposito.nome)
             depositoSelec = deposito
+            // console.log(depositoSelec)
         })
           this.depositoModel = depositoSelec
-          //console.log(depositoSelec)
       }, 300)
     }
 
@@ -99,7 +104,8 @@ export class UserComponent implements OnInit {
       let d = this.depositoModel
       // //console.log(d)
       this.updateForm.get('deposito')?.get('id')?.setValue(d.id)
-      //console.log(this.updateForm.get('deposito')?.get('nome')?.setValue(d.nome))
+      // console.log('deposito nome ',this.updateForm.get('deposito')?.get('nome')?.setValue(d.nome))
+      this.updateForm.get('deposito')?.get('nome')?.setValue(d.nome)
       // this.cadastroForm.get('deposito')?.get('endereco')?.get('id')?.setValue(d.endereco.id)
       this.updateForm.get('deposito')?.get('endereco')?.get('cep')?.setValue(d.endereco.cep)
       this.updateForm.get('deposito')?.get('endereco')?.get('logradouro')?.setValue(d.endereco.logradouro)

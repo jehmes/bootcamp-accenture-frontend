@@ -78,13 +78,6 @@ a {
     font-size: 12px;
     line-height: 15px;
     margin-left: 55px;
-    line-height: 16px;
-}
-
-
-.perfil-logout {
-    display: flex;
-    justify-content: space-between;
 }
 
 .perfil-logout a {
@@ -95,20 +88,15 @@ a {
     text-decoration: underline;
 }
 
-.perfilPoints {
-    margin-left: inherit;
+.scoreTag a {
+    color: #000;
+    font-size: 1.0rem;
 }
-/* .button-join:hover  {
-    background-color: rgb(78, 143, 58);
-    transition: 0.5s; 
-}
-
-.button-join a{
-    font-size: 1.2rem;
-    color: #fff;
-    padding: 10px 30px
+.scoreTag a:hover {
+    color: rgb(78, 143, 58);
+    transition: 0.5s;
 }
 
-.login{
-    margin-left: 20px;
-} */
+.scoreTag i {
+    font-size: 0.8rem;
+}

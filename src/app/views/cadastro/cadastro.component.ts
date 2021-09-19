@@ -1,7 +1,7 @@
 
 import { ServiceService } from './../../service.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 import { cpf } from 'cpf-cnpj-validator'; 
 import { Router } from "@angular/router"
 
@@ -61,10 +61,12 @@ export class CadastroComponent implements OnInit {
 
       //Pega a lista de depositos da base de dados
       this.service.getAllDepositos().subscribe((data) => {
-        this.allDepositos = data
+        let depositos = data
+        //Apenas mostrar os depositos adicionados manualmente no banco
+        this.allDepositos = depositos.slice(0, 3)
         // //console.log(this.allDepositos)
       })
-
+     
     
   }
   //Atribuir o deposito selecionado ao formulario

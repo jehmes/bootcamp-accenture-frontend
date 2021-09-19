@@ -56,7 +56,7 @@
                 <mat-select  (selectionChange)="setDepositoValues()" [(ngModel)]="depositoModel" [ngModelOptions]="{standalone: true}" required>
                     <mat-option disabled value="">Selecione</mat-option>
                     <mat-option *ngFor="let deposito of allDepositos" [value]="deposito" >                       
-                    {{deposito.nome}}
+                    {{deposito.nome}}, {{deposito.endereco.logradouro}} - {{deposito.endereco.cidade}}
                     </mat-option>
                 </mat-select>
                 </mat-form-field>
