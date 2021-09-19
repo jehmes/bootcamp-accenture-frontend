@@ -1,5 +1,6 @@
 export interface Login {
     id: number
-    login: string
+    nome: string
     senha: string
+    pontos?: number
 }

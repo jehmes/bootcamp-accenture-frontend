@@ -19,5 +19,6 @@ export interface User {
            cidade: string  
     }
     contato: string
-    email: string
+    email: string,
+    pontos?: number
 }

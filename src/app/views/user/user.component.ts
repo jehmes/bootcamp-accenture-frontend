@@ -20,7 +20,7 @@ export class UserComponent implements OnInit {
   allDepositos: any
 
   updateForm!: FormGroup;
-  constructor(private service: ServiceService, private formBuilder: FormBuilder, private route: Router) { }
+  constructor(private service: ServiceService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -28,6 +28,7 @@ export class UserComponent implements OnInit {
       nome: [null, Validators.required],
       cpf: ['',[Validators.required, validarCpf]],
       senha: [null, Validators.required],
+      pontos: [null],
       endereco: this.formBuilder.group({
         cep: [null, Validators.required],
         logradouro: [null, Validators.required],
@@ -49,15 +50,15 @@ export class UserComponent implements OnInit {
       email: [null, [Validators.required, Validators.email]]
       })
 
-      //Pegar todos depositos
+      //Pegar todos depositos da base da dados
       this.service.getAllDepositos().subscribe((data) => {
         this.allDepositos = data
-        console.log(this.allDepositos)
+        //console.log(this.allDepositos)
       })
       
       //Pegar o id do usuario logado
       this.idLogin = JSON.parse(localStorage.getItem('id') || '{}');
-      console.log(this.idLogin)
+      //console.log(this.idLogin)
       this.service.getUserById(this.idLogin).subscribe(dados => {
         this.popularForm(dados)
       })
@@ -65,20 +66,13 @@ export class UserComponent implements OnInit {
   }
 
   popularForm(dados: any) {
+    this.updateForm.get('pontos').setValue(dados.pontos)
     //Popula o endereço
     delete dados.endereco['id']
     this.updateForm.get('endereco').setValue(dados.endereco)
 
-    //Pre-seleciona o deposito de acordo com o usuario
-    let depositoSelec: any  
-    this.depositoModel= this.allDepositos.filter((deposito) => {
-      if (dados.deposito.id === deposito.id)
-        depositoSelec = deposito
-    })
-      this.depositoModel = depositoSelec
-      console.log(this.depositoModel)
-
-      console.log(depositoSelec)
+    //Seleciona o deposito no select
+    this.setDepositoSelect(dados)
 
       //Popula dados pessoais do usuario
       this.updateForm.get('nome').setValue(dados.nome)
@@ -86,37 +80,59 @@ export class UserComponent implements OnInit {
       this.updateForm.get('senha').setValue(dados.senha)
       this.updateForm.get('contato').setValue(dados.contato)
       this.updateForm.get('email').setValue(dados.email)
-      console.log(dados)
+      //console.log(dados)
     }
 
-  setDepositoValues() {
-    let d = this.depositoModel
-    // console.log(d)
-    this.updateForm.get('deposito')?.get('id')?.setValue(d.id)
-    console.log(this.updateForm.get('deposito')?.get('nome')?.setValue(d.nome))
-    // this.cadastroForm.get('deposito')?.get('endereco')?.get('id')?.setValue(d.endereco.id)
-    this.updateForm.get('deposito')?.get('endereco')?.get('cep')?.setValue(d.endereco.cep)
-    this.updateForm.get('deposito')?.get('endereco')?.get('logradouro')?.setValue(d.endereco.logradouro)
-    this.updateForm.get('deposito')?.get('endereco')?.get('bairro')?.setValue(d.endereco.bairro)
-    this.updateForm.get('deposito')?.get('endereco')?.get('cidade')?.setValue(d.endereco.cidade)
-    this.updateForm.get('deposito')?.get('endereco')?.get('estado')?.setValue(d.endereco.estado)
-    // console.log('formGroup ', this.updateForm.get('deposito')?.value)
-   }
+    setDepositoSelect(dados: any) {
+      setTimeout(() => {
+        let depositoSelec: any  
+        this.depositoModel= this.allDepositos.filter((deposito) => {
+          if (dados.deposito.id === deposito.id)
+            depositoSelec = deposito
+        })
+          this.depositoModel = depositoSelec
+          //console.log(depositoSelec)
+      }, 300)
+    }
+
+    setDepositoValues() {
+      let d = this.depositoModel
+      // //console.log(d)
+      this.updateForm.get('deposito')?.get('id')?.setValue(d.id)
+      //console.log(this.updateForm.get('deposito')?.get('nome')?.setValue(d.nome))
+      // this.cadastroForm.get('deposito')?.get('endereco')?.get('id')?.setValue(d.endereco.id)
+      this.updateForm.get('deposito')?.get('endereco')?.get('cep')?.setValue(d.endereco.cep)
+      this.updateForm.get('deposito')?.get('endereco')?.get('logradouro')?.setValue(d.endereco.logradouro)
+      this.updateForm.get('deposito')?.get('endereco')?.get('bairro')?.setValue(d.endereco.bairro)
+      this.updateForm.get('deposito')?.get('endereco')?.get('cidade')?.setValue(d.endereco.cidade)
+      this.updateForm.get('deposito')?.get('endereco')?.get('estado')?.setValue(d.endereco.estado)
+      // //console.log('formGroup ', this.updateForm.get('deposito')?.value)
+    }
 
    updateUser() {
+     //Atribuir o deposito selecionado ao formulario
     this.setDepositoValues()
     let payload = this.updateForm.value
-    console.log(payload)
+    //console.log(payload)
     this.service.updateUser(payload, this.idLogin).subscribe((data) => {
       localStorage.clear()
+
       let id = (data.id).toString()
+      let points = (data.pontos).toString()
+
       localStorage.setItem("id", id)
-      console.log("Usuario atualizado ",payload)
+      localStorage.setItem("points", points)
+      localStorage.setItem("login", data.nome)
+
+      //console.log("Usuario atualizado ",payload)
       this.service.showMessage("Usuario atualizado com sucesso!", 'success')
+      setTimeout(() => {
+        this.router.navigate([''])
+      },600)
     }, 
     err => {
       this.service.showMessage("Não foi possível atualizar o usuario!", 'error')
-      console.log(err)
+      //console.log(err)
     })
    }
 
@@ -157,7 +173,7 @@ export class UserComponent implements OnInit {
 //input apenas letras
 keyPressLetters(event: any) {
   var charCode = (event.which) ? event.which : event.keyCode;
-  console.log(charCode)
+  //console.log(charCode)
   if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122) || (charCode == 32)) {
     return true;
   } else {
@@ -165,11 +181,6 @@ keyPressLetters(event: any) {
     return false;
   }
 }
-
-limparForm() {
-  this.updateForm.reset()
-  // this.updateForm.get("deposito")?.setValue("")
- }
    
 }
 

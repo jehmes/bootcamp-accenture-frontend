@@ -24,11 +24,24 @@
         <a routerLink="/impact" (click)="goToInicial()">Our impact</a>
     </div>
 
-    <div class="cadastrar-login">
+    <div id="cadastrar-login" *ngIf="showProfile">
         <i class="fas fa-user"></i>
         <span>
-           Faça <a routerLink="/cadastro"> <strong> Login </strong ></a> <br>
-          ou crie seu  <a routerLink="/cadastro"> <strong> Cadastro </strong> </a>
+           Faça <a routerLink="/cadastro" (click)="goToInicial()"> <strong> Login </strong ></a> <br>
+          ou crie seu  <a routerLink="/cadastro" (click)="goToInicial()"> <strong> Cadastro </strong> </a>
+        </span>
+    </div>
+    <div class="profile" *ngIf="!showProfile">
+        <span>
+            Olá, <strong>{{nameLogin.split(' ')[0]}}</strong>
+        </span><br>
+        <span>
+          <i class="fas fa-star"></i>
+          {{pointsLogin}}
+        </span><br>
+        <span class="perfil-logout">
+            <a routerLink="/user">Perfil</a>|
+            <a href="" (click)="logout()">Sair</a>
         </span>
     </div>
 </mat-toolbar>

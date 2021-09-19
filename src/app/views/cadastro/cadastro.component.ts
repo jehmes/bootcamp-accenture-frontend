@@ -25,12 +25,6 @@ export class CadastroComponent implements OnInit {
 
   cadastroForm!: FormGroup;
 
-  // depositos: Food[] = [
-  //   {value: '1', viewValue: 'Deposito Fulano, Rua 25, Recife - PE'},
-  //   {value: '2', viewValue: 'Deposito Sicrano, Rua 27, Jaboatão - PE'},
-  //   {value: '3', viewValue: 'Deposito Beltrano, Rua 2 de Julho, Olinda - PE'}
-  // ];
-
   constructor(private service: ServiceService, private formBuilder: FormBuilder, private route: Router) {}  
 
   ngOnInit(): void {
@@ -65,15 +59,15 @@ export class CadastroComponent implements OnInit {
       email: [null, [Validators.required, Validators.email]]
       })
 
-      
+      //Pega a lista de depositos da base de dados
       this.service.getAllDepositos().subscribe((data) => {
         this.allDepositos = data
-        console.log(this.allDepositos)
+        // //console.log(this.allDepositos)
       })
 
     
   }
-  
+  //Atribuir o deposito selecionado ao formulario
   setDepositoValues() {
     let d = this.depositoModel
     this.cadastroForm.get('deposito')?.get('id')?.setValue(d.id)
@@ -84,25 +78,22 @@ export class CadastroComponent implements OnInit {
     this.cadastroForm.get('deposito')?.get('endereco')?.get('bairro')?.setValue(d.endereco.bairro)
     this.cadastroForm.get('deposito')?.get('endereco')?.get('cidade')?.setValue(d.endereco.cidade)
     this.cadastroForm.get('deposito')?.get('endereco')?.get('estado')?.setValue(d.endereco.estado)
-    console.log('formGroup ', this.cadastroForm.get('deposito')?.value)
+    //console.log('formGroup ', this.cadastroForm.get('deposito')?.value)
    }
 
  createUser() {
 
-  //  if (!this.cadastroForm.valid) {
-  //      this.service.showMessage("Campos inválidos!", 'error')
-  //      return
-  //    }
-   
-    //Altera de string pra int
-    // this.cadastroForm.value.deposito.id = +this.cadastroForm.value.deposito.id 
+   if (!this.cadastroForm.valid) {
+       this.service.showMessage("Campos inválidos!", 'error')
+       return
+     }
     
     let payload = this.cadastroForm.value
-    console.log(payload)
+    //console.log(payload)
   
     this.service.createUser(payload).subscribe(()=>{
-      console.log("Usuario criado ",payload)
-      // this.limparForm()
+      //console.log("Usuario criado ",payload)
+      this.limparForm()
       this.service.showMessage("Cadastro realizado com sucesso!", 'success')
     }, 
     err => {
@@ -113,27 +104,37 @@ export class CadastroComponent implements OnInit {
 
 
  loginValidate (){
-    //  if (!this.loginFom.valid) {
-    //    this.service.showMessage("Campos inválidos!", 'error')
-    //    return
-    //  }
+     if (!this.loginFom.valid) {
+       this.service.showMessage("Campos inválidos!", 'error')
+       return
+     }
+
      let payload = this.loginFom.value
-  // console.log(payload)
+
+     //Valida o login
      this.service.loginValidate(payload).subscribe((data) => {
       this.service.showMessage("Login realizado com sucesso", 'success')
-      // console.log(data.id)
+      // //console.log(data)
       let id = (data.id).toString()
+      let points = (data.pontos).toString()
+
+      //Armazena algumas info pro profile Header
       localStorage.setItem("id", id)
-      this.route.navigate(['/user'])
+      localStorage.setItem("points", points)
+      localStorage.setItem("login", data.nome)
+
+      setTimeout(() => {
+        this.route.navigate([''])
+      },700)
         
      },
      err => {
       this.service.showMessage("Login ou senha inválidos", 'error')
       console.log(err)
+      // //console.log(err)
      })
 
  }
-
 
   //Consulta o CEP numa API
   consultarCEP(cep: any) {
@@ -169,7 +170,7 @@ export class CadastroComponent implements OnInit {
 //input apenas letras
   keyPressLetters(event: any) {
     var charCode = (event.which) ? event.which : event.keyCode;
-    console.log(charCode)
+    // //console.log(charCode)
     if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122) || (charCode == 32)) {
       return true;
     } else {
@@ -180,6 +181,7 @@ export class CadastroComponent implements OnInit {
 
   limparForm() {
     this.cadastroForm.reset()
+    this.depositoModel = null;
     // this.cadastroForm.get("deposito")?.setValue("")
    }
 

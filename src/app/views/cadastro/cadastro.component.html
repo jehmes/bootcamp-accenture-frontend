@@ -37,7 +37,7 @@
         <mat-card-title>QUERO ME CADASTRAR</mat-card-title>     
             <form [formGroup]="cadastroForm" (ngSubmit)="createUser()">
                 <mat-form-field class="example-form-field" >
-                    <input matInput type="text" placeholder="Nome completo" minlength="4" maxlength="26" formControlName="nome" (keypress)="keyPressLetters($event)" required>
+                    <input matInput type="text" placeholder="Nome completo" minlength="4" maxlength="50" formControlName="nome" (keypress)="keyPressLetters($event)" required>
                 </mat-form-field>
         
                 <mat-form-field class="example-form-field">
