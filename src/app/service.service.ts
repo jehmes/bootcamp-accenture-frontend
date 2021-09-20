@@ -2,7 +2,7 @@ import { User } from './models/User.model';
 import { Login } from './models/Login.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 
@@ -16,9 +16,31 @@ export class ServiceService {
   urlDeposito = "http://localhost:8080/deposito"
   urlUserId = "http://localhost:8080/user/"
   urlUpdateUser = "http://localhost:8080/user/update/"
+  
+  
+
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
   
+  sendLoginLocalStorage(data: any) {
+    localStorage.setItem("id", data.id)
+    localStorage.setItem("points", data.score)
+    localStorage.setItem("login", data.nome)
+  }
+
+  getLocalStorage(): Observable<any> {
+    let id = JSON.parse(localStorage.getItem('id') || '{}');
+    let login = localStorage.getItem('login')
+    let score = JSON.parse(localStorage.getItem('points') || '{}');
+
+    let profileInfo = {
+      id,
+      login,
+      score
+    }
+    return of(profileInfo)
+  }
+
   getCEP(cep: String) {
     return this.http.get(`https://viacep.com.br/ws/${cep}/json`)
     }

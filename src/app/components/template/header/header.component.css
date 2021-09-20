@@ -35,6 +35,10 @@ a {
     padding: 0 20px 0 20px; 
 }
 
+.menu-itens > span{
+    padding: 0 20px 0 20px; 
+}
+
 .menu-itens a {
     font-family: 'Poppins', sans-serif; 
 }

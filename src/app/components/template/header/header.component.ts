@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
 
   reload: any
   idLogin: number
-  pointsLogin: number
+  scoreLogin: number
   nameLogin: string
 
   user : any
@@ -28,13 +28,17 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
 
     this.router.events.subscribe(() => {
-      this.idLogin = JSON.parse(localStorage.getItem('id') || '{}');
-      this.idLogin >= 0 ? this.showProfile = false : this.showProfile = true
-      this.pointsLogin = JSON.parse(localStorage.getItem('points') || '{}');
-      this.nameLogin = localStorage.getItem('login')
-      this.reload = localStorage.getItem('reload')
+      this.service.getLocalStorage().subscribe((data) => {
+
+        this.idLogin = data.id
+        this.nameLogin = data.login
+        this.scoreLogin = data.score
+
+        this.idLogin >= 0 ? this.showProfile = false : this.showProfile = true
+      })
     })
 
+   
   }
   
    logout() {

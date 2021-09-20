@@ -60,11 +60,13 @@ export class UserComponent implements OnInit {
       })
       
       //Pegar o id do usuario logado
-      this.idLogin = JSON.parse(localStorage.getItem('id') || '{}');
-      //console.log(this.idLogin)
-      this.service.getUserById(this.idLogin).subscribe(dados => {
-        this.popularForm(dados)
+      this.service.getLocalStorage().subscribe((data) => {
+        this.service.getUserById(data.id).subscribe(dados => {
+          this.popularForm(dados)
+        })
       })
+      //console.log(this.idLogin)
+     
 
   }
 

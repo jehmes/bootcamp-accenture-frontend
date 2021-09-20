@@ -118,21 +118,27 @@ export class CadastroComponent implements OnInit {
       this.service.showMessage("Login realizado com sucesso", 'success')
       // //console.log(data)
       let id = (data.id).toString()
-      let points = (data.pontos).toString()
+      let score = (data.pontos).toString()
+      let nome = data.nome
 
-      //Armazena algumas info pro profile Header
-      localStorage.setItem("id", id)
-      localStorage.setItem("points", points)
-      localStorage.setItem("login", data.nome)
-
+      let profileInfo = {
+        id,
+        nome,
+        score
+      }
+      this.service.sendLoginLocalStorage(profileInfo)
+      
       setTimeout(() => {
         this.route.navigate([''])
       },700)
         
      },
      err => {
+       if (err.status === 500)
       this.service.showMessage("Login ou senha inválidos", 'error')
-      console.log(err)
+      else
+      this.service.showMessage("Servico offline, contatar o suporte", 'error')
+      console.log(err.status)
       // //console.log(err)
      })
 

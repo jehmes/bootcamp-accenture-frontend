@@ -22,7 +22,7 @@
         <a routerLink="/gallery" (click)="goToInicial()">Galeria</a>
 
         <span class="scoreTag">
-            <a routerLink="/impact" (click)="goToInicial()">Pontuação<i class="fas fa-star"></i></a>
+            <a routerLink="/score" c>Pontuação<i class="fas fa-star"></i></a>
             
         </span>
 
@@ -38,15 +38,15 @@
     
     <div class="profile" *ngIf="!showProfile">
         <span>
-            Olá, <strong>{{nameLogin.split(' ')[0]}}</strong>
+          <i class="fas fa-star"></i>
+          {{scoreLogin}}
         </span><br>
         <span>
-          <i class="fas fa-star"></i>
-          {{pointsLogin}}
+            Olá, <strong>{{nameLogin.split(' ')[0]}}</strong>
         </span><br>
         <span class="perfil-logout">
-            <a routerLink="/user">Perfil</a>  |
-            &emsp;<a href="" (click)="logout()">Sair</a>
+            <a routerLink="/user" (click)="goToInicial()">Perfil</a>  |
+            &emsp;<a href="" (click)="logout()" (click)="goToInicial()">Sair</a>
         </span>
     </div>
 </mat-toolbar>

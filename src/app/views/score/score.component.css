@@ -1,8 +1,12 @@
+p {
+    margin-bottom: 0;
+}
 .text-title {
     padding-top: 60px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    /* width: 100%; */
+    margin-left: 20px;
+    /* display: flex;
+    justify-content: center; */
 }
 
 .text-title h2 {
@@ -13,14 +17,11 @@
 
 .text-about-content{
     margin-top: 20px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    margin-left: 20px;
 }
 
-.text-about {
-    max-width: 700px;
-    text-align: center;
+.title-margin {
+    margin-top: 50px;
 }
 
 .text-about span {
@@ -29,27 +30,41 @@
     line-height: 35px;
 }
 
-.numbers {
-    margin-top: 120px;
+span p {
+    font-size: 0.9rem;
+}
+
+.cards1 {
+    margin-top: 100px;
     display: flex;
     width: 100%;
     height: 330px;
-    justify-content: space-evenly;
+    justify-content: center;
     text-align: center;
 }
 
-.numbers div i {
+.cards1 mat-card{
+   margin-left: 40px;
+}
+
+.cards1 div i {
     color: rgb(78, 143, 58);
 }
 
-.numbers div i{
-    font-size: 5rem;
-  
+.cards1 div i{
+    font-size: 3rem;
+}
+
+.card-text {
+    margin-top: 130px;
+}
+
+.cardIcon {
+    margin-top: 20px;
 }
 
 .max-widght {
     max-width: 250px;
-    margin-top: 20px;
 }
 
 .max-widght span {
@@ -58,3 +73,6 @@
     color: rgb(38, 70, 28);;
    
 }
+
+
+
