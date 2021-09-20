@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { cpf } from 'cpf-cnpj-validator';
-import { ServiceService } from 'src/app/service.service';
+import { ServiceService } from 'src/app/services/service.service';
 
 @Component({
   selector: 'app-user',
@@ -63,6 +63,7 @@ export class UserComponent implements OnInit {
       this.service.getLocalStorage().subscribe((data) => {
         this.service.getUserById(data.id).subscribe(dados => {
           this.popularForm(dados)
+          this.idLogin = data.id
         })
       })
       //console.log(this.idLogin)
@@ -118,6 +119,7 @@ export class UserComponent implements OnInit {
     }
 
    updateUser() {
+     console.log( this.updateForm.value)
      //Atribuir o deposito selecionado ao formulario
     this.setDepositoValues()
     let payload = this.updateForm.value
@@ -126,11 +128,15 @@ export class UserComponent implements OnInit {
       localStorage.clear()
 
       let id = (data.id).toString()
-      let points = (data.pontos).toString()
+      let score = (data.pontos).toString()
+      let nome = data.nome
 
-      localStorage.setItem("id", id)
-      localStorage.setItem("points", points)
-      localStorage.setItem("login", data.nome)
+      let profileInfo = {
+        id,
+        nome,
+        score
+      }
+      this.service.sendLoginLocalStorage(profileInfo)
 
       //console.log("Usuario atualizado ",payload)
       this.service.showMessage("Usuario atualizado com sucesso!", 'success')

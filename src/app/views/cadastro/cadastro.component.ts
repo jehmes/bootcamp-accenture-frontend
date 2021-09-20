@@ -1,5 +1,5 @@
 
-import { ServiceService } from './../../service.service';
+import { ServiceService } from '../../services/service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 import { cpf } from 'cpf-cnpj-validator'; 
