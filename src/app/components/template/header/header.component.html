@@ -15,17 +15,14 @@
 
     <div class="menu-itens">
         
-        <a routerLink="" (click)="goToInicial()">Início</a>
+        <a routerLink="" (click)="goToInicial()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Início</a>
     
-        <a routerLink="/about" (click)="goToInicial()">Sobre nós</a>
+        <a routerLink="/about" (click)="goToInicial()" routerLinkActive="active">Sobre nós</a>
         
-        <a routerLink="/gallery" (click)="goToInicial()">Galeria</a>
+        <a routerLink="/gallery" (click)="goToInicial()" routerLinkActive="active">Galeria</a>
 
-        <span class="scoreTag">
-            <a routerLink="/score" c>Pontuação<i class="fas fa-star"></i></a>
+        <a routerLink="/score" routerLinkActive="active">Pontuação<i class="fas fa-star" ></i></a>
             
-        </span>
-
     </div>
 
     <div id="cadastrar-login" *ngIf="showProfile">
