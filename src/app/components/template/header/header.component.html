@@ -25,7 +25,7 @@
             
     </div>
 
-    <div id="cadastrar-login" *ngIf="showProfile">
+    <div id="cadastrar-login" *ngIf="showProfile && !showAdm">
         <i class="fas fa-user"></i>
         <span>
            Faça <a routerLink="/cadastro" (click)="goToInicial()"> <strong> Login </strong ></a> <br>
@@ -33,7 +33,7 @@
         </span>
     </div>
     
-    <div class="profile" *ngIf="!showProfile">
+    <div class="profile" *ngIf="!showProfile  && !showAdm">
         <span>
           <i class="fas fa-star"></i>
           {{scoreLogin}}
@@ -46,6 +46,18 @@
             &emsp;<a href="" (click)="logout()" (click)="goToInicial()">Sair</a>
         </span>
     </div>
+
+    <div class="profile" *ngIf="showAdm">
+        
+        <span>
+            Olá, <strong>Amnistrador</strong>
+        </span><br>
+        <span class="perfil-logout">
+            <a routerLink="/adm-crud" (click)="goToInicial()">ADM</a>  |
+            &emsp;<a href="" (click)="logout()" (click)="goToInicial()">Sair</a>
+        </span>
+    </div>
+    <a href="/administrador">adm</a>
 </mat-toolbar>
 
 

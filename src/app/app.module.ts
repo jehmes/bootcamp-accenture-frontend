@@ -31,6 +31,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { UserComponent } from './views/user/user.component';
 import { ScoreComponent } from './views/score/score.component';
+import { AdmLoginComponent } from './adm/adm-login/adm-login.component';
+import { AdmCrudComponent } from './adm/adm-crud/adm-crud/adm-crud.component';
+
 
   
 
@@ -48,6 +51,9 @@ import { ScoreComponent } from './views/score/score.component';
     CadastroComponent,
     UserComponent,
     ScoreComponent,
+    AdmLoginComponent,
+    AdmCrudComponent,
+
     
   ],
   imports: [

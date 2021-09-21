@@ -16,27 +16,39 @@ export class ServiceService {
   urlDeposito = "http://localhost:8080/deposito"
   urlUserId = "http://localhost:8080/user/"
   urlUpdateUser = "http://localhost:8080/user/update/"
-  
+  urlLoginAdm = "http://localhost:8080/login-adm"
   
 
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
   
-  sendLoginLocalStorage(data: any) {
-    localStorage.setItem("id", data.id)
-    localStorage.setItem("points", data.score)
-    localStorage.setItem("login", data.nome)
+  sendLoginLocalStorage(adm: boolean, data: any) {
+    // console.log('teste ',data)
+    if (adm) {
+      localStorage.setItem("loginAdm", data)
+
+    }
+    else {
+      localStorage.setItem("id", data.id)
+      localStorage.setItem("points", data.score)
+      localStorage.setItem("login", data.nome)
+      // console.log(data)
+    }
+   
+    
   }
 
   getLocalStorage(): Observable<any> {
     let id = JSON.parse(localStorage.getItem('id') || '{}');
     let login = localStorage.getItem('login')
     let score = JSON.parse(localStorage.getItem('points') || '{}');
-
+    let loginAdm = localStorage.getItem('loginAdm');
+    
     let profileInfo = {
       id,
       login,
-      score
+      score,
+      loginAdm
     }
     return of(profileInfo)
   }
@@ -59,6 +71,10 @@ export class ServiceService {
 
   loginValidate(login: Login): Observable<Login> {
     return this.http.post<Login>(this.urlLogin, login)
+  }
+
+  loginAdmValidate(login: any): Observable<any> {
+    return this.http.post<any>(this.urlLoginAdm, login)
   }
 
   getAllDepositos(): Observable<any> {

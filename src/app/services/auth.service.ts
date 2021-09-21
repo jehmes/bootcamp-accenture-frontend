@@ -12,7 +12,7 @@ export class AuthService {
     let isLogged: boolean = false;
     this.service.getLocalStorage().subscribe((data) => {
 
-      if(data.id > 0)
+      if(data.id > 0 || data.loginAdm != null)
       isLogged = true
       else
       isLogged = false
