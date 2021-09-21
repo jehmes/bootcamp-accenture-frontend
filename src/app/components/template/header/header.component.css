@@ -20,7 +20,6 @@ a {
 .span-logo {
     display: flex;
     align-items: center;
-    margin-right: 80px;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -28,8 +27,32 @@ a {
     color: rgb(78, 143, 58);
 }
 
-.logo-img {
+.div-logo{
     height: 120px;
+    width: 120px;
+    padding: 16px;
+}
+
+.logo-img {
+    height: 100%;
+}
+
+.div-main-text{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 50px;
+}
+
+.div-text > h1, h3 {
+    color: rgb(78, 143, 58);
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+.div-text > h1 {
+    font-size: 30px;
 }
 
 .menu-itens > a{
