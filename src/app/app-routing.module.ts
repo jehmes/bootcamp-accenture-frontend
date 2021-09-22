@@ -9,6 +9,8 @@ import { CadastroComponent } from './views/cadastro/cadastro.component'
 import { UserComponent } from './views/user/user.component'
 import { ScoreComponent } from './views/score/score.component'
 import { AuthGuard } from './guard/auth.guard';
+import { AdmLoginComponent } from './adm/adm-login/adm-login.component'
+import { AdmCrudComponent } from './adm/adm-crud/adm-crud/adm-crud.component'
 
 
 const routes: Routes = [
@@ -19,6 +21,9 @@ const routes: Routes = [
   canActivate: [AuthGuard] },
   {path: 'user', component: UserComponent},
   {path: 'score', component:ScoreComponent},
+  {path: 'administrador', component: AdmLoginComponent,  
+  canActivate: [AuthGuard]},
+  {path: 'adm-crud', component: AdmCrudComponent},
   {path: '**', redirectTo: '' }
 ];
 

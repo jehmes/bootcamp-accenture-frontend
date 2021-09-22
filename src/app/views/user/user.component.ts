@@ -94,7 +94,7 @@ export class UserComponent implements OnInit {
         let depositoSelec: any  
         this.depositoModel= this.allDepositos.filter((deposito) => {
           // console.log(deposito)
-          // console.log(dados)
+          // console.log('aqui ',dados)
           if (dados.deposito.nome === deposito.nome)
             depositoSelec = deposito
             // console.log(depositoSelec)
@@ -119,7 +119,7 @@ export class UserComponent implements OnInit {
     }
 
    updateUser() {
-     console.log( this.updateForm.value)
+    //  console.log( this.updateForm.value)
      //Atribuir o deposito selecionado ao formulario
     this.setDepositoValues()
     let payload = this.updateForm.value
@@ -136,7 +136,7 @@ export class UserComponent implements OnInit {
         nome,
         score
       }
-      this.service.sendLoginLocalStorage(profileInfo)
+      this.service.sendLoginLocalStorage(false, profileInfo)
 
       //console.log("Usuario atualizado ",payload)
       this.service.showMessage("Usuario atualizado com sucesso!", 'success')

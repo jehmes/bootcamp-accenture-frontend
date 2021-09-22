@@ -1,4 +1,4 @@
- .active {
+.active {
     color: rgb(78, 143, 58) !important;
 }
 .header-container {
@@ -117,4 +117,3 @@ a {
 .perfil-logout a:hover {
     text-decoration: underline;
 }
-

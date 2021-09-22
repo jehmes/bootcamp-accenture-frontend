@@ -1,0 +1,25 @@
+.color {
+    /* background-color: rgb(201, 201, 201); */
+}
+
+.side-color {
+    /* width: 100%; */
+    background-color: rgb(15, 102, 22);
+}
+.width {
+    width: 250px;
+}
+
+a {
+    font-family: 'Poppins', sans-serif;
+}
+
+mat-nav-list i{
+    padding-right: 10px;
+}
+
+mat-nav-list a {
+    margin-top: 40px;
+    font-size: 1.2rem;
+    color: #fff;
+}

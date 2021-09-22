@@ -64,7 +64,7 @@ export class CadastroComponent implements OnInit {
         let depositos = data
         //Apenas mostrar os depositos adicionados manualmente no banco
         this.allDepositos = depositos.slice(0, 3)
-        // //console.log(this.allDepositos)
+        console.log(this.allDepositos)
       })
      
     
@@ -116,7 +116,7 @@ export class CadastroComponent implements OnInit {
      //Valida o login
      this.service.loginValidate(payload).subscribe((data) => {
       this.service.showMessage("Login realizado com sucesso", 'success')
-      // //console.log(data)
+      console.log(data)
       let id = (data.id).toString()
       let score = (data.pontos).toString()
       let nome = data.nome
@@ -126,7 +126,7 @@ export class CadastroComponent implements OnInit {
         nome,
         score
       }
-      this.service.sendLoginLocalStorage(profileInfo)
+      this.service.sendLoginLocalStorage(false, profileInfo)
       
       setTimeout(() => {
         this.route.navigate([''])

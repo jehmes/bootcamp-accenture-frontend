@@ -1,0 +1,9 @@
+.body {
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+    margin-top: 60px;
+    width: 600px;
+}

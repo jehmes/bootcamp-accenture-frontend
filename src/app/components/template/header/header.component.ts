@@ -9,14 +9,17 @@ import { ServiceService } from 'src/app/services/service.service';
 })
 export class HeaderComponent implements OnInit {
   
+  adm = false;
+
   // elm: any
   showProfile: any = true
   showProfileInfo: any = true
+  showAdm: any = false;
 
-  reload: any
   idLogin: number
   scoreLogin: number
   nameLogin: string
+  loginAdm: string
 
   user : any
 
@@ -33,8 +36,12 @@ export class HeaderComponent implements OnInit {
         this.idLogin = data.id
         this.nameLogin = data.login
         this.scoreLogin = data.score
-
+        this.loginAdm = data.loginAdm
+        
         this.idLogin >= 0 ? this.showProfile = false : this.showProfile = true
+        this.loginAdm != null ? this.showAdm = true : this.showAdm = false 
+        
+        // console.log(this.showAdm)
       })
     })
 
@@ -44,7 +51,6 @@ export class HeaderComponent implements OnInit {
    logout() {
      localStorage.clear()
      this.user = null
-     this.reload = null
    }
   
 
