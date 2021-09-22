@@ -33,6 +33,8 @@ import { UserComponent } from './views/user/user.component';
 import { ScoreComponent } from './views/score/score.component';
 import { AdmLoginComponent } from './adm/adm-login/adm-login.component';
 import { AdmCrudComponent } from './adm/adm-crud/adm-crud/adm-crud.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
 
 
   
@@ -80,7 +82,9 @@ import { AdmCrudComponent } from './adm/adm-crud/adm-crud/adm-crud.component';
     MatIconModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
