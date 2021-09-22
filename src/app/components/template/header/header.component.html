@@ -3,12 +3,20 @@
     <div class="span-logo">    
         <span (click)="goToInicial()">
             <a routerLink="">
-                <img class="logo-img" src="assets\img\tree.jpg" alt="logo">
+                <div class="div-logo">
+                    <img class="logo-img" src="assets\img\recycle.png" alt="logo">
+                </div>                
             </a>  
-        </span> 
+        </span>         
+    </div>
+    
+    <div class="div-main-text">
         <span (click)="goToInicial()">
             <a routerLink="">
-                Nome da logo
+                <div class="div-text">
+                    <h1>Coleta</h1>
+                    <h3>Fácil</h3>
+                </div>                 
             </a>
         </span>
     </div>
@@ -25,7 +33,7 @@
             
     </div>
 
-    <div id="cadastrar-login" *ngIf="showProfile && !showAdm">
+    <div id="cadastrar-login" *ngIf="showProfile">
         <i class="fas fa-user"></i>
         <span>
            Faça <a routerLink="/cadastro" (click)="goToInicial()"> <strong> Login </strong ></a> <br>
@@ -33,7 +41,7 @@
         </span>
     </div>
     
-    <div class="profile" *ngIf="!showProfile  && !showAdm">
+    <div class="profile" *ngIf="!showProfile">
         <span>
           <i class="fas fa-star"></i>
           {{scoreLogin}}
@@ -46,18 +54,4 @@
             &emsp;<a href="" (click)="logout()" (click)="goToInicial()">Sair</a>
         </span>
     </div>
-
-    <div class="profile" *ngIf="showAdm">
-        
-        <span>
-            Olá, <strong>Amnistrador</strong>
-        </span><br>
-        <span class="perfil-logout">
-            <a routerLink="/adm-crud" (click)="goToInicial()">ADM</a>  |
-            &emsp;<a href="" (click)="logout()" (click)="goToInicial()">Sair</a>
-        </span>
-    </div>
-    <a href="/administrador">adm</a>
 </mat-toolbar>
-
-
