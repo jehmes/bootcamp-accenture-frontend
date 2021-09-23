@@ -28,7 +28,7 @@ const routes: Routes = [
   {path: 'user', canActivate: [AuthAdmNotLogGuard, AuthGuardUserLog] ,component: UserComponent},
   {path: 'score', component:ScoreComponent},
   {path: 'administrador', component: AdmLoginComponent,  
-  canActivate: []},
+  canActivate: [AuthGuardUserNotLog, AuthAdmNotLogGuard]},
   {path: 'adm-crud', component: AdmCrudComponent, canActivate: [AuthAdmLogGuard], children: [
     {path: 'home-user', canActivate: [AuthAdmLogGuard], component: UserHomeComponent},
     {path: 'home-deposito', canActivate: [AuthAdmLogGuard], component: DepositoHomeComponent}
