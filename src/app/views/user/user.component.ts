@@ -53,27 +53,10 @@ export class UserComponent implements OnInit {
       email: [null, [Validators.required, Validators.email]]
       })
 
-      //Pegar todos depositos da base da dados
-      this.service.getAllDepositos().subscribe((data) => {
-        // this.allDepositos = data
-        let depositos = data
-        //Apenas mostrar os depositos adicionados manualmente no banco
-        this.allDepositos = depositos.filter((d) => {
-          return d.criador === "adm"
-        })
-        
-      })
+      this.getAllDepositos()
       
-      //Pegar o id do usuario logado
-      this.service.getLocalStorage().subscribe((data) => {
-        this.service.getUserById(data.id).subscribe(dados => {
-          this.popularForm(dados)
-          this.idLogin = data.id
-        })
-      })
-      //console.log(this.idLogin)
+      this.getUserLocalStor()
      
-
   }
 
   popularForm(dados: any) {
@@ -157,6 +140,30 @@ export class UserComponent implements OnInit {
       //console.log(err)
     })
    }
+
+   getUserLocalStor() {
+      //Pega o id do usuario logado e popula o form
+      this.service.getLocalStorage().subscribe((data) => {
+        this.service.getUserById(data.id).subscribe(dados => {
+          this.popularForm(dados)
+          this.idLogin = data.id
+        })
+      })
+      //console.log(this.idLogin)
+   }
+
+  getAllDepositos() {
+    //Pegar todos depositos da base da dados
+    this.service.getAllDepositos().subscribe((data) => {
+      // this.allDepositos = data
+      let depositos = data
+      //Apenas mostrar os depositos adicionados manualmente no banco
+      this.allDepositos = depositos.filter((d) => {
+        return d.criador === "adm"
+      })
+      
+    })  
+  }
 
   consultarCEP(cep: any) {
     if (cep.target.value.length == 8) {

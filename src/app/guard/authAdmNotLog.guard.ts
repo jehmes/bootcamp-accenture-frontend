@@ -6,7 +6,7 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthAdm1Guard implements CanActivate {
+export class AuthAdmNotLogGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router){}
 
@@ -15,12 +15,12 @@ export class AuthAdm1Guard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-        console.log(this.authService.isLoggedAdm())
-      if (this.authService.isLoggedAdm()) {
-          this.router.navigate([''])
-          return false
-        }
-    return true;
+        console.log('adm nao logado ',!this.authService.isLoggedAdm())
+      if (!this.authService.isLoggedAdm()) {
+        return true
+      }
+      this.router.navigate([''])
+      return false;
   }
   
 }

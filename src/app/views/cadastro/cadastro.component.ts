@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 import { cpf } from 'cpf-cnpj-validator'; 
 import { Router } from "@angular/router"
+import { AuthService } from 'src/app/services/auth.service';
 
 
 
@@ -25,7 +26,7 @@ export class CadastroComponent implements OnInit {
 
   cadastroForm!: FormGroup;
 
-  constructor(private service: ServiceService, private formBuilder: FormBuilder, private route: Router) {}  
+  constructor(private service: ServiceService, private formBuilder: FormBuilder, private route: Router, private serviceAuth: AuthService) {}  
 
   ngOnInit(): void {
     
@@ -62,16 +63,9 @@ export class CadastroComponent implements OnInit {
       email: [null, [Validators.required, Validators.email]]
       })
 
-      //Pega a lista de depositos da base de dados
-      this.service.getAllDepositos().subscribe((data) => {
-        let depositos = data
-        //Apenas mostrar os depositos adicionados manualmente no banco
-        this.allDepositos = depositos.filter((d) => {
-          return d.criador === "adm"
-        })
-        console.log(this.allDepositos)
-      })
+      this.getAllDepositos()
      
+      this.disableLogin()
     
   }
   //Atribuir o deposito selecionado ao formulario
@@ -149,6 +143,35 @@ export class CadastroComponent implements OnInit {
      })
 
  }
+
+  getAllDepositos() {
+     //Pega a lista de depositos da base de dados
+     this.service.getAllDepositos().subscribe((data) => {
+      let depositos = data
+      //Apenas mostrar os depositos adicionados manualmente no banco
+      this.allDepositos = depositos.filter((d) => {
+        return d.criador === "adm"
+      })
+      console.log(this.allDepositos)
+    })
+  }
+
+
+  //Caso o adm entre na tela de login/cadastro, apenas o cadastro está disponível
+  disableLogin() {
+    this.serviceAuth.isLoggedAdmObs().subscribe(response => {
+      console.log('resposta ', response)
+      if (response === true) {
+        this.loginFom.get('login').disable()
+        this.loginFom.get('senha').disable()
+      }
+      else {
+        this.loginFom.get('login').enable()
+        this.loginFom.get('senha').enable()
+      }
+
+    })
+  }
 
   //Consulta o CEP numa API
   consultarCEP(cep: any) {
