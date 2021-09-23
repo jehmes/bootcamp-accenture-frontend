@@ -35,15 +35,18 @@ export class UserComponent implements OnInit {
         bairro: [null, Validators.required],  
         cidade: [null, Validators.required],
         estado: [null, Validators.required],
+        numero: [null, Validators.required],
       }),
       deposito: this.formBuilder.group({
         nome: [null, Validators.required],
+        criador: ["user"],
         endereco: this.formBuilder.group({
           cep: [null, Validators.required],
           logradouro: [null, Validators.required],
           bairro: [null, Validators.required],  
           cidade: [null, Validators.required],
           estado: [null, Validators.required],
+          numero: [null, Validators.required],
         })
       }),
       contato: [null, Validators.required],
@@ -55,7 +58,9 @@ export class UserComponent implements OnInit {
         // this.allDepositos = data
         let depositos = data
         //Apenas mostrar os depositos adicionados manualmente no banco
-        this.allDepositos = depositos.slice(0, 3)
+        this.allDepositos = depositos.filter((d) => {
+          return d.criador === "adm"
+        })
         
       })
       
@@ -72,10 +77,12 @@ export class UserComponent implements OnInit {
   }
 
   popularForm(dados: any) {
+    console.log('dados ',dados)
     this.updateForm.get('pontos').setValue(dados.pontos)
     //Popula o endereço
     delete dados.endereco['id']
     this.updateForm.get('endereco').setValue(dados.endereco)
+    this.updateForm.get('endereco').get('numero').setValue(dados.endereco.numero)
 
     //Seleciona o deposito no select
     this.setDepositoSelect(dados)
@@ -115,6 +122,7 @@ export class UserComponent implements OnInit {
       this.updateForm.get('deposito')?.get('endereco')?.get('bairro')?.setValue(d.endereco.bairro)
       this.updateForm.get('deposito')?.get('endereco')?.get('cidade')?.setValue(d.endereco.cidade)
       this.updateForm.get('deposito')?.get('endereco')?.get('estado')?.setValue(d.endereco.estado)
+      this.updateForm.get('deposito')?.get('endereco')?.get('numero')?.setValue(d.endereco.numero)
       // //console.log('formGroup ', this.updateForm.get('deposito')?.value)
     }
 

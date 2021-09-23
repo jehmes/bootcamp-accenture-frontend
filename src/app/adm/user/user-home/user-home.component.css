@@ -1,0 +1,51 @@
+
+.side-color {
+    background-color: rgb(15, 102, 22);
+}
+.width {
+    width: 250px;
+}
+
+a {
+    font-family: 'Poppins', sans-serif;
+    color: rgb(206, 202, 202);
+}
+
+mat-expansion-panel {
+    background-color:rgb(15, 102, 22);
+    margin-top: 20px;
+}
+
+mat-panel-title{
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+}
+
+.mat-expansion-indicator {
+    color: #fff;
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+    box-shadow: none !important;
+}
+
+.mat-expansion-panel-body {
+    background-color: tomato !important;
+}
+
+.body  {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    
+    margin-top: 60px;
+    width: 80%;
+  }
+
+.pointer {
+    color: red;
+    cursor: pointer;
+}

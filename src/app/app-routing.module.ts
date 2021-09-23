@@ -10,7 +10,9 @@ import { UserComponent } from './views/user/user.component'
 import { ScoreComponent } from './views/score/score.component'
 import { AuthGuard } from './guard/auth.guard';
 import { AdmLoginComponent } from './adm/adm-login/adm-login.component'
-import { AdmCrudComponent } from './adm/adm-crud/adm-crud/adm-crud.component'
+import { AdmCrudComponent } from './adm/adm-crud/adm-crud.component'
+import { UserHomeComponent } from './adm//user/user-home/user-home.component'
+import { DepositoHomeComponent } from './adm/deposito/deposito-home/deposito-home.component'
 
 
 const routes: Routes = [
@@ -19,11 +21,16 @@ const routes: Routes = [
   {path: 'gallery', component: GalleryComponent },
   {path: 'cadastro', component: CadastroComponent, 
   canActivate: [AuthGuard] },
-  {path: 'user', component: UserComponent},
+  {path: 'user', component: UserComponent,
+  canActivate: [AuthGuard]},
   {path: 'score', component:ScoreComponent},
   {path: 'administrador', component: AdmLoginComponent,  
   canActivate: [AuthGuard]},
-  {path: 'adm-crud', component: AdmCrudComponent},
+  {path: 'adm-crud', component: AdmCrudComponent, children: [
+    {path: 'home-user', component: UserHomeComponent},
+    {path: 'home-deposito', component: DepositoHomeComponent}
+  ]
+  },
   {path: '**', redirectTo: '' }
 ];
 

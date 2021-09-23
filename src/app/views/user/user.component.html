@@ -3,7 +3,7 @@
         <mat-card-title>EDITAR INFORMAÇÕES</mat-card-title>     
             <form [formGroup]="updateForm" (ngSubmit)="updateUser()">
                 <mat-form-field class="example-form-field" >
-                    <input matInput type="text" placeholder="Nome completo" minlength="4" maxlength="26" formControlName="nome" (keypress)="keyPressLetters($event)" required>
+                    <input matInput type="text" placeholder="Nome completo" minlength="4" maxlength="50" formControlName="nome" (keypress)="keyPressLetters($event)" required>
                 </mat-form-field>
         
                 <mat-form-field class="example-form-field">
@@ -22,7 +22,7 @@
                 <mat-select (selectionChange)="setDepositoValues()" [(ngModel)]="depositoModel" [ngModelOptions]="{standalone: true}" required>
                     <mat-option disabled value="">Selecione</mat-option>
                     <mat-option *ngFor="let deposito of allDepositos" [value]="deposito" >                       
-                        {{deposito.nome}}, {{deposito.endereco.logradouro}} - {{deposito.endereco.cidade}}
+                        {{deposito.nome}}, {{deposito.endereco.logradouro}} - {{deposito.endereco.cidade}}, {{deposito.endereco.numero}}
                     </mat-option>
                 </mat-select>
                 </mat-form-field>
@@ -47,6 +47,10 @@
 
                     <mat-form-field class="example-form-field">
                         <input matInput type="text" placeholder="Estado"  formControlName="estado" (keypress)="keyPressLetters($event)" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="text" placeholder="Numero"  formControlName="numero" (keypress)="keyPressNumbers($event)" required>
                     </mat-form-field>
                 </div>
                
