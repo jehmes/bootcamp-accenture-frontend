@@ -32,9 +32,16 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { UserComponent } from './views/user/user.component';
 import { ScoreComponent } from './views/score/score.component';
 import { AdmLoginComponent } from './adm/adm-login/adm-login.component';
-import { AdmCrudComponent } from './adm/adm-crud/adm-crud/adm-crud.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import { AdmCrudComponent } from './adm/adm-crud/adm-crud.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { UserHomeComponent } from './adm/user/user-home/user-home.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { DepositoHomeComponent } from './adm/deposito/deposito-home/deposito-home.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
+import { PopUpComponent } from './components/pop-up/pop-up.component';
 
 
   
@@ -55,6 +62,9 @@ import {MatListModule} from '@angular/material/list';
     ScoreComponent,
     AdmLoginComponent,
     AdmCrudComponent,
+    UserHomeComponent,
+    DepositoHomeComponent,
+    PopUpComponent,
 
     
   ],
@@ -84,7 +94,11 @@ import {MatListModule} from '@angular/material/list';
     ReactiveFormsModule,
     MatSnackBarModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatExpansionModule,
+    MatMenuModule,
+    MatTableModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

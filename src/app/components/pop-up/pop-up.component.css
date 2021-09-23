@@ -1,0 +1,8 @@
+span, label {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-weight: bold;
+}
+
+.score {
+    margin-bottom: 20px;
+}

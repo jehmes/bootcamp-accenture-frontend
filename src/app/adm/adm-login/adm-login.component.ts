@@ -41,7 +41,7 @@ export class AdmLoginComponent implements OnInit {
      this.service.sendLoginLocalStorage(true, login)
      
      setTimeout(() => {
-       this.route.navigate(['/adm-crud'])
+       this.route.navigate(['/adm-crud/home-user'])
      },700)
        
     },

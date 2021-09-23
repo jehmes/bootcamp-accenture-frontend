@@ -1,0 +1,51 @@
+<div class="fadeIn">
+    <mat-drawer-container class="example-container color">
+        <mat-drawer mode="side" opened class="side-color width">
+    
+            <!-- <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      usuario
+                    </mat-panel-title>
+
+                  </mat-expansion-panel-header>
+                  <p><a routerLink="home-user">Inicio</a></p>
+                  <a routerLink="user-crud">Gerencia usuario</a>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel hideToggle>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      deposito
+                    </mat-panel-title>
+
+                  </mat-expansion-panel-header>
+                  <p><a routerLink="user">Inicio</a></p>
+                  <a routerLink="user-crud">Gerencia usuario</a>
+                </mat-expansion-panel>
+
+              </mat-accordion>        -->
+
+              
+        <mat-nav-list>
+          <a routerLink="home-user" mat-list-item>
+              <i class="material-icons">home</i>
+              Usuario
+          </a>
+      </mat-nav-list>
+      <mat-nav-list>
+          <a routerLink="home-deposito" mat-list-item>
+            <i class="fas fa-industry"></i>
+              Deposito
+          </a>
+      </mat-nav-list>
+    
+        </mat-drawer>
+        <mat-drawer-content>
+            
+            <router-outlet></router-outlet>
+            
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>

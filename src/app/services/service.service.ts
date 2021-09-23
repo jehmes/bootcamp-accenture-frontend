@@ -15,6 +15,7 @@ export class ServiceService {
   urlLogin = "http://localhost:8080/login"
   urlDeposito = "http://localhost:8080/deposito"
   urlUserId = "http://localhost:8080/user/"
+  urlUserDelete = "http://localhost:8080/user/delete/"
   urlUpdateUser = "http://localhost:8080/user/update/"
   urlLoginAdm = "http://localhost:8080/login-adm"
   
@@ -61,8 +62,16 @@ export class ServiceService {
     return this.http.post<User>(this.urlUser, user)
   }
 
+  getallUsers(): Observable<any> {
+    return this.http.get<any>(this.urlUser)
+  }
+
   getUserById(id: number): Observable<any> {
     return this.http.get<any>(`${this.urlUserId}${id}`)
+  }
+
+  deleteUser(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.urlUserDelete}${id}`)
   }
 
   updateUser(user: User, id: number): Observable<User> {

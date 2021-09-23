@@ -44,15 +44,18 @@ export class CadastroComponent implements OnInit {
         bairro: [null, Validators.required],  
         cidade: [null, Validators.required],
         estado: [null, Validators.required],
+        numero: [null, Validators.required],
       }),
       deposito: this.formBuilder.group({
         nome: [null, Validators.required],
+        criador: ["user"],
         endereco: this.formBuilder.group({
           cep: [null, Validators.required],
           logradouro: [null, Validators.required],
           bairro: [null, Validators.required],  
           cidade: [null, Validators.required],
           estado: [null, Validators.required],
+          numero: [null, Validators.required],
         })
       }),
       contato: [null, Validators.required],
@@ -63,7 +66,9 @@ export class CadastroComponent implements OnInit {
       this.service.getAllDepositos().subscribe((data) => {
         let depositos = data
         //Apenas mostrar os depositos adicionados manualmente no banco
-        this.allDepositos = depositos.slice(0, 3)
+        this.allDepositos = depositos.filter((d) => {
+          return d.criador === "adm"
+        })
         console.log(this.allDepositos)
       })
      
@@ -80,18 +85,19 @@ export class CadastroComponent implements OnInit {
     this.cadastroForm.get('deposito')?.get('endereco')?.get('bairro')?.setValue(d.endereco.bairro)
     this.cadastroForm.get('deposito')?.get('endereco')?.get('cidade')?.setValue(d.endereco.cidade)
     this.cadastroForm.get('deposito')?.get('endereco')?.get('estado')?.setValue(d.endereco.estado)
+    this.cadastroForm.get('deposito')?.get('endereco')?.get('numero')?.setValue(d.endereco.numero)
     //console.log('formGroup ', this.cadastroForm.get('deposito')?.value)
    }
 
  createUser() {
-
+  // console.log('valiudo ',this.cadastroForm.valid)
    if (!this.cadastroForm.valid) {
        this.service.showMessage("Campos inválidos!", 'error')
+       console.log(this.cadastroForm.value)
        return
      }
-    
     let payload = this.cadastroForm.value
-    //console.log(payload)
+    // console.log('payload ',payload)
   
     this.service.createUser(payload).subscribe(()=>{
       //console.log("Usuario criado ",payload)
