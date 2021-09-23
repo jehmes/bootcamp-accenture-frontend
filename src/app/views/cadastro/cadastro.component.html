@@ -84,17 +84,17 @@
                     </mat-form-field>
 
                     <mat-form-field class="example-form-field">
-                        <input matInput type="text" placeholder="Numero"  formControlName="numero" (keypress)="keyPressNumbers($event)" required>
+                        <input matInput type="text" placeholder="Numero" minlength="1" maxlength="4"  formControlName="numero" (keypress)="keyPressNumbers($event)" required>
                     </mat-form-field>
                 </div>
                
                 <mat-form-field class="example-form-field">
-                    <input matInput type="text" placeholder="Contato" formControlName="contato" (keypress)="keyPressNumbers($event)" required>
+                    <input matInput type="text" placeholder="Contato" minlength="5" maxlength="11" formControlName="contato" (keypress)="keyPressNumbers($event)" required>
                 </mat-form-field>
                 <mat-form-field class="example-form-field">
                     <input  matInput type="email" placeholder="Email" formControlName="email" required>
                 </mat-form-field>
-                <div class="invalidEmail" *ngIf="cadastroForm.controls.email.touched && cadastroForm.controls.email.invalid">
+                <div class="invalid" *ngIf="cadastroForm.controls.email.touched && cadastroForm.controls.email.invalid">
                     <span >email inválido</span>
                 </div>
 

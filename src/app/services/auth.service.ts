@@ -20,5 +20,18 @@ export class AuthService {
 
     return isLogged
   }
+
+  isLoggedAdm(): boolean {
+    let isLogged: boolean = false;
+    this.service.getLocalStorage().subscribe((data) => {
+
+      if(data.loginAdm != null || data.loginAdm != undefined)
+      isLogged = true
+      else
+      isLogged = false
+    })
+
+    return isLogged
+  }
   
 }
