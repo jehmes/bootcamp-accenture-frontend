@@ -1,0 +1,49 @@
+<div class="body fadeIn">
+    <mat-card class="mat-card">
+        <mat-card-title>CADASTRAR DEPÓSITO</mat-card-title>     
+            <form [formGroup]="cadastroForm" (ngSubmit)="createDeposito()">
+    
+                <mat-form-field class="example-form-field" >
+                    <input matInput type="text" placeholder="Nome do depósito" minlength="4" maxlength="50" formControlName="nome"  required>
+                </mat-form-field>
+        
+                <div class="endereco" formGroupName="endereco">
+                    <mat-form-field class="example-form-field" >
+                        <input  matInput type="text" placeholder="CEP" minlength="8" maxlength="8" (keyup)="consultarCEP($event)" formControlName="cep" (keypress)="keyPressNumbers($event)" required>
+                    </mat-form-field>
+    
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="text" placeholder="Logradouro" minlength="5" maxlength="26"  formControlName="logradouro" required>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="text" placeholder="Bairro" minlength="5" maxlength="26"  formControlName="bairro" (keypress)="keyPressLetters($event)" required>
+                    </mat-form-field>
+    
+                </div>
+               
+                <div class="endereco" formGroupName="endereco">
+                    
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="text" placeholder="Cidade" minlength="5" maxlength="26" formControlName="cidade" (keypress)="keyPressLetters($event)" required>
+                    </mat-form-field>
+    
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="text" placeholder="Estado"  formControlName="estado" (keypress)="keyPressLetters($event)" required>
+                    </mat-form-field>
+    
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="text" placeholder="Numero" minlength="1" maxlength="4"  formControlName="numero" (keypress)="keyPressNumbers($event)" required>
+                    </mat-form-field>
+                </div>
+               
+    
+                <div class="buttons">               
+                    <button mat-raised-button class="green" type="submit">Cadastrar</button>
+                    <button mat-raised-button type="reset" (click)="limparForm()">Limpar</button>
+                </div>
+    
+            </form>      
+        
+    </mat-card>
+</div>

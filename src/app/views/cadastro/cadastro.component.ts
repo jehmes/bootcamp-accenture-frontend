@@ -152,7 +152,7 @@ export class CadastroComponent implements OnInit {
       this.allDepositos = depositos.filter((d) => {
         return d.criador === "adm"
       })
-      console.log(this.allDepositos)
+      // console.log(this.allDepositos)
     })
   }
 
