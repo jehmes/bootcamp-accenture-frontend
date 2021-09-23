@@ -1,0 +1,13 @@
+.confirm {
+    background-color: rgb(161, 10, 10);
+    color: white;
+}
+
+.confirm:hover {
+    background-color: red;
+}
+
+* {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+

@@ -3,6 +3,8 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { cpf } from 'cpf-cnpj-validator';
 import { ServiceService } from 'src/app/services/service.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PopupConfirmComponent } from '../../components/popup-confirm/popup-confirm.component'
 
 @Component({
   selector: 'app-user',
@@ -20,7 +22,8 @@ export class UserComponent implements OnInit {
   allDepositos: any
 
   updateForm!: FormGroup;
-  constructor(private service: ServiceService, private formBuilder: FormBuilder, private router: Router) { }
+  
+  constructor(private service: ServiceService, private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -163,6 +166,16 @@ export class UserComponent implements OnInit {
       })
       
     })  
+  }
+
+  openConfirm(e) {
+    e.preventDefault()
+    console.log('LOGIN ID ',this.idLogin)
+    this.dialog.open(PopupConfirmComponent, {
+      data: {
+        userId: this.idLogin
+      }
+    })
   }
 
   consultarCEP(cep: any) {
