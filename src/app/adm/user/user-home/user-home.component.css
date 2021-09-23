@@ -6,9 +6,36 @@
     width: 250px;
 }
 
+.body h2 {
+    margin-top: 20px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
 a {
     font-family: 'Poppins', sans-serif;
     color: rgb(206, 202, 202);
+}
+
+.green {
+    background-color: rgb(78, 143, 58);
+}
+
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 30px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.register-container button a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.register-container button:hover {
+    background-color: rgb(34, 172, 46);
 }
 
 mat-expansion-panel {
@@ -34,7 +61,7 @@ mat-panel-title{
     background-color: tomato !important;
 }
 
-.body  {
+.table-content  {
     display: flex;
     justify-content: center;
 }

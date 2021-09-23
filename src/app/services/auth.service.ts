@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { ServiceService } from './service.service';
 
 @Injectable({
@@ -8,11 +9,11 @@ export class AuthService {
 
   constructor(private service: ServiceService) { }
 
-  isLogged(): boolean {
+  isLoggedUser(): boolean {
     let isLogged: boolean = false;
     this.service.getLocalStorage().subscribe((data) => {
 
-      if(data.id > 0 || data.loginAdm != null)
+      if(data.id > 0)
       isLogged = true
       else
       isLogged = false
@@ -32,6 +33,19 @@ export class AuthService {
     })
 
     return isLogged
+  }
+
+  isLoggedAdmObs(): Observable<boolean> {
+    let isLogged: boolean = false;
+    this.service.getLocalStorage().subscribe((data) => {
+
+      if(data.loginAdm != null || data.loginAdm != undefined)
+      isLogged = true
+      else
+      isLogged = false
+    })
+
+    return of(isLogged)
   }
   
 }

@@ -8,13 +8,15 @@ import { GalleryComponent } from './views/gallery/gallery.component'
 import { CadastroComponent } from './views/cadastro/cadastro.component'
 import { UserComponent } from './views/user/user.component'
 import { ScoreComponent } from './views/score/score.component'
-import { AuthGuard } from './guard/auth.guard';
 import { AdmLoginComponent } from './adm/adm-login/adm-login.component'
 import { AdmCrudComponent } from './adm/adm-crud/adm-crud.component'
 import { UserHomeComponent } from './adm//user/user-home/user-home.component'
 import { DepositoHomeComponent } from './adm/deposito/deposito-home/deposito-home.component'
-import { AuthAdmGuard } from './guard/authAdm.guard';
-import { AuthAdm1Guard } from './guard/AuthAdm1.guard';
+
+import { AuthGuardUserNotLog } from './guard/authUserNotLog.guard';
+import { AuthGuardUserLog } from './guard/authUserLog.guard';
+import { AuthAdmNotLogGuard } from './guard/authAdmNotLog.guard';
+import { AuthAdmLogGuard } from './guard/authAdmLog.guard';
 
 
 const routes: Routes = [
@@ -22,14 +24,14 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'gallery', component: GalleryComponent},
   {path: 'cadastro', component: CadastroComponent, 
-  canActivate: [AuthGuard, AuthAdm1Guard] },
-  {path: 'user', canActivate: [AuthAdm1Guard] ,component: UserComponent},
+  canActivate: [AuthGuardUserNotLog] },
+  {path: 'user', canActivate: [AuthAdmNotLogGuard, AuthGuardUserLog] ,component: UserComponent},
   {path: 'score', component:ScoreComponent},
   {path: 'administrador', component: AdmLoginComponent,  
-  canActivate: [AuthGuard]},
-  {path: 'adm-crud', component: AdmCrudComponent, canActivate: [AuthAdmGuard], children: [
-    {path: 'home-user', canActivate: [AuthAdmGuard], component: UserHomeComponent},
-    {path: 'home-deposito', canActivate: [AuthAdmGuard], component: DepositoHomeComponent}
+  canActivate: [AuthGuardUserNotLog, AuthAdmNotLogGuard]},
+  {path: 'adm-crud', component: AdmCrudComponent, canActivate: [AuthAdmLogGuard], children: [
+    {path: 'home-user', canActivate: [AuthAdmLogGuard], component: UserHomeComponent},
+    {path: 'home-deposito', canActivate: [AuthAdmLogGuard], component: DepositoHomeComponent}
   ]
   },
   {path: '**', redirectTo: '' }

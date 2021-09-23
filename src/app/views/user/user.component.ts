@@ -3,6 +3,8 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { cpf } from 'cpf-cnpj-validator';
 import { ServiceService } from 'src/app/services/service.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PopupConfirmComponent } from '../../components/popup-confirm/popup-confirm.component'
 
 @Component({
   selector: 'app-user',
@@ -20,7 +22,8 @@ export class UserComponent implements OnInit {
   allDepositos: any
 
   updateForm!: FormGroup;
-  constructor(private service: ServiceService, private formBuilder: FormBuilder, private router: Router) { }
+  
+  constructor(private service: ServiceService, private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -53,27 +56,10 @@ export class UserComponent implements OnInit {
       email: [null, [Validators.required, Validators.email]]
       })
 
-      //Pegar todos depositos da base da dados
-      this.service.getAllDepositos().subscribe((data) => {
-        // this.allDepositos = data
-        let depositos = data
-        //Apenas mostrar os depositos adicionados manualmente no banco
-        this.allDepositos = depositos.filter((d) => {
-          return d.criador === "adm"
-        })
-        
-      })
+      this.getAllDepositos()
       
-      //Pegar o id do usuario logado
-      this.service.getLocalStorage().subscribe((data) => {
-        this.service.getUserById(data.id).subscribe(dados => {
-          this.popularForm(dados)
-          this.idLogin = data.id
-        })
-      })
-      //console.log(this.idLogin)
+      this.getUserLocalStor()
      
-
   }
 
   popularForm(dados: any) {
@@ -157,6 +143,40 @@ export class UserComponent implements OnInit {
       //console.log(err)
     })
    }
+
+   getUserLocalStor() {
+      //Pega o id do usuario logado e popula o form
+      this.service.getLocalStorage().subscribe((data) => {
+        this.service.getUserById(data.id).subscribe(dados => {
+          this.popularForm(dados)
+          this.idLogin = data.id
+        })
+      })
+      //console.log(this.idLogin)
+   }
+
+  getAllDepositos() {
+    //Pegar todos depositos da base da dados
+    this.service.getAllDepositos().subscribe((data) => {
+      // this.allDepositos = data
+      let depositos = data
+      //Apenas mostrar os depositos adicionados manualmente no banco
+      this.allDepositos = depositos.filter((d) => {
+        return d.criador === "adm"
+      })
+      
+    })  
+  }
+
+  openConfirm(e) {
+    e.preventDefault()
+    console.log('LOGIN ID ',this.idLogin)
+    this.dialog.open(PopupConfirmComponent, {
+      data: {
+        userId: this.idLogin
+      }
+    })
+  }
 
   consultarCEP(cep: any) {
     if (cep.target.value.length == 8) {

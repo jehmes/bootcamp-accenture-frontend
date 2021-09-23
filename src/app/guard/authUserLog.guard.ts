@@ -6,7 +6,7 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuardUserLog implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router){}
 
@@ -14,11 +14,12 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      if (this.authService.isLogged()) {
-          this.router.navigate([''])
-          return false
+        // console.log('user logado ',this.authService.isLogged())
+      if (this.authService.isLoggedUser()) {
+        return true;
       }
-    return true;
+      this.router.navigate([''])
+        return false
   }
 
 
