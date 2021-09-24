@@ -31,13 +31,49 @@ a {
 }
 
 table {
-    margin-top: 60px;
+    
     width: 80%;
 }
 
 .table-content  {
     display: flex;
     justify-content: center;
+}
+
+.edit {
+    color: rgb(34, 172, 46);
+}
+
+.table-header {
+    border-radius: 10px 10px 0 0;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto; 
+    width: 80%;
+    height: 40px;
+    background-color: green;
+}
+
+.table-header span {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    color: #fff;
+    line-height: 40px;
+    margin-left: 20px;
+}
+
+.sem-registro {
+    margin-left: auto;
+    margin-right: auto; 
+    width: 80%;
+    height: 40px;
+    border: solid rgb(175, 171, 171) 1px;
+}
+
+.sem-registro span {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    color: #000;
+    line-height: 40px;
+    margin-left: 20px;
 }
 
   

@@ -29,7 +29,7 @@ a {
     font-family: 'Poppins', sans-serif;
 }
 
-.register-container button a {
+.register-container button {
     color: #fff;
     text-decoration: none;
 }
@@ -67,12 +67,44 @@ mat-panel-title{
 }
 
 table {
-    
-    margin-top: 60px;
+    /* margin-top: 60px; */
     width: 80%;
   }
 
 .pointer {
     color: red;
     cursor: pointer;
+}
+
+.table-header {
+    border-radius: 10px 10px 0 0;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto; 
+    width: 80%;
+    height: 40px;
+    background-color: green;
+}
+
+.table-header span {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    color: #fff;
+    line-height: 40px;
+    margin-left: 20px;
+}
+
+.sem-registro {
+    margin-left: auto;
+    margin-right: auto; 
+    width: 80%;
+    height: 40px;
+    border: solid rgb(175, 171, 171) 1px;
+}
+
+.sem-registro span {
+    
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    color: #000;
+    line-height: 40px;
+    margin-left: 20px;
 }

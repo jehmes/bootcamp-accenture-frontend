@@ -4,19 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponent } from '../../../components/pop-up/pop-up.component'
 import { Router } from '@angular/router';
 
-// export interface PeriodicElement {
-//   name: string;
-//   position: number;
-//   weight: number;
-//   symbol: string;
-//   action: string
-// }
 
-const ELEMENT_DATA: any[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-
-];
 
 @Component({
   selector: 'app-user-home',
@@ -25,13 +13,15 @@ const ELEMENT_DATA: any[] = [
 })
 export class UserHomeComponent implements OnInit {
 
-  // displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'action'];
   displayedColumns: string[] = ['nome', 'contato', 'email', 'deposito', 'pontos', 'action'];
-  // dataSource = ELEMENT_DATA;
+
   dataSource: any = []
 
   allUser: any = []
+  
   table: any = []
+
+  total: number
 
   constructor(private service: ServiceService, public dialog: MatDialog, private router: Router) { }
 
@@ -47,6 +37,7 @@ export class UserHomeComponent implements OnInit {
     this.service.getallUsers().subscribe(data => {
       // console.log(data)
       this.allUser = data;
+      this.total = data.length
     })
   }
 

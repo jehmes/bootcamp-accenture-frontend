@@ -20,7 +20,7 @@ export class ServiceService {
   urlUpdateUser = "http://localhost:8080/user/update/"
   urlLoginAdm = "http://localhost:8080/login-adm"
   
-
+  depositoDataUpg: any
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
   
@@ -37,7 +37,6 @@ export class ServiceService {
       // console.log(data)
     }
    
-    
   }
 
   getLocalStorage(): Observable<any> {
@@ -93,6 +92,14 @@ export class ServiceService {
 
   createDeposito(deposito: any): Observable<any> {
     return this.http.post<any>(this.urlDepositoCreate, deposito)
+  }
+
+  sendUpgDeposito(data: any) {
+    this.depositoDataUpg = data
+  }
+
+  getUpgDeposito() {
+    return this.depositoDataUpg
   }
 
   showMessage(msg: string, status: string) {

@@ -13,6 +13,7 @@ import { AdmCrudComponent } from './adm/adm-crud/adm-crud.component'
 import { UserHomeComponent } from './adm//user/user-home/user-home.component'
 import { DepositoHomeComponent } from './adm/deposito/deposito-home/deposito-home.component'
 import { DepositoCreateComponent } from './adm/deposito/deposito-create/deposito-create.component'
+import { DepositoUpdateComponent } from './adm/deposito/deposito-update/deposito-update.component'
 
 import { AuthGuardUserNotLog } from './guard/authUserNotLog.guard';
 import { AuthGuardUserLog } from './guard/authUserLog.guard';
@@ -33,7 +34,8 @@ const routes: Routes = [
   {path: 'adm-crud', component: AdmCrudComponent, canActivate: [AuthAdmLogGuard], children: [
     {path: 'home-user', canActivate: [AuthAdmLogGuard], component: UserHomeComponent},
     {path: 'home-deposito', canActivate: [AuthAdmLogGuard], component: DepositoHomeComponent},
-    {path: 'crud-deposito', canActivate: [AuthAdmLogGuard], component: DepositoCreateComponent}
+    {path: 'create-deposito', canActivate: [AuthAdmLogGuard], component: DepositoCreateComponent},
+    {path: 'upgrade-deposito', canActivate: [AuthAdmLogGuard], component: DepositoUpdateComponent}
   ]
   },
   {path: '**', redirectTo: '' }

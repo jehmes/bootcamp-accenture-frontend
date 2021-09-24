@@ -4,12 +4,14 @@
 
   <div class="register-container">
     <label>Cadastrar um usuário</label>
-    <button mat-raised-button class="green"><a routerLink="/cadastro">Cadastrar</a></button>
+    <button mat-raised-button class="green" routerLink="/cadastro">Cadastrar</button>
   </div>
 
+  <div class="table-header">
+    <span>Registro total: {{total}}</span>
+  </div>
   <div class="table-content">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="total > 0">
 
       <ng-container matColumnDef="nome">
         <th mat-header-cell *matHeaderCellDef> Nome </th>
@@ -50,4 +52,8 @@
     </table>
   </div>
 
+  <div class="sem-registro" *ngIf="total <= 0" >
+    <span>Não existe registro de usuários</span>
+  </div>
+  
 </div>
