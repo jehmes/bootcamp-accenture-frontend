@@ -3,25 +3,25 @@
 
         <mat-drawer mode="side" opened class="side-color width">
 
-        <mat-nav-list>
-          <a routerLink="home-user" mat-list-item routerLinkActive="active">
-              <i class="material-icons">home</i>
-              Usuario
-          </a>
-      </mat-nav-list>
-      <mat-nav-list>
-          <a routerLink="home-deposito" mat-list-item routerLinkActive="active">
-            <i class="fas fa-industry"></i>
-              Deposito
-          </a>
-      </mat-nav-list>
-    
+            <mat-nav-list>
+                <a routerLink="home-user" mat-list-item routerLinkActive="active">
+                    <i class="material-icons">home</i>
+                    Usuario
+                </a>
+            </mat-nav-list>
+            <mat-nav-list>
+                <a routerLink="home-deposito" mat-list-item routerLinkActive="active">
+                    <i class="fas fa-industry"></i>
+                    Deposito
+                </a>
+            </mat-nav-list>
+
         </mat-drawer>
         <mat-drawer-content>
-            
+
             <router-outlet></router-outlet>
-            
+
         </mat-drawer-content>
-        
+
     </mat-drawer-container>
 </div>

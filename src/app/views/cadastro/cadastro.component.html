@@ -1,5 +1,5 @@
 <div class="body fadeIn">
-    
+
     <div>
         <div class="identText">
             <i class="fas fa-user verticalAlig"></i>
@@ -10,100 +10,117 @@
             <mat-card-title>JA TENHO CADASTRO</mat-card-title>
             <mat-card-content>
                 <form [formGroup]="loginFom" (ngSubmit)="loginValidate()">
-                
-                <mat-form-field>
-                    <input type="text" matInput placeholder="CPF (apenas números)" minlength="11" maxlength="11"  (keypress)="keyPressNumbers($event)" formControlName="login" required>
-                </mat-form-field>       
-                <div class="invalid" *ngIf="loginFom.controls.login.touched && loginFom.controls.login.invalid">
-                    <span >CPF inválido</span>
-                </div>    
-                
-                <mat-form-field>
-                    <input type="password" matInput placeholder="Senha" minlength="6" maxlength="11" formControlName="senha" required>
-                </mat-form-field>
-                    
-                <div class="button buttonLogin">
-                    <button type="submit" class="green" mat-raised-button>Login</button>
-                </div>
-                
+
+                    <mat-form-field>
+                        <input type="text" matInput placeholder="CPF (apenas números)" minlength="11" maxlength="11"
+                            (keypress)="keyPressNumbers($event)" formControlName="login" required>
+                    </mat-form-field>
+                    <div class="invalid" *ngIf="loginFom.controls.login.touched && loginFom.controls.login.invalid">
+                        <span>CPF inválido</span>
+                    </div>
+
+                    <mat-form-field>
+                        <input type="password" matInput placeholder="Senha" minlength="6" maxlength="11"
+                            formControlName="senha" required>
+                    </mat-form-field>
+
+                    <div class="button buttonLogin">
+                        <button type="submit" class="green" mat-raised-button>Login</button>
+                    </div>
+
                 </form>
             </mat-card-content>
         </mat-card>
     </div>
-    
-   
+
+
 
     <mat-card class="mat-card">
-        <mat-card-title>QUERO ME CADASTRAR</mat-card-title>     
-            <form [formGroup]="cadastroForm" (ngSubmit)="createUser()">
-                <mat-form-field class="example-form-field" >
-                    <input matInput type="text" placeholder="Nome completo" minlength="4" maxlength="50" formControlName="nome" (keypress)="keyPressLetters($event)" required>
-                </mat-form-field>
-        
-                <mat-form-field class="example-form-field">
-                    <input matInput type="text" placeholder="CPF (apenas numeros)" minlength="11" maxlength="11" formControlName="cpf" maxlength="11" (keypress)="keyPressNumbers($event)" required>
-                </mat-form-field>
-                <div class="invalid" *ngIf="cadastroForm.controls.cpf.touched && cadastroForm.controls.cpf.invalid">
-                    <span >CPF inválido</span>
-                </div>
+        <mat-card-title>QUERO ME CADASTRAR</mat-card-title>
+        <form [formGroup]="cadastroForm" (ngSubmit)="createUser()">
+            <mat-form-field class="example-form-field">
+                <input matInput type="text" placeholder="Nome completo" minlength="4" maxlength="50"
+                    formControlName="nome" (keypress)="keyPressLetters($event)" required>
+            </mat-form-field>
 
-                <mat-form-field class="example-form-field">
-                    <input matInput type="password" placeholder="Senha" minlength="6" maxlength="11"  formControlName="senha" required>
-                </mat-form-field>
-        
-                <mat-form-field >
+            <mat-form-field class="example-form-field">
+                <input matInput type="text" placeholder="CPF (apenas numeros)" minlength="11" maxlength="11"
+                    formControlName="cpf" maxlength="11" (keypress)="keyPressNumbers($event)" required>
+            </mat-form-field>
+            <div class="invalid" *ngIf="cadastroForm.controls.cpf.touched && cadastroForm.controls.cpf.invalid">
+                <span>CPF inválido</span>
+            </div>
+
+            <mat-form-field class="example-form-field">
+                <input matInput type="password" placeholder="Senha" minlength="6" maxlength="11" formControlName="senha"
+                    required>
+            </mat-form-field>
+
+            <mat-form-field>
                 <mat-label>Depósito</mat-label>
-                <mat-select  (selectionChange)="setDepositoValues()" [(ngModel)]="depositoModel" [ngModelOptions]="{standalone: true}" required>
+                <mat-select (selectionChange)="setDepositoValues()" [(ngModel)]="depositoModel"
+                    [ngModelOptions]="{standalone: true}" required>
                     <mat-option disabled value="">Selecione</mat-option>
-                    <mat-option *ngFor="let deposito of allDepositos" [value]="deposito" >                       
-                    {{deposito.nome}}, {{deposito.endereco.logradouro}} - {{deposito.endereco.cidade}}, {{deposito.endereco.numero}}
+                    <mat-option *ngFor="let deposito of allDepositos" [value]="deposito">
+                        {{deposito.nome}}, {{deposito.endereco.logradouro}} - {{deposito.endereco.cidade}},
+                        {{deposito.endereco.numero}}
                     </mat-option>
                 </mat-select>
-                </mat-form-field>
+            </mat-form-field>
 
 
-                <div class="endereco" formGroupName="endereco">
-                    <mat-form-field class="example-form-field" >
-                        <input  matInput type="text" placeholder="CEP" minlength="8" maxlength="8" (keyup)="consultarCEP($event)" formControlName="cep" (keypress)="keyPressNumbers($event)" required>
-                    </mat-form-field>
-    
-                    <mat-form-field class="example-form-field">
-                        <input matInput type="text" placeholder="Logradouro" minlength="5" maxlength="26"  formControlName="logradouro" required>
-                    </mat-form-field>
-                    
-                    <mat-form-field class="example-form-field">
-                        <input matInput type="text" placeholder="Bairro" minlength="5" maxlength="26"  formControlName="bairro" (keypress)="keyPressLetters($event)" required>
-                    </mat-form-field>
-
-                    <mat-form-field class="example-form-field">
-                        <input matInput type="text" placeholder="Cidade" minlength="5" maxlength="26" formControlName="cidade" (keypress)="keyPressLetters($event)" required>
-                    </mat-form-field>
-
-                    <mat-form-field class="example-form-field">
-                        <input matInput type="text" placeholder="Estado"  formControlName="estado" (keypress)="keyPressLetters($event)" required>
-                    </mat-form-field>
-
-                    <mat-form-field class="example-form-field">
-                        <input matInput type="text" placeholder="Numero" minlength="1" maxlength="4"  formControlName="numero" (keypress)="keyPressNumbers($event)" required>
-                    </mat-form-field>
-                </div>
-               
+            <div class="endereco" formGroupName="endereco">
                 <mat-form-field class="example-form-field">
-                    <input matInput type="text" placeholder="Contato" minlength="5" maxlength="11" formControlName="contato" (keypress)="keyPressNumbers($event)" required>
+                    <input matInput type="text" placeholder="CEP" minlength="8" maxlength="8"
+                        (keyup)="consultarCEP($event)" formControlName="cep" (keypress)="keyPressNumbers($event)"
+                        required>
                 </mat-form-field>
-                <mat-form-field class="example-form-field">
-                    <input  matInput type="email" placeholder="Email" formControlName="email" required>
-                </mat-form-field>
-                <div class="invalid" *ngIf="cadastroForm.controls.email.touched && cadastroForm.controls.email.invalid">
-                    <span >email inválido</span>
-                </div>
 
-                <div class="buttons">               
-                    <button mat-raised-button class="green" type="submit">Cadastrar</button>
-                    <button mat-raised-button type="reset" (click)="limparForm()">Limpar</button>
-                </div>
-    
-            </form>      
-        
+                <mat-form-field class="example-form-field">
+                    <input matInput type="text" placeholder="Logradouro" minlength="3" maxlength="50"
+                        formControlName="logradouro" required>
+                </mat-form-field>
+
+                <mat-form-field class="example-form-field">
+                    <input matInput type="text" placeholder="Bairro" minlength="3" maxlength="50"
+                        formControlName="bairro" (keypress)="keyPressLetters($event)" required>
+                </mat-form-field>
+
+                <mat-form-field class="example-form-field">
+                    <input matInput type="text" placeholder="Cidade" minlength="3" maxlength="26"
+                        formControlName="cidade" (keypress)="keyPressLetters($event)" required>
+                </mat-form-field>
+
+                <mat-form-field class="example-form-field">
+                    <input matInput type="text" placeholder="Estado" formControlName="estado" minlength="2"
+                        maxlength="50" (keypress)="keyPressLetters($event)" required>
+                </mat-form-field>
+
+                <mat-form-field class="example-form-field">
+                    <input matInput type="text" placeholder="Numero" minlength="1" maxlength="8"
+                        formControlName="numero" (keypress)="keyPressNumbers($event)" required>
+                </mat-form-field>
+            </div>
+
+            <mat-form-field class="example-form-field">
+                <input matInput type="text" placeholder="Contato" minlength="5" maxlength="11" formControlName="contato"
+                    (keypress)="keyPressNumbers($event)" required>
+            </mat-form-field>
+
+            <mat-form-field class="example-form-field">
+                <input matInput type="email" placeholder="Email" formControlName="email" required minlength="5"
+                    maxlength="50" required>
+            </mat-form-field>
+            <div class="invalid" *ngIf="cadastroForm.controls.email.touched && cadastroForm.controls.email.invalid">
+                <span>email inválido</span>
+            </div>
+
+            <div class="buttons">
+                <button mat-raised-button class="green" type="submit">Cadastrar</button>
+                <button mat-raised-button type="reset" (click)="limparForm()">Limpar</button>
+            </div>
+
+        </form>
+
     </mat-card>
 </div>

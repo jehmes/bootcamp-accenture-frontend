@@ -15,50 +15,64 @@ export class DepositoCrudComponent implements OnInit {
 
   ngOnInit(): void {
 
-    
-    this.cadastroForm = this.formBuilder.group({
-        nome: [null, Validators.required],
-        criador: ["adm"],
-        endereco: this.formBuilder.group({
-          cep: [null, Validators.required],
-          logradouro: [null, Validators.required],
-          bairro: [null, Validators.required],  
-          cidade: [null, Validators.required],
-          estado: [null, Validators.required],
-          numero: [null, Validators.required],
-        })
-      
-      })
+    this.createForm()
+
   }
 
   createDeposito() {
-    console.log(this.cadastroForm.value)
+    // console.log(this.cadastroForm.value)
     if (!this.cadastroForm.valid) {
       this.service.showMessage("Campos inválidos!", 'error')
       console.log(this.cadastroForm.value)
       return
     }
+
+    let payload = this.cadastroForm.value
+
+    this.service.createDeposito(payload).subscribe(() => {
+      this.limparForm()
+      this.service.showMessage("Cadastro realizado com sucesso!", 'success')
+    },
+      err => {
+        this.service.showMessage("Não foi possível realizar o cadastro!", 'error')
+        console.log(err)
+      })
+  }
+
+  createForm() {
+    this.cadastroForm = this.formBuilder.group({
+      nome: [null, Validators.required],
+      endereco: this.formBuilder.group({
+        cep: [null, Validators.required],
+        logradouro: [null, Validators.required],
+        bairro: [null, Validators.required],
+        cidade: [null, Validators.required],
+        estado: [null, Validators.required],
+        numero: [null, Validators.required],
+      })
+
+    })
   }
 
   consultarCEP(cep: any) {
     if (cep.target.value.length == 8) {
-     const value = cep.target.value
-  
+      const value = cep.target.value
+
       this.service.getCEP(value).subscribe((dados) => {
         this.popularEndereco(dados)
       })
-    } 
+    }
   }
-  
+
   popularEndereco(dados: any) {
     this.cadastroForm.get('endereco')?.get('logradouro')?.setValue(dados.logradouro)
     this.cadastroForm.get('endereco')?.get('bairro')?.setValue(dados.bairro)
     this.cadastroForm.get('endereco')?.get('cidade')?.setValue(dados.localidade)
     this.cadastroForm.get('endereco')?.get('estado')?.setValue(dados.uf)
   }
-  
-   //input apenas numeros
-   keyPressNumbers(event: any) {
+
+  //input apenas numeros
+  keyPressNumbers(event: any) {
     var charCode = (event.which) ? event.which : event.keyCode;
     // Only Numbers 0-9
     if ((charCode < 48 || charCode > 57)) {
@@ -67,8 +81,8 @@ export class DepositoCrudComponent implements OnInit {
     } else {
       return true;
     }
-   }
-  
+  }
+
   //input apenas letras
   keyPressLetters(event: any) {
     var charCode = (event.which) ? event.which : event.keyCode;
@@ -80,9 +94,9 @@ export class DepositoCrudComponent implements OnInit {
       return false;
     }
   }
-  
+
   limparForm() {
     this.cadastroForm.reset()
     // this.cadastroForm.get("deposito")?.setValue("")
-   }
+  }
 }

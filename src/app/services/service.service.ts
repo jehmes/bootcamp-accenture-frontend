@@ -14,6 +14,7 @@ export class ServiceService {
   urlUser = "http://localhost:8080/user"
   urlLogin = "http://localhost:8080/login"
   urlDeposito = "http://localhost:8080/deposito"
+  urlDepositoCreate = "http://localhost:8080/deposito/"
   urlUserId = "http://localhost:8080/user/"
   urlUserDelete = "http://localhost:8080/user/delete/"
   urlUpdateUser = "http://localhost:8080/user/update/"
@@ -58,8 +59,8 @@ export class ServiceService {
     return this.http.get(`https://viacep.com.br/ws/${cep}/json`)
     }
 
-  createUser(user: User): Observable<User> {
-    return this.http.post<User>(this.urlUser, user)
+  createUser(user: any): Observable<any> {
+    return this.http.post<any>(this.urlUser, user)
   }
 
   getallUsers(): Observable<any> {
@@ -88,6 +89,10 @@ export class ServiceService {
 
   getAllDepositos(): Observable<any> {
     return this.http.get<any>(this.urlDeposito)
+  }
+
+  createDeposito(deposito: any): Observable<any> {
+    return this.http.post<any>(this.urlDepositoCreate, deposito)
   }
 
   showMessage(msg: string, status: string) {
