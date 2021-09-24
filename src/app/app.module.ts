@@ -43,7 +43,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
 import { PopUpComponent } from './components/pop-up/pop-up.component';
 import { PopupConfirmComponent } from './components/popup-confirm/popup-confirm.component';
-import { DepositoCrudComponent } from './adm/deposito/deposito-crud/deposito-crud.component';
+import { DepositoCreateComponent } from './adm/deposito/deposito-create/deposito-create.component';
 
 
   
@@ -68,7 +68,7 @@ import { DepositoCrudComponent } from './adm/deposito/deposito-crud/deposito-cru
     DepositoHomeComponent,
     PopUpComponent,
     PopupConfirmComponent,
-    DepositoCrudComponent,
+    DepositoCreateComponent,
 
     
   ],

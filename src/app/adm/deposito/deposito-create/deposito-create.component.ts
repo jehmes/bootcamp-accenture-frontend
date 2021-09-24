@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ServiceService } from 'src/app/services/service.service';
 
 @Component({
-  selector: 'app-deposito-crud',
-  templateUrl: './deposito-crud.component.html',
-  styleUrls: ['./deposito-crud.component.css']
+  selector: 'app-deposito-create',
+  templateUrl: './deposito-create.component.html',
+  styleUrls: ['./deposito-create.component.css']
 })
-export class DepositoCrudComponent implements OnInit {
+export class DepositoCreateComponent implements OnInit {
 
   cadastroForm!: FormGroup;
 
