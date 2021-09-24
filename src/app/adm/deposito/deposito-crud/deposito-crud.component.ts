@@ -38,6 +38,17 @@ export class DepositoCrudComponent implements OnInit {
       console.log(this.cadastroForm.value)
       return
     }
+
+    let payload = this.cadastroForm.value
+
+    this.service.createDeposito(payload).subscribe(() => {
+      this.limparForm()
+      this.service.showMessage("Cadastro realizado com sucesso!", 'success')
+    },
+    err => {
+      this.service.showMessage("Não foi possível realizar o cadastro!", 'error')
+      console.log(err)
+    })
   }
 
   consultarCEP(cep: any) {
