@@ -11,53 +11,56 @@ import { ServiceService } from 'src/app/services/service.service';
 export class AdmLoginComponent implements OnInit {
 
   loginForm!: FormGroup;
-  
+
   constructor(private service: ServiceService, private formBuilder: FormBuilder, private route: Router) { }
 
   ngOnInit(): void {
 
     this.loginForm = this.formBuilder.group({
-      email: [null,Validators.required],
+      email: [null, Validators.required],
       senha: [null, Validators.required]
-      })
+    })
   }
-  
-  loginValidate (){
+
+  loginValidate() {
     if (!this.loginForm.valid) {
       this.service.showMessage("Campos inválidos!", 'error')
       return
     }
-    
+
+    this.searchLogin()
+
+  }
+
+  searchLogin() {
     let payload = this.loginForm.value
     // console.log(payload)
-    
+
     this.service.loginAdmValidate(payload).subscribe((data) => {
-     this.service.showMessage("Login realizado com sucesso", 'success')
-     
-     let login = data.email
-     console.log('envia pro local ', data)
+      this.service.showMessage("Login realizado com sucesso", 'success')
 
-    
-     this.service.sendLoginLocalStorage(true, login)
-     
-     setTimeout(() => {
-       this.route.navigate(['/adm-crud/home-user'])
-     },700)
-       
+      let login = data.email
+      // console.log('envia pro local ', data)
+
+      this.service.sendLoginLocalStorage(true, login)
+
+      setTimeout(() => {
+        this.route.navigate(['/adm-crud/home-user'])
+      }, 700)
+
     },
-    err => {
-      if (err.status === 500)
-     this.service.showMessage("Login ou senha inválidos", 'error')
-     else
-     this.service.showMessage("Servico offline, contatar o suporte", 'error')
-     console.log(err.status)
-    })
+      err => {
+        if (err.status === 500)
+          this.service.showMessage("Login ou senha inválidos", 'error')
+        else
+          this.service.showMessage("Servico offline, contatar o suporte", 'error')
+        console.log(err.status)
+      })
+  }
 
-}
-
-logout() {
-  localStorage.clear()
-}
+  logout() {
+    localStorage.clear()
+  }
 
 
 }

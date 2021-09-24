@@ -59,8 +59,8 @@ export class ServiceService {
     return this.http.get(`https://viacep.com.br/ws/${cep}/json`)
     }
 
-  createUser(user: User): Observable<User> {
-    return this.http.post<User>(this.urlUser, user)
+  createUser(user: any): Observable<any> {
+    return this.http.post<any>(this.urlUser, user)
   }
 
   getallUsers(): Observable<any> {

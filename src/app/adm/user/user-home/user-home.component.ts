@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/app/services/service.service';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponent } from '../../../components/pop-up/pop-up.component'
 import { Router } from '@angular/router';
 
@@ -13,8 +13,8 @@ import { Router } from '@angular/router';
 // }
 
 const ELEMENT_DATA: any[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
+  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
+  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
 
 ];
 
@@ -36,21 +36,28 @@ export class UserHomeComponent implements OnInit {
   constructor(private service: ServiceService, public dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
+
+    this.getAllUsers()
+
+    this.setTable()
+
+  }
+
+  getAllUsers() {
     this.service.getallUsers().subscribe(data => {
-      console.log(data)
+      // console.log(data)
       this.allUser = data;
     })
-  
+  }
+
+  setTable() {
     setTimeout(() => {
       this.dataSource = this.allUser;
-    },200)
-
-
-    
+    }, 200)
   }
 
   openDialog(e: any) {
-    console.log(e)
+    // console.log(e)
     this.dialog.open(PopUpComponent, {
       data: {
         id: e.id,
@@ -71,10 +78,6 @@ export class UserHomeComponent implements OnInit {
       }
     })
   }
-  
 
-  teste(n: any) {
-  console.log(n)
-  }
 
 }

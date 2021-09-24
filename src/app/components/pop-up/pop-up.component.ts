@@ -10,7 +10,7 @@ import { ServiceService } from 'src/app/services/service.service';
 })
 export class PopUpComponent implements OnInit {
 
- 
+
   id
   nome
   contato
@@ -24,10 +24,10 @@ export class PopUpComponent implements OnInit {
   estado
   logradouro
   numero
-  
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data, private service: ServiceService, private router: Router) { 
-    console.log('popup',data)
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data, private service: ServiceService) {
+    console.log('popup', data)
     this.id = data.id
     this.nome = data.nome
     this.contato = data.contato
@@ -48,22 +48,19 @@ export class PopUpComponent implements OnInit {
 
   }
 
-//   this.service.showMessage("Cadastro realizado com sucesso!", 'success')
-// }, 
-// err => {
-//   this.service.showMessage("Não foi possível realizar o cadastro!", 'error')
-//   console.log(err)
 
   confirmDelete() {
     console.log(this.id)
     this.service.deleteUser(this.id).subscribe((data) => {
-      console.log('excluido ')
+
       this.service.showMessage("Cadastro excluído com sucesso!", 'success')
       setTimeout(() => {
         window.location.reload();
-      },1000)
+      }, 1000)
+
     }, err => {
       this.service.showMessage("Não foi possível excluir o cadastro!", 'error')
+      console.log(err)
     })
   }
 

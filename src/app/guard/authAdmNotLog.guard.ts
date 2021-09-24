@@ -15,7 +15,7 @@ export class AuthAdmNotLogGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-        console.log('adm nao logado ',!this.authService.isLoggedAdm())
+        // console.log('adm nao logado ',!this.authService.isLoggedAdm())
       if (!this.authService.isLoggedAdm()) {
         return true
       }

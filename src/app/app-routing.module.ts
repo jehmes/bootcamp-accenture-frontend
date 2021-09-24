@@ -26,7 +26,7 @@ const routes: Routes = [
   {path: 'gallery', component: GalleryComponent},
   {path: 'cadastro', component: CadastroComponent, 
   canActivate: [AuthGuardUserNotLog] },
-  {path: 'user', canActivate: [AuthAdmNotLogGuard, AuthGuardUserLog] ,component: UserComponent},
+  {path: 'edit-user', canActivate: [AuthAdmNotLogGuard, AuthGuardUserLog] ,component: UserComponent},
   {path: 'score', component:ScoreComponent},
   {path: 'administrador', component: AdmLoginComponent,  
   canActivate: [AuthGuardUserNotLog, AuthAdmNotLogGuard]},
