@@ -21,9 +21,8 @@ a {
     font-family: 'Poppins', sans-serif;
 }
 
-.register-container button a {
+.register-container button {
     color: #fff;
-    text-decoration: none;
 }
 
 .register-container button:hover {
@@ -31,8 +30,12 @@ a {
 }
 
 table {
-    
     width: 80%;
+}
+
+table th {
+    font-size: 1.0rem;
+    font-family: 'Poppins', sans-serif;
 }
 
 .table-content  {
@@ -74,6 +77,10 @@ table {
     color: #000;
     line-height: 40px;
     margin-left: 20px;
+}
+
+.align {
+    text-align: center;
 }
 
   

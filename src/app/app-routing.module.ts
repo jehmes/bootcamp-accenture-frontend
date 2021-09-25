@@ -38,7 +38,7 @@ const routes: Routes = [
     {path: 'upgrade-deposito', canActivate: [AuthAdmLogGuard], component: DepositoUpdateComponent}
   ]
   },
-  {path: '**', redirectTo: '' }
+  // {path: '**', redirectTo: '' }
 ];
 
 @NgModule({

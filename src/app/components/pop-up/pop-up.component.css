@@ -6,3 +6,12 @@ span, label {
 .score {
     margin-bottom: 20px;
 }
+
+.mat-raised-button.mat-warn {
+    background-color: rgb(173, 17, 12);
+    color: #fff;
+}
+
+.mat-raised-button.mat-warn:hover {
+    background-color: rgb(255, 2, 2);
+}

@@ -67,12 +67,16 @@ mat-panel-title{
 }
 
 table {
-    /* margin-top: 60px; */
     width: 80%;
   }
 
+table th {
+    font-size: 1.0rem;
+    font-family: 'Poppins', sans-serif;
+}
+
 .pointer {
-    color: red;
+    color: rgb(78, 143, 58);
     cursor: pointer;
 }
 
@@ -107,4 +111,8 @@ table {
     color: #000;
     line-height: 40px;
     margin-left: 20px;
+}
+
+.align {
+    text-align: center;
 }

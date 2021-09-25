@@ -15,6 +15,7 @@ export class ServiceService {
   urlLogin = "http://localhost:8080/login"
   urlDeposito = "http://localhost:8080/deposito"
   urlDepositoCreate = "http://localhost:8080/deposito/"
+  urlDepositoUpgrade = "http://localhost:8080/deposito/upgrade/"
   urlUserId = "http://localhost:8080/user/"
   urlUserDelete = "http://localhost:8080/user/delete/"
   urlUpdateUser = "http://localhost:8080/user/update/"
@@ -92,6 +93,10 @@ export class ServiceService {
 
   createDeposito(deposito: any): Observable<any> {
     return this.http.post<any>(this.urlDepositoCreate, deposito)
+  }
+
+  updateDeposito(deposito: any, id): Observable<any> {
+    return this.http.post<any>(`${this.urlDepositoUpgrade}${id}`, deposito)
   }
 
   sendUpgDeposito(data: any) {

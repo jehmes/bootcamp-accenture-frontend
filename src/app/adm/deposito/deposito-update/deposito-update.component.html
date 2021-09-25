@@ -1,25 +1,60 @@
-<mat-card class="formLogin">
-    <mat-card-title>JA TENHO CADASTRO</mat-card-title>
-    <mat-card-content>
-        <form [formGroup]="upgradeForm" (ngSubmit)="upgradeDep()">
+<div class="body fadeIn">
+    <mat-card class="formLogin">
+        <mat-card-title>EDITAR DEPÓSITO</mat-card-title>
 
-            <mat-form-field>
-                <input type="text" matInput placeholder="CPF (apenas números)" minlength="11" maxlength="11"
-                    formControlName="login" required>
-            </mat-form-field>
-            <div class="invalid" >
-                <span>CPF inválido</span>
-            </div>
+        <mat-card-content>
 
-            <mat-form-field>
-                <input type="password" matInput placeholder="Senha" minlength="6" maxlength="11" formControlName="senha"
-                    required>
-            </mat-form-field>
+                <form [formGroup]="upgradeForm" (ngSubmit)="upgradeProd()">
 
-            <div class="button buttonLogin">
-                <button type="submit" class="green" mat-raised-button>Login</button>
-            </div>
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="text" placeholder="Nome do depósito" minlength="4" maxlength="50"
+                            formControlName="nome" required>
+                    </mat-form-field>
 
-        </form>
-    </mat-card-content>
-</mat-card>
+                    <div class="endereco" formGroupName="endereco">
+                        <mat-form-field class="example-form-field">
+                            <input matInput type="text" placeholder="CEP" minlength="8" maxlength="8"
+                                (keyup)="consultarCEP($event)" formControlName="cep"
+                                (keypress)="keyPressNumbers($event)" required>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-form-field">
+                            <input matInput type="text" placeholder="Logradouro" minlength="5" maxlength="50"
+                                formControlName="logradouro" required>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-form-field">
+                            <input matInput type="text" placeholder="Bairro" minlength="5" maxlength="50"
+                                formControlName="bairro" (keypress)="keyPressLetters($event)" required>
+                        </mat-form-field>
+
+                    </div>
+
+                    <div class="endereco" formGroupName="endereco">
+
+                        <mat-form-field class="example-form-field">
+                            <input matInput type="text" placeholder="Cidade" minlength="5" maxlength="50"
+                                formControlName="cidade" (keypress)="keyPressLetters($event)" required>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-form-field">
+                            <input matInput type="text" placeholder="Estado" formControlName="estado" minlength="2"
+                                maxlength="50" (keypress)="keyPressLetters($event)" required>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-form-field">
+                            <input matInput type="text" placeholder="Numero" minlength="1" maxlength="8"
+                                formControlName="numero" (keypress)="keyPressNumbers($event)" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="buttons">
+                        <button mat-raised-button class="green" type="submit">Editar</button>
+                        <button mat-raised-button type="reset" (click)="limparForm()">Limpar</button>
+                    </div>
+
+                </form>
+        </mat-card-content>
+
+    </mat-card>
+</div>
