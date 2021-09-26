@@ -117,3 +117,24 @@ a {
 .perfil-logout a:hover {
     text-decoration: underline;
 }
+
+.cart {
+    position: absolute;
+    margin-left: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.count-cart {
+    border-radius: 50%;
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    border: 1px solid #000000;
+    background-color: #000000;
+    color: #fff;
+    position: relative;
+    font-size: 0.7rem;
+    text-align: center;
+    top: -10;
+}

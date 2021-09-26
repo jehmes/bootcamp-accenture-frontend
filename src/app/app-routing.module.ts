@@ -14,6 +14,8 @@ import { UserHomeComponent } from './adm//user/user-home/user-home.component'
 import { DepositoHomeComponent } from './adm/deposito/deposito-home/deposito-home.component'
 import { DepositoCreateComponent } from './adm/deposito/deposito-create/deposito-create.component'
 import { DepositoUpdateComponent } from './adm/deposito/deposito-update/deposito-update.component'
+import { ShopComponent } from './views/shop/shop/shop.component'
+import { StoreComponent } from './views/shop/store/store.component'
 
 import { AuthGuardUserNotLog } from './guard/authUserNotLog.guard';
 import { AuthGuardUserLog } from './guard/authUserLog.guard';
@@ -22,23 +24,30 @@ import { AuthAdmLogGuard } from './guard/authAdmLog.guard';
 
 
 const routes: Routes = [
-  {path: '', component: HomeComponent}, 
-  {path: 'about', component: AboutComponent},
-  {path: 'gallery', component: GalleryComponent},
-  {path: 'cadastro', component: CadastroComponent, 
-  canActivate: [AuthGuardUserNotLog] },
-  {path: 'edit-user', canActivate: [AuthAdmNotLogGuard, AuthGuardUserLog] ,component: UserComponent},
-  {path: 'score', component:ScoreComponent},
-  {path: 'administrador', component: AdmLoginComponent,  
-  canActivate: [AuthGuardUserNotLog, AuthAdmNotLogGuard]},
-  {path: 'adm-crud', component: AdmCrudComponent, canActivate: [AuthAdmLogGuard], children: [
-    {path: 'home-user', canActivate: [AuthAdmLogGuard], component: UserHomeComponent},
-    {path: 'home-deposito', canActivate: [AuthAdmLogGuard], component: DepositoHomeComponent},
-    {path: 'create-deposito', canActivate: [AuthAdmLogGuard], component: DepositoCreateComponent},
-    {path: 'upgrade-deposito', canActivate: [AuthAdmLogGuard], component: DepositoUpdateComponent}
-  ]
+  { path: '', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'gallery', component: GalleryComponent },
+  {
+    path: 'cadastro', component: CadastroComponent,
+    canActivate: [AuthGuardUserNotLog]
   },
-  // {path: '**', redirectTo: '' }
+  { path: 'edit-user', canActivate: [AuthAdmNotLogGuard, AuthGuardUserLog], component: UserComponent },
+  { path: 'score', component: ScoreComponent },
+  {
+    path: 'administrador', component: AdmLoginComponent,
+    canActivate: [AuthGuardUserNotLog, AuthAdmNotLogGuard]
+  },
+  {
+    path: 'adm-crud', component: AdmCrudComponent, canActivate: [AuthAdmLogGuard], children: [
+      { path: 'home-user', canActivate: [AuthAdmLogGuard], component: UserHomeComponent },
+      { path: 'home-deposito', canActivate: [AuthAdmLogGuard], component: DepositoHomeComponent },
+      { path: 'create-deposito', canActivate: [AuthAdmLogGuard], component: DepositoCreateComponent },
+      { path: 'upgrade-deposito', canActivate: [AuthAdmLogGuard], component: DepositoUpdateComponent }
+    ]
+  },
+  { path: 'shop', component: ShopComponent },
+  { path: 'store', component: StoreComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

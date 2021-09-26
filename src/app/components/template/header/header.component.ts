@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServiceService } from 'src/app/services/service.service';
+import { ShopService } from '../../../services/shop.service'
 
 @Component({
   selector: 'app-header',
@@ -23,7 +24,9 @@ export class HeaderComponent implements OnInit {
 
   user : any
 
-  constructor(private router: Router, private service: ServiceService) { 
+  countCarter: number = 0
+
+  constructor(private router: Router, private service: ServiceService, private cartService: ShopService) { 
   
     
   }
@@ -45,6 +48,10 @@ export class HeaderComponent implements OnInit {
       })
     })
 
+    this.cartService.getCounter().subscribe(count => {
+      this.countCarter = count
+      console.log('header ',count)
+    })
    
   }
   

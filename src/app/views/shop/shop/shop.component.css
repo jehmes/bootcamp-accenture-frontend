@@ -1,0 +1,48 @@
+.card {
+    max-width: 250px;
+    /* max-height: 200px; */
+  }
+  
+.card img {
+  max-height: 250px !important;
+}
+
+.img-height {
+  height: 250px;
+}
+
+.products {
+  display: flex;
+  justify-content: center;
+}
+
+mat-card {
+  height: 450px;
+}
+
+.products mat-card {
+  margin-left: 30px;
+}
+
+.mat-card>.mat-card-actions:last-child {
+  position: absolute;
+  bottom: 20px;
+}
+
+.buy {
+  color: #fff;
+  width: 140px;
+  background-color: rgb(5, 90, 5);
+}
+
+.cart {
+  background-color: rgb(5, 90, 5);
+  height: 34px;
+  width: 80px !important;
+  color: #fff;
+}
+
+.buy:hover {
+  background-color: rgb(12, 143, 12);
+  transition: 0.6s;
+}

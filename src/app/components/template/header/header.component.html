@@ -30,6 +30,8 @@
         <a routerLink="/gallery" (click)="goToInicial()" routerLinkActive="active">Galeria</a>
 
         <a routerLink="/score" routerLinkActive="active">Pontuação<i class="fas fa-star" ></i></a>
+
+        <a routerLink="/shop" (click)="goToInicial()" routerLinkActive="active">Loja</a>
             
     </div>
 
@@ -47,11 +49,15 @@
           {{scoreLogin}}
         </span><br>
         <span>
-            Olá, <strong>{{nameLogin.split(' ')[0]}}</strong>
+            Olá, <strong>{{nameLogin.split(' ')[0]}}</strong> 
+            <span class="cart">
+                <i class="fas fa-cart-plus"></i>
+                <div class="count-cart">{{countCarter}}</div>
+            </span>
         </span><br>
         <span class="perfil-logout">
             <a routerLink="/edit-user" (click)="goToInicial()">Perfil</a>  |
-            &emsp;<a href="" (click)="logout()" (click)="goToInicial()">Sair</a>
+            &emsp;<a href="" (click)="logout()" (click)="goToInicial()">Sair</a>           
         </span>
     </div>
 
@@ -65,5 +71,5 @@
             &emsp;<a href="" (click)="logout()" (click)="goToInicial()">Sair</a>
         </span>
     </div>
-    <a href="/administrador">adm</a>
+    <a style="margin-left: 80px;" href="/administrador">adm</a>
 </mat-toolbar>
