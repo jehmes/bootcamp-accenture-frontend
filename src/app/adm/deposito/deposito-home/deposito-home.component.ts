@@ -12,13 +12,18 @@ import { ServiceService } from 'src/app/services/service.service';
 export class DepositoHomeComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['nome', 'logradouro', 'bairro', 'cidade'];
+  displayedColumns: string[] = ['nome', 'logradouro', 'bairro', 'cidade', 'action'];
   dataSource: any = []
 
   allDepositos: any = []
+
   table: any = []
 
+  total: number
+
   cadastroForm!: FormGroup;
+
+  deposito: any = {}
 
   constructor(private service: ServiceService) { }
 
@@ -34,6 +39,7 @@ export class DepositoHomeComponent implements OnInit {
     //Pega a lista de depositos da base de dados
     this.service.getAllDepositos().subscribe((data) => {
       this.allDepositos = data
+      this.total = data.length
       //  console.log('todos depositos ', this.allDepositos)
     })
   }
@@ -44,6 +50,7 @@ export class DepositoHomeComponent implements OnInit {
         // console.log('teste 1232312',d)
         this.table.push(
           {
+            id: d.id,
             nome: d.nome,
             logradouro: `${d.endereco.logradouro}, ${d.endereco.numero}`,
             bairro: d.endereco.bairro,
@@ -56,5 +63,13 @@ export class DepositoHomeComponent implements OnInit {
     }, 200)
   }
 
+  sendData(e) {
+    let deposito: any = {}
+    deposito = this.allDepositos.filter((dep) => {
+      return dep.id === e.id
+    })
+    this.service.sendUpgDeposito(deposito)
+    // console.log('informaçao ', deposito)
+  }
 
 }

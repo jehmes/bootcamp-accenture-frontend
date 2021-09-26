@@ -27,7 +27,7 @@ export class PopUpComponent implements OnInit {
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data, private service: ServiceService) {
-    console.log('popup', data)
+    // console.log('popup', data)
     this.id = data.id
     this.nome = data.nome
     this.contato = data.contato
