@@ -1,0 +1,32 @@
+<div class="body fadeIn">
+
+  <h3>Loja virtual</h3>
+
+  <div class="products">
+
+    <div *ngFor="let item of produtos">
+      <mat-card class="card" #card>
+        <mat-card-header>
+
+          <mat-card-title>{{item.nome}}</mat-card-title>
+
+        </mat-card-header>
+        <img mat-card-image class="img-height" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p>
+            {{item.descricao}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="addCart(card)" class="buy">COMPRAR</button>
+          <button mat-button class="cart"><i class="fas fa-cart-plus"></i></button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+
+
+
+  </div>
+
+</div>

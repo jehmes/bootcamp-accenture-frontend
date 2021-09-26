@@ -45,6 +45,8 @@ import { PopUpComponent } from './components/pop-up/pop-up.component';
 import { PopupConfirmComponent } from './components/popup-confirm/popup-confirm.component';
 import { DepositoCreateComponent } from './adm/deposito/deposito-create/deposito-create.component';
 import { DepositoUpdateComponent } from './adm/deposito/deposito-update/deposito-update.component';
+import { ShopComponent } from './views/shop/shop/shop.component';
+import { StoreComponent } from './views/shop/store/store.component';
 
 
   
@@ -71,6 +73,8 @@ import { DepositoUpdateComponent } from './adm/deposito/deposito-update/deposito
     PopupConfirmComponent,
     DepositoCreateComponent,
     DepositoUpdateComponent,
+    ShopComponent,
+    StoreComponent,
 
     
   ],
