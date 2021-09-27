@@ -11,6 +11,7 @@ html, body {
 body { 
     margin: 0; 
     font-family: Cambria, "Helvetica Neue", sans-serif; 
+    background-color: rgb(241, 238, 238);
 }
 
 a {
