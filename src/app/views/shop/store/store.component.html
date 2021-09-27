@@ -1,1 +1,47 @@
-<p>store works!</p>
+<div class="body fadeIn">
+    <h2>Carrinho</h2>
+
+<div class="cart">
+
+    <div class="itens" >
+        <mat-card class="item" *ngFor="let item of currentCart">
+            <div class="img-descript">
+                <img src={{item.product.url}} alt="">
+                <div class="descript">
+                    <span clas>{{item.product.descricao}}</span>
+                </div>
+            </div>
+
+           <div class="quant">
+                <div>
+                    <i class="fas fa-minus pointer" (click)=decItem(item)></i>
+                    <span class="count"> {{item.product.quant}} </span>
+                    <i class="fas fa-plus pointer" (click)=incItem(item)></i>
+                    <span class="removeItem" (click)="removeItem(item.product.id)">
+                        <i class="fas fa-trash-alt align"></i>
+                        <span>Remover</span>
+                    </span>
+                </div>
+           </div>
+
+            <div class="total-item">
+                <div> 
+                    <span>R$ {{item.product.precoTotal}}</span>        
+                </div>
+            </div>
+
+           
+
+        </mat-card>
+
+
+    </div>
+
+    <mat-card class="total">
+        <h3>total</h3>
+        <span>teste</span>
+    </mat-card>
+
+</div>
+
+</div>

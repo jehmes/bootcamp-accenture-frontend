@@ -1,0 +1,85 @@
+
+span, h2, p {
+    font-family: 'Poppins', sans-serif;
+}
+
+.cart {
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    margin: 30px 0 60px 0;
+    text-align: center;
+  }
+
+img {
+    width: 90px;
+    height: 80px;
+}
+
+.total {
+    max-height: 200px;
+    margin: 20px 0 0 20px;
+    width: 20%;
+    background-color: rgb(164, 214, 214);
+}
+
+.item {
+    display: flex;
+    margin-top: 20px;
+    /* background-color: rgb(211, 228, 186); */
+    width: 1000px;
+}
+
+.descript {
+    margin-left: 20px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.img-descript {
+    display: flex;
+}
+
+.count {
+    margin: 0 10px 0 10px;
+}
+
+.quant {
+    margin-left: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 200px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.total-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    text-align: end;
+}
+
+.removeItem {
+    margin-top: 5px;
+    display: flex;
+    color: red;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.align {
+    margin-right: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+

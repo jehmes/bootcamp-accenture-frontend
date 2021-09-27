@@ -33,6 +33,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
 
+    //Mostrar informação do usuario quando efetuar
     this.router.events.subscribe(() => {
       this.service.getLocalStorage().subscribe((data) => {
 
@@ -47,11 +48,10 @@ export class HeaderComponent implements OnInit {
         // console.log(this.showAdm)
       })
     })
+    
+    this.countCarter = this.cartService.getCounterLocalStor()
 
-    this.cartService.getCounter().subscribe(count => {
-      this.countCarter = count
-      console.log('header ',count)
-    })
+    this.getCountStore()
    
   }
   
@@ -66,6 +66,12 @@ export class HeaderComponent implements OnInit {
     document.documentElement.scrollTop = 0;
   }
 
+  getCountStore() {
+    this.cartService.getCounter().subscribe(count => {
+      this.countCarter = count
+      // console.log('header ',count)
+    })
+  }
 
   }
 
