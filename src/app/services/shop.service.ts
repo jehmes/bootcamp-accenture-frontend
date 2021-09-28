@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 
 @Injectable({
@@ -6,12 +7,17 @@ import { EventEmitter, Injectable } from '@angular/core';
 export class ShopService {
 
   cartQt = new EventEmitter<number>();
+  urlUpdateUser = "http://localhost:8080/user/discount"
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  discountScore(userId: any, spendScore: number) {
+    this.cartQt.emit(0)
+    return this.http.post<any>(`${this.urlUpdateUser}/${userId}`, spendScore)
+  }
 
   increaseCart(item: any, action: string) {
     //Incrementa a quant do carrinho e emite quant de itens no cart pro header
-    let quant = this.getCounterLocalStor()
     this.cartQt.emit(this.getCounterLocalStor() + 1)
 
     this.saveItemLocalStor(item, action)

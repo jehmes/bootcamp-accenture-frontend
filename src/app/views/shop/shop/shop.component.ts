@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ServiceService } from 'src/app/services/service.service';
 import { ShopService } from '../../../services/shop.service'
 
 export interface Product {
@@ -24,34 +26,36 @@ export class ShopComponent implements OnInit {
   produtos: Product[] = [{
     id: 1,
     nome: "Bolsa",
-    preco: 2.00,
-    precoTotal: 2.00,
+    preco: 2,
+    precoTotal: 2,
     descricao: "bolsa para carregar objetos.",
     url: "../../../../assets/img-cart/bolsa-branca-reci.jpg"
   }, {
     id: 2,
     nome: "Caneta",
-    preco: 1.50,
-    precoTotal: 1.50,
+    preco: 1.5,
+    precoTotal: 1.5,
     descricao: "Caneta feita a partir de material reciclado",
     url: "../../../../assets/img-cart/caneta-bic-azul.jpg"
   }, {
     id: 3,
     nome: "Camisa",
-    preco: 25.90,
-    precoTotal: 25.90,
+    preco: 25,
+    precoTotal: 25,
     descricao: "Camisa com a logo",
     url: "../../../../assets/img-cart/camisa-nike-dri-fit-uniformes-infantil-725984-010-2.jpg"
   }]
 
-  constructor(private shopService: ShopService) { }
+  constructor(private shopService: ShopService, private service: ServiceService) { }
 
   ngOnInit(): void {
   }
 
 
   addCart(item) {
-    console.log('SHOP 1',item)
+    // console.log('SHOP 1',item)
     this.shopService.increaseCart(item, "inc")
+    this.service.showMessage("Produto Adicionado!", 'success')
   }
+
 }

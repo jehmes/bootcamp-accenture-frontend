@@ -25,9 +25,9 @@ export class ServiceService {
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
   
-  sendLoginLocalStorage(adm: boolean, data: any) {
+  sendLoginLocalStorage(user: boolean, data: any) {
     // console.log('teste ',data)
-    if (adm) {
+    if (user) {
       localStorage.setItem("loginAdm", data)
 
     }

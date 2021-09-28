@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShopService } from '../../../services/shop.service'
+import { ServiceService } from '../../../services/service.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-store',
@@ -12,33 +14,39 @@ export class StoreComponent implements OnInit {
 
   currentCart: any[] = []
 
-  constructor(private shopService: ShopService) { }
+  totalValue: number = 0
+
+  idLogin
+
+  score
+
+  constructor(private shopService: ShopService, private accountService: ServiceService, private route: Router) { }
 
   ngOnInit(): void {
 
     this.listItems()
-   
+
+    this.sumTotalValue()
+
   }
 
   incItem(item) {
-    // item.product.quant += 1
-    // console.log('item cru', item)
-    // location.reload()
-    // console.log('item  ', product)
+    this.totalValue = 0
     this.shopService.increaseCart(item.product, "inc")
+    this.sumTotalValue()
   }
 
   decItem(item) {
-    // item.product.quant += 1
-    // console.log('item cru', item)
-    // location.reload()
-    // console.log('item  ', product)
+    this.totalValue = 0
     this.shopService.decreaseCart(item.product, "dec")
+    this.sumTotalValue()
   }
 
   removeItem(id) {
+    this.totalValue = 0
     this.shopService.removeItem(id)
     this.listItems()
+    this.sumTotalValue()
   }
 
   listItems() {
@@ -48,4 +56,49 @@ export class StoreComponent implements OnInit {
       return item1.product.id - item2.product.id
     })
   }
+
+  sumTotalValue() {
+    this.totalValue = 0
+    this.currentCart.forEach((item) => {
+      this.totalValue += item.product.precoTotal
+    })
+  }
+
+  confirm() {
+    this. getCountStore()
+    console.log('userId ',this.idLogin)
+    if (this.score < this.totalValue) {
+      this.accountService.showMessage("Pontos insuficientes!", 'error')
+      return
+    }
+
+    this.shopService.discountScore(this.idLogin, this.totalValue).subscribe((user) => {
+      this.accountService.showMessage("Compra realizada com sucesso!", 'success')
+
+      this.updateUserScoreLocalStor(user.pontos)
+      setTimeout(() => {
+        this.route.navigate(['/shop'])
+      },600)
+
+      console.log('user ', user)
+    })
+  }
+
+  getCountStore() {
+    this.accountService.getLocalStorage().subscribe(data => {
+      console.log('id login ', data.id)
+
+      this.idLogin = data.id
+      this.score = data.score
+
+    })
+  }
+
+  updateUserScoreLocalStor(score) {
+    localStorage.removeItem('cart')
+    localStorage.removeItem('points')
+    localStorage.setItem("points", score)
+  }
+  
+
 }
