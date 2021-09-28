@@ -23,6 +23,10 @@ export interface Product {
 
 export class ShopComponent implements OnInit {
 
+  loginAdm: string
+  
+  isAdmLog: boolean = false
+
   produtos: Product[] = [{
     id: 1,
     nome: "Bolsa",
@@ -49,6 +53,8 @@ export class ShopComponent implements OnInit {
   constructor(private shopService: ShopService, private service: ServiceService) { }
 
   ngOnInit(): void {
+    
+    this.admLoged()
   }
 
 
@@ -57,5 +63,19 @@ export class ShopComponent implements OnInit {
     this.shopService.increaseCart(item, "inc")
     this.service.showMessage("Produto Adicionado!", 'success')
   }
+
+  
+  admLoged() {
+    this.service.getLocalStorage().subscribe((data) => {
+      
+
+      this.loginAdm = data.loginAdm
+      
+      this.loginAdm != null ? this.isAdmLog = true : this.isAdmLog = false 
+      
+      console.log(this.isAdmLog)
+    })
+  }
+  
 
 }
