@@ -4,10 +4,10 @@
 
   <div class="products">
 
-    <div *ngFor="let item of produtos">
+    <div *ngFor="let item of Allproducts">
       <mat-card class="card">
 
-        <img mat-card-image class="img-height" src={{item.url}} alt="Photo of a Shiba Inu">
+        <img mat-card-image class="img-height" src={{item.url}} alt="image">
         <mat-card-content>
           <p>
             {{item.descricao}}
@@ -22,7 +22,7 @@
         </mat-card-content>
 
         <mat-card-actions>
-          <button mat-button class="buy"(click)="addCart(item)">COMPRAR <i class="fas fa-cart-plus"></i></button>
+          <button mat-button class="buy"(click)="addCart(item)" [disabled]="loginAdm">COMPRAR <i class="fas fa-cart-plus"></i></button>
         </mat-card-actions>
         </mat-card>
 
