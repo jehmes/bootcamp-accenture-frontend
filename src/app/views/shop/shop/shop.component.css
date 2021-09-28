@@ -10,6 +10,7 @@ h2 {
 }
   
 .card img {
+  margin-top: 20px;
   max-height: 250px !important;
 }
 
@@ -24,6 +25,7 @@ h2 {
 
 mat-card {
   height: 450px;
+  border-radius: 20px;
 }
 
 .products mat-card {
@@ -33,22 +35,23 @@ mat-card {
 .mat-card>.mat-card-actions:last-child {
   position: absolute;
   bottom: 20px;
+  width: 100%;
 }
 
 .buy {
   color: #fff;
-  width: 140px;
+  width: 92%;
   background-color: rgb(5, 90, 5);
-}
-
-.cart {
-  background-color: rgb(5, 90, 5);
-  height: 34px;
-  width: 80px !important;
-  color: #fff;
 }
 
 .buy:hover {
   background-color: rgb(12, 143, 12);
   transition: 0.6s;
+}
+
+.price {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  position: absolute;
+  bottom: 60px;
 }

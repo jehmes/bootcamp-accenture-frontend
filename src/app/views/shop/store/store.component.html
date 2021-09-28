@@ -1,47 +1,72 @@
 <div class="body fadeIn">
-    <h2>Carrinho</h2>
+    <div *ngIf="currentCart.length > 0">
+        <h2>Carrinho</h2>
 
-<div class="cart">
+    <div class="cart">
 
-    <div class="itens" >
-        <mat-card class="item" *ngFor="let item of currentCart">
-            <div class="img-descript">
-                <img src={{item.product.url}} alt="">
-                <div class="descript">
-                    <span clas>{{item.product.descricao}}</span>
+        <div class="itens" >
+            <mat-card class="item" *ngFor="let item of currentCart">
+                <div class="img-descript">
+                    <img src={{item.product.url}} alt="">
+                    <div class="descript">
+                        <span clas>{{item.product.descricao}}</span>
+                    </div>
                 </div>
+
+            <div class="quant">
+                <span class="qtd">Qtd.</span>
+                    <div>
+                        <i class="fas fa-minus pointer" (click)=decItem(item)></i>
+                        <span class="count"> {{item.product.quant}} </span>
+                        <i class="fas fa-plus pointer" (click)=incItem(item)></i>
+                        <span class="removeItem" (click)="removeItem(item.product.id)">
+                            <i class="fas fa-trash-alt align"></i>
+                            <span>Remover</span>
+                        </span>
+                    </div>
             </div>
 
-           <div class="quant">
-                <div>
-                    <i class="fas fa-minus pointer" (click)=decItem(item)></i>
-                    <span class="count"> {{item.product.quant}} </span>
-                    <i class="fas fa-plus pointer" (click)=incItem(item)></i>
-                    <span class="removeItem" (click)="removeItem(item.product.id)">
-                        <i class="fas fa-trash-alt align"></i>
-                        <span>Remover</span>
-                    </span>
+                <div class="total-item">
+                    <div> 
+                        <span class="green">
+                            <i class="fas fa-star green"></i>
+                            {{item.product.precoTotal}}
+                        </span>        
+                    </div>
                 </div>
-           </div>
 
-            <div class="total-item">
-                <div> 
-                    <span>R$ {{item.product.precoTotal}}</span>        
-                </div>
-            </div>
+            </mat-card>
 
-           
 
+        </div>
+
+        <mat-card class="total">
+                    
+            <h3><i class="fas fa-shopping-cart"></i>TOTAL</h3>
+            
+            <span class="totalValue green">
+                <i class="fas fa-star green"></i>
+                {{totalValue}}
+            </span>
+            <mat-card-actions class="confirm" >
+                <button class="confirm-bt" mat-button (click)="confirm()">CONFIRMAR<i class="fas fa-cart-plus"></i></button>
+            </mat-card-actions>
         </mat-card>
-
+    
 
     </div>
+    </div>
 
-    <mat-card class="total">
-        <h3>total</h3>
-        <span>teste</span>
-    </mat-card>
-
-</div>
+    <div class="empty-cart fadeIn" *ngIf="currentCart.length <= 0">
+        <div class="empty">
+            <h4>CARRINHO VAZIO</h4>
+            <i class="fas fa-shopping-cart"></i>
+            <span>Não há produtos selecionados até o momento!</span>
+            <span class="back-shop">
+                Seu carrinho está vazio!
+                <a routerLink="/shop">Voltar para a tela de compras</a>
+            </span>
+        </div>
+    </div>
 
 </div>

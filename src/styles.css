@@ -11,7 +11,7 @@ html, body {
 body { 
     margin: 0; 
     font-family: Cambria, "Helvetica Neue", sans-serif; 
-    background-color: rgb(241, 238, 238);
+    background-color: rgb(219, 230, 220);
 }
 
 a {
@@ -70,5 +70,9 @@ html, body {
 
 .error .mat-simple-snackbar-action  {
     color: #fff;
+}
+
+.green {
+  color: rgb(5, 90, 5);
 }
 

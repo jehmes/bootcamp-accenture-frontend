@@ -6,26 +6,28 @@
 
     <div *ngFor="let item of produtos">
       <mat-card class="card">
-        <mat-card-header>
 
-          <mat-card-title>{{item.nome}}</mat-card-title>
-
-        </mat-card-header>
         <img mat-card-image class="img-height" src={{item.url}} alt="Photo of a Shiba Inu">
         <mat-card-content>
           <p>
             {{item.descricao}}
           </p>
         </mat-card-content>
+        
+        <mat-card-content class="price">
+          <p class="green">
+            <i class="fas fa-star green"></i>
+            {{item.preco}}
+          </p>
+        </mat-card-content>
+
         <mat-card-actions>
-          <button mat-button class="buy">COMPRAR</button>
-          <button mat-button class="cart" (click)="addCart(item)"><i class="fas fa-cart-plus"></i></button>
+          <button mat-button class="buy"(click)="addCart(item)">COMPRAR <i class="fas fa-cart-plus"></i></button>
         </mat-card-actions>
-      </mat-card>
+        </mat-card>
+
+        
     </div>
-
-
-
 
   </div>
 
