@@ -47,6 +47,9 @@ import { DepositoCreateComponent } from './adm/deposito/deposito-create/deposito
 import { DepositoUpdateComponent } from './adm/deposito/deposito-update/deposito-update.component';
 import { ShopComponent } from './views/shop/shop/shop.component';
 import { StoreComponent } from './views/shop/store/store.component';
+import { ProductHomeComponent } from './adm/products/product-home/product-home.component';
+import { ProductUpdateComponent } from './adm/products/product-update/product-update.component';
+import { ProductCreateComponent } from './adm/products/product-create/product-create.component';
 
 
   
@@ -75,6 +78,9 @@ import { StoreComponent } from './views/shop/store/store.component';
     DepositoUpdateComponent,
     ShopComponent,
     StoreComponent,
+    ProductHomeComponent,
+    ProductUpdateComponent,
+    ProductCreateComponent,
 
     
   ],

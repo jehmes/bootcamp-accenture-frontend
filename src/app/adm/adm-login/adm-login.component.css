@@ -7,3 +7,9 @@
     margin-top: 60px;
     width: 600px;
 }
+
+.vertical h2 {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin-top: 40px;
+}

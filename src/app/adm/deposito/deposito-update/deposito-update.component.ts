@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ServiceService } from 'src/app/services/service.service';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-deposito-update',
@@ -16,7 +15,7 @@ export class DepositoUpdateComponent implements OnInit {
   upgradeForm!: FormGroup;
 
 
-  constructor(private service: ServiceService, private formBuilder: FormBuilder, private route: Router, private location: Location) { }
+  constructor(private service: ServiceService, private formBuilder: FormBuilder, private route: Router) { }
 
   ngOnInit(): void {
 
@@ -52,7 +51,7 @@ export class DepositoUpdateComponent implements OnInit {
   }
 
   upgradeProd() {
-    console.log(this.upgradeForm.value)
+    // console.log(this.upgradeForm.value)
     // console.log(this.cadastroForm.value)
     if (!this.upgradeForm.valid) {
       this.service.showMessage("Campos inválidos!", 'error')

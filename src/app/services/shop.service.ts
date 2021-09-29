@@ -8,6 +8,7 @@ export class ShopService {
 
   cartQt = new EventEmitter<number>();
   urlUpdateUser = "http://localhost:8080/user/discount"
+  productDataUpd: any
 
   constructor(private http: HttpClient) { }
 
@@ -136,11 +137,19 @@ export class ShopService {
           default:
             break;
         }
-        
-
+    
       }
+
     })
     return quant
   }
 
+
+  sendUpdProduct(data: any) {
+    this.productDataUpd = data
+  }
+
+  getUpgProduct() {
+    return this.productDataUpd
+  }
 }

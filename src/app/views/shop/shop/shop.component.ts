@@ -2,15 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/app/services/service.service';
 import { ShopService } from '../../../services/shop.service'
 import { ShopApiService } from '../../../services/shop-api.service'
-
-// export interface Product {
-//   id: number
-//   nome: string,
-//   preco: number,
-//   descricao: string,
-//   url: string,
-//   precoTotal: number
-// }
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -26,56 +18,46 @@ export class ShopComponent implements OnInit {
   Allproducts: any[] = []
 
   loginAdm: string
-  
+
   isAdmLog: boolean = false
 
-  // produtos: Product[] = [{
-  //   id: 1,
-  //   nome: "Bolsa",
-  //   preco: 2,
-  //   precoTotal: 2,
-  //   descricao: "bolsa para carregar objetos.",
-  //   url: "../../../../assets/img-cart/bolsa-branca-reci.jpg"
-  // }, {
-  //   id: 2,
-  //   nome: "Caneta",
-  //   preco: 1,
-  //   precoTotal: 1,
-  //   descricao: "Caneta feita a partir de material reciclado",
-  //   url: "../../../../assets/img-cart/caneta-bic-azul.jpg"
-  // }, {
-  //   id: 3,
-  //   nome: "Camisa",
-  //   preco: 25,
-  //   precoTotal: 25,
-  //   descricao: "Camisa com a logo",
-  //   url: "../../../../assets/img-cart/camisa-nike-dri-fit-uniformes-infantil-725984-010-2.jpg"
-  // }]
+  idLogin: any
 
-  constructor(private shopService: ShopService, private service: ServiceService, private shopApiService: ShopApiService) { }
+  isUserLog: boolean = false
+
+  path = "../../../../assets/img-cart/"
+
+  constructor(private shopService: ShopService, private service: ServiceService, private shopApiService: ShopApiService, private router: Router) { }
 
   ngOnInit(): void {
-    
+
     this.getAllProducts()
 
     this.admLoged()
+
+    this.isUserLogFunct()
   }
 
 
   addCart(item) {
+    if (!this.isUserLog) {
+      this.service.showMessage("Efetue o login", 'error')
+      this.router.navigate(['/cadastro'])
+      return
+    }
     // console.log('SHOP 1',item)
     this.shopService.increaseCart(item, "inc")
     this.service.showMessage("Produto Adicionado!", 'success')
   }
 
-  
+
   admLoged() {
     this.service.getLocalStorage().subscribe((data) => {
-      
+
       this.loginAdm = data.loginAdm
-      
-      this.loginAdm != null ? this.isAdmLog = true : this.isAdmLog = false 
-      
+
+      this.loginAdm != null ? this.isAdmLog = true : this.isAdmLog = false
+
     })
   }
 
@@ -83,10 +65,21 @@ export class ShopComponent implements OnInit {
     this.shopApiService.getAllProducts().subscribe((products) => {
       this.Allproducts = products
     })
-    setTimeout(()=> {
+    setTimeout(() => {
       console.log('products ', this.Allproducts)
-    },200)
+    }, 200)
   }
-  
+
+  isUserLogFunct() {
+
+    this.service.getLocalStorage().subscribe((data) => {
+
+      this.idLogin = data.id
+
+      this.idLogin >= 0 ? this.isUserLog = true : this.isUserLog = false
+      // console.log(this.showAdm)
+    })
+  }
+
 
 }

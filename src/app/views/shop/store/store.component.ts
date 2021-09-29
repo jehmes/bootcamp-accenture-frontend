@@ -20,6 +20,8 @@ export class StoreComponent implements OnInit {
 
   score
 
+  path = "../../../../assets/img-cart/"
+
   constructor(private shopService: ShopService, private accountService: ServiceService, private route: Router) { }
 
   ngOnInit(): void {
@@ -80,7 +82,8 @@ export class StoreComponent implements OnInit {
         this.route.navigate(['/shop'])
       },600)
 
-      console.log('user ', user)
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
     })
   }
 

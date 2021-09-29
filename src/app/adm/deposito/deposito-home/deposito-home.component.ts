@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ServiceService } from 'src/app/services/service.service';
 
 
@@ -20,8 +19,6 @@ export class DepositoHomeComponent implements OnInit {
   table: any = []
 
   total: number
-
-  cadastroForm!: FormGroup;
 
   deposito: any = {}
 

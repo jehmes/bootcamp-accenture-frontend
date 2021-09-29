@@ -1,0 +1,38 @@
+<div class="body fadeIn">
+    <mat-card class="formLogin">
+        <mat-card-title>CADASTRAR PRODUTO</mat-card-title>
+
+        <mat-card-content>
+
+                <form [formGroup]="cadastroForm" (ngSubmit)="createProduct()" enctype="multipart/form-data">
+
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="text" placeholder="Nome do produto" minlength="4" maxlength="50"
+                            formControlName="nome" required>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="text" placeholder="Descrição" minlength="4" maxlength="50"
+                            formControlName="descricao" required>
+                    </mat-form-field>
+                                  
+                    <mat-form-field class="example-form-field">
+                        <input matInput type="number" placeholder="Pontos" maxlength="10"
+                            formControlName="preco" required>
+                    </mat-form-field>
+                                      
+                    <div class="custom-file">
+                        <input type="file" name="file" class="custom-file-input" id="customFile" maxlength="50" placeholder="URL" (change)="onChange($event)" required>
+                        <label class="custom-file-label" for="customFile">{{imageName}}</label>
+                    </div>
+                                   
+                    <div class="buttons">
+                        <button mat-raised-button class="green" type="submit">Cadastrar</button>
+                        <button mat-raised-button type="reset" (click)="limparForm()">Limpar</button>
+                    </div>
+
+                </form>
+        </mat-card-content>
+
+    </mat-card>
+</div>
