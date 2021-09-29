@@ -19,6 +19,10 @@ export class ShopApiService {
     return this.http.post<any>(this.urlCreate, product)
   }
 
+  uploadImg(img: any) {
+    return this.http.post<any>("http://localhost:8080/upload", img)
+  }
+
   getAllProducts(): Observable<any> {
     return this.http.get<any>(this.urlGetAll)
   }
@@ -31,7 +35,7 @@ export class ShopApiService {
     return this.http.delete<any>(`${this.urlDelete}${id}`)
   }
 
-  updateUser(product: any, id: number): Observable<any> {
+  updateProduct(product: any, id: number): Observable<any> {
     return this.http.post<any>(`${this.urlUpdate}${id}`, product)
   }
 }

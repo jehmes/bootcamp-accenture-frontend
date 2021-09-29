@@ -16,6 +16,9 @@ import { DepositoCreateComponent } from './adm/deposito/deposito-create/deposito
 import { DepositoUpdateComponent } from './adm/deposito/deposito-update/deposito-update.component'
 import { ShopComponent } from './views/shop/shop/shop.component'
 import { StoreComponent } from './views/shop/store/store.component'
+import { ProductHomeComponent } from './adm/products/product-home/product-home.component'
+import { ProductUpdateComponent } from './adm/products/product-update/product-update.component'
+import { ProductCreateComponent } from './adm/products/product-create/product-create.component'
 
 import { AuthGuardUserNotLog } from './guard/authUserNotLog.guard';
 import { AuthGuardUserLog } from './guard/authUserLog.guard';
@@ -42,7 +45,10 @@ const routes: Routes = [
       { path: 'home-user', canActivate: [AuthAdmLogGuard], component: UserHomeComponent },
       { path: 'home-deposito', canActivate: [AuthAdmLogGuard], component: DepositoHomeComponent },
       { path: 'create-deposito', canActivate: [AuthAdmLogGuard], component: DepositoCreateComponent },
-      { path: 'upgrade-deposito', canActivate: [AuthAdmLogGuard], component: DepositoUpdateComponent }
+      { path: 'upgrade-deposito', canActivate: [AuthAdmLogGuard], component: DepositoUpdateComponent },
+      { path: 'home-product', canActivate: [AuthAdmLogGuard], component: ProductHomeComponent},
+      { path: 'upgrade-product', canActivate: [AuthAdmLogGuard], component: ProductUpdateComponent},
+      { path: 'create-product', canActivate: [AuthAdmLogGuard], component: ProductCreateComponent},
     ]
   },
   { path: 'shop', component: ShopComponent },

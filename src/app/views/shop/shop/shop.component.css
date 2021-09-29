@@ -26,6 +26,8 @@ h2 {
 mat-card {
   height: 450px;
   border-radius: 20px;
+  min-width: 250px;
+  margin-left: 50px;
 }
 
 .products mat-card {
@@ -54,4 +56,8 @@ mat-card {
   margin: 0;
   position: absolute;
   bottom: 60px;
+}
+
+mat-card-content p {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
 }
