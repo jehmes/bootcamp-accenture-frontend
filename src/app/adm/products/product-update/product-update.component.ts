@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ServiceService } from 'src/app/services/service.service';
@@ -20,6 +20,8 @@ export class ProductUpdateComponent implements OnInit {
 
   imageName: string
 
+  @ViewChild('inputImg') inputImg: ElementRef
+
   constructor(private service: ServiceService, private apiService: ShopApiService, private shopService: ShopService,
     private formBuilder: FormBuilder, private route: Router) { }
 
@@ -32,7 +34,7 @@ export class ProductUpdateComponent implements OnInit {
     //Verifica se existe produto(só vai existir caso seja clicado em editar no home-produto)
     //É para bloquear que a pagina de update seja acessada de qualquer lugar
     if (this.product !== undefined) {
-      console.log(this.product)
+
       this.upgradeForm.setValue(this.product[0])
       this.imageName = this.product[0].formato_imagem
 
@@ -55,23 +57,22 @@ export class ProductUpdateComponent implements OnInit {
   }
 
   upgradeProd() {
-    // console.log(this.upgradeForm.value)
-    // console.log(this.cadastroForm.value)
     if (!this.upgradeForm.valid) {
       this.service.showMessage("Campos inválidos!", 'error')
-      console.log(this.upgradeForm.value)
+
       return
     }
 
     let payload = this.upgradeForm.value
     let productId
     productId = this.upgradeForm.get('id').value
-    console.log('productId ',productId)
 
     this.apiService.updateProduct(payload, productId).subscribe(() => {
-      this.limparForm()
       this.service.showMessage("Produto atualizado com sucesso!", 'success')
-      this.route.navigate(['/adm-crud/home-product'])
+
+      setTimeout(() => {
+        this.route.navigate(['/adm-crud/home-product'])
+      }, 600)
     },
       err => {
         this.service.showMessage("Não foi possível realizar a atualização!", 'error')
@@ -87,10 +88,8 @@ export class ProductUpdateComponent implements OnInit {
       const filereader = new FileReader()
       filereader.readAsDataURL(this.userFile)
       filereader.onload = () => {
-        console.log(this.upgradeForm.value)
         this.upgradeForm.get('url').setValue(filereader.result)
       }
-    // console.log('file ', this.userFile)
     this.upgradeForm.get('url').setValue(this.imageName)
   }
 
@@ -107,6 +106,8 @@ export class ProductUpdateComponent implements OnInit {
   }
 
   limparForm() {
+    this.inputImg.nativeElement.value = ''
+    this.imageName = "Escolha a imagem"
     this.upgradeForm.reset()
   }
 

@@ -11,8 +11,15 @@
   }
 
   mat-card {
-    width: 1500px;
+    width: 800px;
   }
+
+  .back {
+    position: absolute;
+    top: 20px;
+    cursor: pointer;
+}
+
   
   .formLogin{
       width: 400px;

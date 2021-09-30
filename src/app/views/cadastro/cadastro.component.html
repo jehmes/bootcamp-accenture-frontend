@@ -24,7 +24,7 @@
                             <input type="password" matInput placeholder="Senha" minlength="6" maxlength="11"
                                 formControlName="senha" required>
                         </mat-form-field>
-    
+                       
                         <div class="button buttonLogin">
                             <button type="submit" class="green" mat-raised-button>Login</button>
                         </div>
@@ -45,7 +45,7 @@
                     </mat-form-field>
         
                     <mat-form-field class="example-form-field">
-                        <input matInput type="text" placeholder="CPF (apenas numeros)" minlength="11" maxlength="11"
+                        <input matInput type="text" placeholder="CPF (apenas números)" minlength="11" maxlength="11"
                             formControlName="cpf" maxlength="11" (keypress)="keyPressNumbers($event)" required>
                     </mat-form-field>
                     <div class="invalid" *ngIf="cadastroForm.controls.cpf.touched && cadastroForm.controls.cpf.invalid">
@@ -53,9 +53,12 @@
                     </div>
         
                     <mat-form-field class="example-form-field">
-                        <input matInput type="password" placeholder="Senha" minlength="6" maxlength="11" formControlName="senha"
+                        <input matInput type="password" placeholder="Senha" minlength="6" maxlength="50" formControlName="senha"
                             required>
                     </mat-form-field>
+                    <div class="invalid" *ngIf="cadastroForm.controls.senha.touched && cadastroForm.controls.senha.invalid">
+                        <span>Mínimo de 6 digitos</span>
+                    </div>
         
                     <mat-form-field>
                         <mat-label>Depósito</mat-label>
@@ -104,9 +107,13 @@
                     </div>
         
                     <mat-form-field class="example-form-field">
-                        <input matInput type="text" placeholder="Contato" minlength="5" maxlength="11" formControlName="contato"
+                        <mat-label>Contato(apenas números)</mat-label>
+                        <input matInput type="text" placeholder="81912345678" minlength="10" maxlength="11" formControlName="contato"
                             (keypress)="keyPressNumbers($event)" required>
                     </mat-form-field>
+                    <div class="invalid" *ngIf="cadastroForm.controls.contato.touched && cadastroForm.controls.contato.invalid">
+                        <span>Mínimo de 10 digitos</span>
+                    </div>
         
                     <mat-form-field class="example-form-field">
                         <input matInput type="email" placeholder="Email" formControlName="email" required minlength="5"

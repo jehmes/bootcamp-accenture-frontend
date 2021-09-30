@@ -7,6 +7,12 @@ mat-card {
     margin-top: 50px;
 }
 
+.back {
+    position: absolute;
+    top: 20px;
+    cursor: pointer;
+}
+
 .mat-card-title {
     text-align: center;
     margin-bottom: 40px;

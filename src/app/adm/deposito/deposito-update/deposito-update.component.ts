@@ -63,11 +63,11 @@ export class DepositoUpdateComponent implements OnInit {
 
     this.service.createDeposito(payload).subscribe(() => {
       this.limparForm()
-      this.service.showMessage("Deposito criado com sucesso!", 'success')
+      this.service.showMessage("Deposito atualizado com sucesso!", 'success')
       this.route.navigate(['/adm-crud/home-deposito'])
     },
       err => {
-        this.service.showMessage("Não foi possível realizar o cadastro!", 'error')
+        this.service.showMessage("Não foi possível realizar a atualização!", 'error')
         console.log(err)
       })
   }

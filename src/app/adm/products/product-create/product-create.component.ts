@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ServiceService } from 'src/app/services/service.service';
 import { ShopApiService } from 'src/app/services/shop-api.service'
@@ -16,7 +16,9 @@ export class ProductCreateComponent implements OnInit {
 
   userFile: any = File
 
-
+  
+  @ViewChild('inputImg') inputImg: ElementRef
+  
   constructor(private service: ServiceService, private formBuilder: FormBuilder, private shopApiService: ShopApiService) { }
 
   ngOnInit(): void {
@@ -26,27 +28,17 @@ export class ProductCreateComponent implements OnInit {
 
 
   createProduct() {
-    console.log(this.cadastroForm.value)
     if (!this.cadastroForm.valid) {
       this.service.showMessage("Campos inválidos!", 'error')
-      console.log(this.cadastroForm.value)
       return
     }
     
     const formData = new FormData()
     formData.append('file', this.userFile)
 
-    // this.shopApiService.uploadImg(formData).subscribe(data => {
-    //   console.log(data)
-    // }, err => {
-    //   console.log(err)
-    //   this.service.showMessage("Não foi possível realizar o upload da imagem!", 'error')
-    // })
-
-
     const product = this.cadastroForm.value
     this.shopApiService.createProduct(product).subscribe(data => {
-      console.log(data)
+      this.limparForm()
       this.service.showMessage("Produdo criado com sucesso!", 'success')
     }, err => {
       console.log(err)
@@ -73,10 +65,8 @@ export class ProductCreateComponent implements OnInit {
       const filereader = new FileReader()
       filereader.readAsDataURL(this.userFile)
       filereader.onload = () => {
-        console.log(filereader.result)
         this.cadastroForm.get('url').setValue(filereader.result)
       }
-    // console.log('file ', this.userFile)
     this.cadastroForm.get('url').setValue(this.imageName)
   }
 
@@ -93,7 +83,8 @@ export class ProductCreateComponent implements OnInit {
   }
 
   limparForm() {
+    this.inputImg.nativeElement.value = ''
+    this.imageName = "Escolha a imagem"
     this.cadastroForm.reset()
-    // this.cadastroForm.get("deposito")?.setValue("")
   }
 }

@@ -50,6 +50,7 @@ import { StoreComponent } from './views/shop/store/store.component';
 import { ProductHomeComponent } from './adm/products/product-home/product-home.component';
 import { ProductUpdateComponent } from './adm/products/product-update/product-update.component';
 import { ProductCreateComponent } from './adm/products/product-create/product-create.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
   
@@ -114,7 +115,8 @@ import { ProductCreateComponent } from './adm/products/product-create/product-cr
     MatExpansionModule,
     MatMenuModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
