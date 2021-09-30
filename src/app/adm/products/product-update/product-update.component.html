@@ -21,6 +21,11 @@
                             formControlName="preco" required>
                     </mat-form-field>
 
+                    <div class="custom-file">
+                        <input type="file" name="file" class="custom-file-input" id="customFile" maxlength="50" placeholder="URL" (change)="onChange($event)" required>
+                        <label class="custom-file-label" for="customFile">{{imageName}}</label>
+                    </div>
+
                     <div class="buttons">
                         <button mat-raised-button class="green" type="submit">Editar</button>
                         <button mat-raised-button type="reset" (click)="limparForm()">Limpar</button>

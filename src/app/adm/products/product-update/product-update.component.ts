@@ -18,6 +18,8 @@ export class ProductUpdateComponent implements OnInit {
 
   userFile: any = File
 
+  imageName: string
+
   constructor(private service: ServiceService, private apiService: ShopApiService, private shopService: ShopService,
     private formBuilder: FormBuilder, private route: Router) { }
 
@@ -27,11 +29,12 @@ export class ProductUpdateComponent implements OnInit {
 
     this.product = this.shopService.getUpgProduct()
 
-    //Verifica se existe deposito(só vai existir caso seja clicado em editar no home-deposito)
+    //Verifica se existe produto(só vai existir caso seja clicado em editar no home-produto)
     //É para bloquear que a pagina de update seja acessada de qualquer lugar
     if (this.product !== undefined) {
       console.log(this.product)
       this.upgradeForm.setValue(this.product[0])
+      this.imageName = this.product[0].formato_imagem
 
     } else {
       this.route.navigate(['/adm-crud/home-product'])
@@ -46,6 +49,7 @@ export class ProductUpdateComponent implements OnInit {
       descricao: [null, Validators.required],
       preco: [null, Validators.required],
       url: [null],
+      formato_imagem: [null, Validators.required],
       precoTotal: [null, Validators.required],
     })
   }
@@ -73,6 +77,21 @@ export class ProductUpdateComponent implements OnInit {
         this.service.showMessage("Não foi possível realizar a atualização!", 'error')
         console.log(err)
       })
+  }
+
+  onChange(event) {
+    //Pega a imagem pra ser transformado em um formData
+    this.imageName = event.target.files[0].name
+    this.userFile = event.target.files[0]
+
+      const filereader = new FileReader()
+      filereader.readAsDataURL(this.userFile)
+      filereader.onload = () => {
+        console.log(this.upgradeForm.value)
+        this.upgradeForm.get('url').setValue(filereader.result)
+      }
+    // console.log('file ', this.userFile)
+    this.upgradeForm.get('url').setValue(this.imageName)
   }
 
   //input apenas numeros

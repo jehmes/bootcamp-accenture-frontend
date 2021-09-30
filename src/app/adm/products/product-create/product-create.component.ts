@@ -36,12 +36,12 @@ export class ProductCreateComponent implements OnInit {
     const formData = new FormData()
     formData.append('file', this.userFile)
 
-    this.shopApiService.uploadImg(formData).subscribe(data => {
-      console.log(data)
-    }, err => {
-      console.log(err)
-      this.service.showMessage("Não foi possível realizar o upload da imagem!", 'error')
-    })
+    // this.shopApiService.uploadImg(formData).subscribe(data => {
+    //   console.log(data)
+    // }, err => {
+    //   console.log(err)
+    //   this.service.showMessage("Não foi possível realizar o upload da imagem!", 'error')
+    // })
 
 
     const product = this.cadastroForm.value
@@ -59,15 +59,23 @@ export class ProductCreateComponent implements OnInit {
       nome: [null, Validators.required],
       descricao: [null, Validators.required],
       preco: [null, Validators.required],
-      url: [null, Validators.required]
+      url: [null, Validators.required],
+      formato_imagem: [null, Validators.required]
     })
   }
 
   onChange(event) {
     //Pega a imagem pra ser transformado em um formData
     this.imageName = event.target.files[0].name
+    this.cadastroForm.get('formato_imagem').setValue(this.imageName)
     this.userFile = event.target.files[0]
 
+      const filereader = new FileReader()
+      filereader.readAsDataURL(this.userFile)
+      filereader.onload = () => {
+        console.log(filereader.result)
+        this.cadastroForm.get('url').setValue(filereader.result)
+      }
     // console.log('file ', this.userFile)
     this.cadastroForm.get('url').setValue(this.imageName)
   }
