@@ -3,6 +3,17 @@
     justify-content: space-evenly;
 }
 
+.body-content{
+    display: flex;
+    align-items: top;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+.wantToRegister{
+    width: 600px;
+}
+
   .mat-card-title {
       text-align: center;
       margin-bottom: 40px;
@@ -10,8 +21,9 @@
       color: rgb(78, 143, 58);
   }
   .formLogin{
-      width: 400px;
-      max-height: 400px;
+      width: 300px;
+      max-height: 300px;
+      margin-right: 50px;
   }
 
   .identText {
@@ -58,11 +70,9 @@
   }
 
   .endereco {
-      display: flex;
-  }
-
-  .endereco mat-form-field:nth-child(n+2){
-      margin-left: 10px;
+      display: grid;
+      grid-template-columns: auto auto auto;
+      grid-column-gap: 20px;
   }
 
   .invalid {

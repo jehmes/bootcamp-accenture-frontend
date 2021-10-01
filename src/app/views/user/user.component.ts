@@ -156,6 +156,9 @@ export class UserComponent implements OnInit {
       deposito: this.formBuilder.group({
         id: [null],
         nome: [null, Validators.required],
+        url: [null, Validators.required],
+        formato_imagem: [null, Validators.required],
+        tipoMaterial: [null, Validators.required],
         endereco: this.formBuilder.group({
           id: [null],
           cep: [null, Validators.required],

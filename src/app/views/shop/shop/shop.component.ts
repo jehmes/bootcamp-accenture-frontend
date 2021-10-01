@@ -66,7 +66,7 @@ export class ShopComponent implements OnInit {
       this.Allproducts = products
     })
     setTimeout(() => {
-      console.log('products ', this.Allproducts)
+      // console.log('products ', this.Allproducts)
     }, 200)
   }
 

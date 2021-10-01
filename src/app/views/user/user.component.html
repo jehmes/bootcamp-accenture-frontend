@@ -25,7 +25,8 @@
                 <mat-select (selectionChange)="setDepositoValues()" [(ngModel)]="depositoModel"
                     [ngModelOptions]="{standalone: true}" required>
                     <mat-option disabled value="">Selecione</mat-option>
-                    <mat-option *ngFor="let deposito of allDepositos" [value]="deposito">
+                    <mat-option *ngFor="let deposito of allDepositos" [value]="deposito" matTooltip="Tipo de material: {{deposito.tipoMaterial}}"
+                    matTooltipPosition="after">
                         {{deposito.nome}}, {{deposito.endereco.logradouro}} - {{deposito.endereco.cidade}},
                         {{deposito.endereco.numero}}
                     </mat-option>

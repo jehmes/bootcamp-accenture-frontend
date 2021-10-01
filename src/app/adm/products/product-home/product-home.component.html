@@ -31,10 +31,12 @@
           <th mat-header-cell *matHeaderCellDef class="align"> Ações </th>
           <td mat-cell *matCellDef="let element">
             <span>
-              <a (click)="sendData(element)" routerLink="/adm-crud/upgrade-product">
+              <a (click)="sendData(element)" routerLink="/adm-crud/upgrade-product" matTooltip="Editar"
+              matTooltipPosition="above"> 
                 <i class="fas fa-edit edit"></i>    
               </a>
-              <a (click)="openConfirm(element)" class="red pointer">
+              <a (click)="openConfirm(element)" class="red pointer" matTooltip="Excluir"
+              matTooltipPosition="above">
                 <i class="fas fa-trash-alt"></i>    
               </a>
             </span>

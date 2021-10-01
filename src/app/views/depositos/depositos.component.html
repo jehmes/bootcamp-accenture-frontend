@@ -1,0 +1,29 @@
+<div class="body fadeIn">
+
+    <h1>DEPOSITOS DISPONÍVEIS</h1>
+
+    <div class="cards">
+        <div class="card" *ngFor="let deposito of allDepositos">
+            <h2>{{deposito.nome}}</h2>
+            <div class="card-content">
+                <div class="img">
+                    <img src="{{deposito.url}}" alt="img">
+                </div>
+        
+                <div class="info">      
+                    <span>CEP: <span class="green"> {{deposito.endereco.cep}}</span> </span>
+                    <span>Logradouro: <span class="green">{{deposito.endereco.logradouro}}, {{deposito.endereco.numero}}</span> </span>
+                    <span>Bairro: <span class="green"> {{deposito.endereco.bairro}} </span> </span>
+                    <span>Cidade: <span class="green">{{deposito.endereco.cidade}}-{{deposito.endereco.estado}}</span> </span>
+                    <span>Tipo de material: <span class="green">{{deposito.tipoMaterial}}</span> </span>
+                </div>
+            </div>
+        </div>
+    
+       
+
+    </div>
+   
+
+    
+</div>

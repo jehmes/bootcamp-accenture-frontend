@@ -10,6 +10,14 @@ import { ServiceService } from 'src/app/services/service.service';
 export class DepositoCreateComponent implements OnInit {
 
   cadastroForm!: FormGroup;
+  
+  imageName = "Escolha a imagem"
+
+  userFile: any = File
+
+  tipoMaterial = ['Vidro', 'Papel', 'Todos']
+
+  tipoMaterialModel
 
   constructor(private service: ServiceService, private formBuilder: FormBuilder) { }
 
@@ -23,9 +31,11 @@ export class DepositoCreateComponent implements OnInit {
     // console.log(this.cadastroForm.value)
     if (!this.cadastroForm.valid) {
       this.service.showMessage("Campos inválidos!", 'error')
-      console.log(this.cadastroForm.value)
+      // console.log(this.cadastroForm.value)
       return
     }
+
+    // console.log(this.cadastroForm.value)
 
     let payload = this.cadastroForm.value
 
@@ -42,6 +52,9 @@ export class DepositoCreateComponent implements OnInit {
   createForm() {
     this.cadastroForm = this.formBuilder.group({
       nome: [null, Validators.required],
+      url: [null, Validators.required],
+      formato_imagem: [null, Validators.required],
+      tipoMaterial: [null, Validators.required],
       endereco: this.formBuilder.group({
         cep: [null, Validators.required],
         logradouro: [null, Validators.required],
@@ -52,6 +65,26 @@ export class DepositoCreateComponent implements OnInit {
       })
 
     })
+  }
+
+  onChange(event) {
+    //Pega a imagem pra ser transformado em um formData
+    this.imageName = event.target.files[0].name
+    this.cadastroForm.get('formato_imagem').setValue(this.imageName)
+    this.userFile = event.target.files[0]
+
+    
+    const filereader = new FileReader()
+    
+    
+    filereader.readAsDataURL(this.userFile)
+    
+    filereader.onload = () => {
+      this.cadastroForm.get('url').setValue(filereader.result)
+      // console.log('file ',filereader.result)
+    }
+    // console.log('payload ', this.cadastroForm.value)
+    // this.cadastroForm.get('url').setValue(this.imageName)
   }
 
   consultarCEP(cep: any) {
@@ -97,6 +130,7 @@ export class DepositoCreateComponent implements OnInit {
 
   limparForm() {
     this.cadastroForm.reset()
+    this.imageName = "Escolha a imagem"
     // this.cadastroForm.get("deposito")?.setValue("")
   }
 }

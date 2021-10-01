@@ -17,11 +17,5 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     
   }
-
-  goToTexts() {
-      document.body.scrollTop = 840;
-      document.documentElement.scrollTop = 840;
-     
-   }
    
   }

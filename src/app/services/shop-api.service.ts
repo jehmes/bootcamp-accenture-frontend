@@ -18,11 +18,7 @@ export class ShopApiService {
   createProduct(product: any): Observable<any> {
     return this.http.post<any>(this.urlCreate, product)
   }
-
-  uploadImg(img: any) {
-    return this.http.post<any>("http://localhost:8080/upload", img)
-  }
-
+  
   getAllProducts(): Observable<any> {
     return this.http.get<any>(this.urlGetAll)
   }
