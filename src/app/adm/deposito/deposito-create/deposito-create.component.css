@@ -85,4 +85,8 @@
 .invalid span {
     color: rgb(255, 10, 10);
 }
+
+.custom-file {
+    margin: 20px 0 20px 0;
+}
  

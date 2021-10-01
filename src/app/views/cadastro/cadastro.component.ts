@@ -158,7 +158,7 @@ export class CadastroComponent implements OnInit {
     this.cadastroForm = this.formBuilder.group({
       nome: [null, Validators.required],
       cpf: ['', [Validators.required, validarCpf]],
-      senha: [null, Validators.required, Validators.min(6)],
+      senha: [null, Validators.required],
       endereco: this.formBuilder.group({
         cep: [null, Validators.required],
         logradouro: [null, Validators.required],
@@ -180,7 +180,7 @@ export class CadastroComponent implements OnInit {
           numero: [null, Validators.required],
         })
       }),
-      contato: [null, Validators.required, Validators.min(10)],
+      contato: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]]
     })
   }

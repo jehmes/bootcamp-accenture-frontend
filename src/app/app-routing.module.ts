@@ -19,6 +19,7 @@ import { StoreComponent } from './views/shop/store/store.component'
 import { ProductHomeComponent } from './adm/products/product-home/product-home.component'
 import { ProductUpdateComponent } from './adm/products/product-update/product-update.component'
 import { ProductCreateComponent } from './adm/products/product-create/product-create.component'
+import { DepositosComponent } from './views/depositos/depositos.component'
 
 import { AuthGuardUserNotLog } from './guard/authUserNotLog.guard';
 import { AuthGuardUserLog } from './guard/authUserLog.guard';
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'gallery', component: GalleryComponent },
+  { path: 'depositos', component: DepositosComponent},
   {
     path: 'cadastro', component: CadastroComponent,
     canActivate: [AuthGuardUserNotLog]

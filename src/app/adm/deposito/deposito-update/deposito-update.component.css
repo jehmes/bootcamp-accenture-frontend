@@ -53,3 +53,7 @@ mat-card {
 .green:hover {
     background-color: rgb(21, 180, 21);
 }
+
+.custom-file {
+    margin: 20px 0 20px 0;
+}

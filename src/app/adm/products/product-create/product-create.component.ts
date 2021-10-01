@@ -67,7 +67,7 @@ export class ProductCreateComponent implements OnInit {
       filereader.onload = () => {
         this.cadastroForm.get('url').setValue(filereader.result)
       }
-    this.cadastroForm.get('url').setValue(this.imageName)
+    // this.cadastroForm.get('url').setValue(this.imageName)
   }
 
   //input apenas numeros

@@ -11,7 +11,7 @@ import { ServiceService } from 'src/app/services/service.service';
 export class DepositoHomeComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['nome', 'logradouro', 'bairro', 'cidade', 'action'];
+  displayedColumns: string[] = ['nome', 'logradouro', 'bairro', 'cidade', 'material', 'action'];
   dataSource: any = []
 
   allDepositos: any = []
@@ -51,7 +51,8 @@ export class DepositoHomeComponent implements OnInit {
             nome: d.nome,
             logradouro: `${d.endereco.logradouro}, ${d.endereco.numero}`,
             bairro: d.endereco.bairro,
-            cidade: d.endereco.cidade
+            cidade: d.endereco.cidade,
+            material: d.tipoMaterial
           }
         )
       });

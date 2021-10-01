@@ -51,6 +51,7 @@ import { ProductHomeComponent } from './adm/products/product-home/product-home.c
 import { ProductUpdateComponent } from './adm/products/product-update/product-update.component';
 import { ProductCreateComponent } from './adm/products/product-create/product-create.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { DepositosComponent } from './views/depositos/depositos.component';
 
 
   
@@ -82,6 +83,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     ProductHomeComponent,
     ProductUpdateComponent,
     ProductCreateComponent,
+    DepositosComponent,
 
     
   ],

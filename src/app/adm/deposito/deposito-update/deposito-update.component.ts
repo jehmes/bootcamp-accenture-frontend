@@ -14,6 +14,14 @@ export class DepositoUpdateComponent implements OnInit {
 
   upgradeForm!: FormGroup;
 
+  imageName = "Escolha a imagem"
+
+  userFile: any = File
+
+  tipoMaterial = ['Vidro', 'Papel', 'Todos']
+
+  tipoMaterialModel
+
 
   constructor(private service: ServiceService, private formBuilder: FormBuilder, private route: Router) { }
 
@@ -27,6 +35,7 @@ export class DepositoUpdateComponent implements OnInit {
     //É para bloquear que a pagina de update seja acessada de qualquer lugar
     if (this.deposito !== undefined) {
       this.upgradeForm.setValue(this.deposito[0])
+      this.imageName = this.deposito[0].formato_imagem
 
     } else {
       this.route.navigate(['/adm-crud/home-deposito'])
@@ -38,6 +47,9 @@ export class DepositoUpdateComponent implements OnInit {
     this.upgradeForm = this.formBuilder.group({
       id: [null],
       nome: [null, Validators.required],
+      url: [null, Validators.required],
+      formato_imagem: [null, Validators.required],
+      tipoMaterial: [null, Validators.required],
       endereco: this.formBuilder.group({
         id: [null],
         cep: [null, Validators.required],
@@ -70,6 +82,26 @@ export class DepositoUpdateComponent implements OnInit {
         this.service.showMessage("Não foi possível realizar a atualização!", 'error')
         console.log(err)
       })
+  }
+
+  onChange(event) {
+    //Pega a imagem pra ser transformado em um formData
+    this.imageName = event.target.files[0].name
+    this.upgradeForm.get('formato_imagem').setValue(this.imageName)
+    this.userFile = event.target.files[0]
+
+    
+    const filereader = new FileReader()
+    
+    
+    filereader.readAsDataURL(this.userFile)
+    
+    filereader.onload = () => {
+      this.upgradeForm.get('url').setValue(filereader.result)
+      // console.log('file ',filereader.result)
+    }
+    console.log('payload ', this.upgradeForm.value)
+    // this.cadastroForm.get('url').setValue(this.imageName)
   }
 
   //Consulta o CEP numa API
