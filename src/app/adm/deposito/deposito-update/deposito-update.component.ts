@@ -18,7 +18,7 @@ export class DepositoUpdateComponent implements OnInit {
 
   userFile: any = File
 
-  tipoMaterial = ['Vidro', 'Papel', 'Todos']
+  tipoMaterial = ['Vidro', 'Plástico', 'Papel', 'Metal', 'Tecnológico', 'Todos']
 
   tipoMaterialModel
 

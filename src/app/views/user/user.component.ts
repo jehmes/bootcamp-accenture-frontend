@@ -83,7 +83,10 @@ export class UserComponent implements OnInit {
     let payload = this.updateForm.value
     //console.log(payload)
     this.service.updateUser(payload, this.idLogin).subscribe((data) => {
-      localStorage.clear()
+      // localStorage.clear()
+      localStorage.removeItem('id')
+      localStorage.removeItem('login')
+      localStorage.removeItem('points')
 
       let id = (data.id).toString()
       let score = (data.pontos).toString()
