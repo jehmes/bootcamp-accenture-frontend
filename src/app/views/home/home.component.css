@@ -64,6 +64,7 @@
     display: flex;
     justify-content: space-around;
     height: 450px;
+    margin-bottom: 50px;
 }
 
 .texts {
@@ -91,12 +92,12 @@ agm-map {
     height: 400px;
 }
 .content-map {
-    margin: 0 auto;
+    margin: 50px;
 }
 
 .map {
     margin: 0 auto;
-    max-width: 30%;
+    max-width: 500px;
     /* margin-left: 680px; */
     margin-bottom: 50px;
 }

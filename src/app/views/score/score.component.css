@@ -1,6 +1,10 @@
 p {
     margin-bottom: 0;
 }
+
+.body{
+    margin-bottom: 60px;
+}
 .text-title {
     padding-top: 60px;
     /* width: 100%; */
@@ -31,7 +35,7 @@ p {
 }
 
 span p {
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .cards1 {
@@ -52,26 +56,36 @@ span p {
 }
 
 .cards1 div i{
-    font-size: 3rem;
+    font-size: 4rem;
 }
 
-.card-text {
-    margin-top: 130px;
+.group-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
 }
 
 .cardIcon {
     margin-top: 20px;
 }
 
-.max-widght {
+.max-width {
     max-width: 250px;
 }
 
-.max-widght span {
+.max-width span {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     font-size: 1.2rem;
     color: rgb(38, 70, 28);;
    
+}
+
+.saiba-mais{
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 1.2rem;
+    color: #26461c;
+    font-weight: 500;
 }
 
 a {
