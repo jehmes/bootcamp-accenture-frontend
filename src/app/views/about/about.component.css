@@ -33,7 +33,7 @@
     margin-top: 120px;
     display: flex;
     width: 100%;
-    height: 330px;
+    height: 280px;
     justify-content: space-evenly;
     text-align: center;
 }
@@ -57,4 +57,19 @@
     font-size: 1.2rem;
     color: rgb(38, 70, 28);;
    
+}
+
+article {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 1.2rem;
+    line-height: 35px;
+    text-align: center;
+    margin: 30px 0 60px 0;
+}
+
+.voce-sabia h2{
+    font-family: 'Patua One', cursive;
+    color: rgb(78, 143, 58);
+    font-size: 2rem;
+    text-align: center;
 }
