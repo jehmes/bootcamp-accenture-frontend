@@ -97,3 +97,7 @@ a {
 a:hover {
     color: rgb(78, 143, 58);
 }
+
+.card {
+    min-width: 200px;
+}
