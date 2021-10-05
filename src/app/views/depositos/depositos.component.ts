@@ -23,7 +23,7 @@ export class DepositosComponent implements OnInit {
     //Pega a lista de depositos da base de dados
     this.service.getAllDepositos().subscribe((data) => {
       this.allDepositos = data
-       console.log('todos depositos ', this.allDepositos)
+      //  console.log('todos depositos ', this.allDepositos)
     })
   }
 }
