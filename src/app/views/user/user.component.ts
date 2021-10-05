@@ -67,6 +67,9 @@ export class UserComponent implements OnInit {
 
     this.updateForm.get('deposito')?.get('id')?.setValue(d.id)
     this.updateForm.get('deposito')?.get('nome')?.setValue(d.nome)
+    this.updateForm.get('deposito')?.get('url')?.setValue(d.url)
+    this.updateForm.get('deposito')?.get('formato_imagem')?.setValue(d.formato_imagem)
+    this.updateForm.get('deposito')?.get('tipoMaterial')?.setValue(d.tipoMaterial)
     this.updateForm.get('deposito')?.get('endereco')?.get('id')?.setValue(d.endereco.id)
     this.updateForm.get('deposito')?.get('endereco')?.get('cep')?.setValue(d.endereco.cep)
     this.updateForm.get('deposito')?.get('endereco')?.get('logradouro')?.setValue(d.endereco.logradouro)
@@ -81,7 +84,7 @@ export class UserComponent implements OnInit {
   updateUser() {
     //Atribuir o deposito selecionado ao formulario
     let payload = this.updateForm.value
-    //console.log(payload)
+    // console.log(payload)
     this.service.updateUser(payload, this.idLogin).subscribe((data) => {
       // localStorage.clear()
       localStorage.removeItem('id')
@@ -106,8 +109,13 @@ export class UserComponent implements OnInit {
       }, 600)
     },
       err => {
-        this.service.showMessage("Não foi possível atualizar o usuario!", 'error')
-        console.log(err)
+        if (err.error.message === undefined) {
+          console.log(err.error.message)
+          this.service.showMessage("Não foi possível atualizar o usuario!", 'error')
+          console.log(err)
+          return
+        }
+        this.service.showMessage(err.error.message, 'error')
       })
   }
 

@@ -70,8 +70,13 @@ export class CadastroComponent implements OnInit {
       this.service.showMessage("Cadastro realizado com sucesso!", 'success')
     },
       err => {
+        if (err.error.message === undefined) {
+          // console.log(err.error.message)
+          this.service.showMessage("Não foi possível realizar o cadastro!", 'error')
+          console.log(err)
+          return
+        }
         this.service.showMessage(err.error.message, 'error')
-        console.log(err)
       })
   }
 
