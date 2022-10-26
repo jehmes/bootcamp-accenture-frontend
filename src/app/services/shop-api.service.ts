@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class ShopApiService {
 
-  urlGetAll = "http://localhost:8080/product"
-  urlGetById = "http://localhost:8080/product/"
-  urlCreate = "http://localhost:8080/product"
-  urlDelete = "http://localhost:8080/product/delete/"
-  urlUpdate = "http://localhost:8080/product/update/"
+  urlGetAll = "http://localhost:8765/product-service"
+  urlGetById = "http://localhost:8765/product-service/"
+  urlCreate = "http://localhost:8765/product-service"
+  urlDelete = "http://localhost:8765/product-service/delete/"
+  urlUpdate = "http://localhost:8080/product-service/update/"
 
   constructor(private http: HttpClient) { }
   
