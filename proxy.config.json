@@ -11,11 +11,11 @@
     "loglevel": "debug",
     "pathRewrite": {"^/discount" : ""}
   }, 
-    "/product/*": {
-      "target": "http://localhost:8080",
+    "/product-service/*": {
+      "target": "http://localhost:8765",
       "secure": false,
       "loglevel": "debug",
-      "pathRewrite": {"^/product" : ""}
+      "pathRewrite": {"^/product-service" : ""}
     }
 
 }

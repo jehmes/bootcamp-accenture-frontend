@@ -11,7 +11,7 @@ export class ShopApiService {
   urlGetById = "http://localhost:8765/product-service/"
   urlCreate = "http://localhost:8765/product-service"
   urlDelete = "http://localhost:8765/product-service/delete/"
-  urlUpdate = "http://localhost:8080/product-service/update/"
+  urlUpdate = "http://localhost:8765/product-service/update/"
 
   constructor(private http: HttpClient) { }
   
@@ -32,6 +32,6 @@ export class ShopApiService {
   }
 
   updateProduct(product: any, id: number): Observable<any> {
-    return this.http.post<any>(`${this.urlUpdate}${id}`, product)
+    return this.http.put<any>(`${this.urlUpdate}${id}`, product)
   }
 }

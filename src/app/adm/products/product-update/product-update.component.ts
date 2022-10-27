@@ -53,6 +53,7 @@ export class ProductUpdateComponent implements OnInit {
       url: [null],
       formato_imagem: [null, Validators.required],
       precoTotal: [null, Validators.required],
+      environment: [null]
     })
   }
 
